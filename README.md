@@ -1,2 +1,2 @@
-# Software Engineering Coursework 1
+# Software Engineering Coursework 2
 Let's go
