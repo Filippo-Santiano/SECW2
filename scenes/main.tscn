@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=4 uid="uid://mud7fkp6q72l"]
+
+[ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
+[ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="2_4hx6j"]
+[ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="3_y1et5"]
+[ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtdat"]
+resource_name = "Grass"
+texture = ExtResource("2_4hx6j")
+texture_region_size = Vector2i(132, 99)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/y_sort_origin = 1
+0:0/0/custom_data_0 = 10
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjgbj"]
+resource_name = "Building"
+texture = ExtResource("3_y1et5")
+texture_region_size = Vector2i(99, 85)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/z_index = 1
+0:0/0/y_sort_origin = 1
+0:0/0/custom_data_0 = 100
+
+[sub_resource type="TileSet" id="TileSet_glyl1"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+custom_data_layer_0/name = "Pollution"
+custom_data_layer_0/type = 2
+sources/0 = SubResource("TileSetAtlasSource_mtdat")
+sources/1 = SubResource("TileSetAtlasSource_fjgbj")
+
+[node name="Main" type="Node2D"]
+
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer")]
+script = ExtResource("1_10c5s")
+TilesLayer = NodePath("BuildingLayer")
+
+[node name="BuildingLayer" type="TileMapLayer" parent="Tiles"]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_glyl1")
+script = ExtResource("4_ustpy")
+
+[node name="GrassLayer" type="TileMapLayer" parent="Tiles"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD///v/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD///z/AAAAAAAAAAD+//3/AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAD+//7/AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD9////AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_glyl1")
+script = ExtResource("4_ustpy")
+
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("TilesNode", "HoverTiles", "TextLabel")]
+script = ExtResource("5_p11hm")
+TilesNode = NodePath("../Tiles")
+HoverTiles = NodePath("HoverTiles")
+TextLabel = NodePath("Label")
+
+[node name="HoverTiles" type="TileMapLayer" parent="PlayerController"]
+modulate = Color(1, 1, 1, 0.470588)
+y_sort_enabled = true
+tile_set = SubResource("TileSet_glyl1")
+script = ExtResource("4_ustpy")
+
+[node name="Label" type="Label" parent="PlayerController"]
+offset_left = -629.0
+offset_top = -351.0
+offset_right = -528.0
+offset_bottom = -328.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Selected Tile:"
+
+[node name="MainCamera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
