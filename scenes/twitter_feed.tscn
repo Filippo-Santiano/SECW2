@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://13jcnokkgarv"]
+[gd_scene load_steps=2 format=3 uid="uid://bltldb7w81ec5"]
 
 [ext_resource type="Script" path="res://scripts/twitter_feed.gd" id="1_5d1n2"]
 
