@@ -7,6 +7,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1656.0
+offset_bottom = -644.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5d1n2")
@@ -29,6 +31,7 @@ size_flags_vertical = 3
 [node name="ShowAllButton" type="Button" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+focus_mode = 0
 text = "Show All"
 
 [connection signal="button_down" from="ScrollContainer/VBoxContainer/ShowAllButton" to="." method="_on_show_all_button_button_down"]

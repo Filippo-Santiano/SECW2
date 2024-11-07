@@ -1,11 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqlusht6vhp02"]
 
-[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_p2vlx"]
-[ext_resource type="Texture2D" uid="uid://d4b7ibgcx8ja8" path="res://Backgrounds/Background.png" id="2_knd7j"]
-[ext_resource type="PackedScene" uid="uid://dofds288rwwbx" path="res://options_menu/options_menu.tscn" id="3_bgtht"]
+[ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="1_p2vlx"]
+[ext_resource type="Texture2D" uid="uid://d4b7ibgcx8ja8" path="res://Backgrounds/main_menu_background.png" id="2_knd7j"]
+[ext_resource type="PackedScene" uid="uid://dofds288rwwbx" path="res://menus/options_menu/options_menu.tscn" id="3_bgtht"]
 
 [sub_resource type="SystemFont" id="SystemFont_238mq"]
 font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_i4rv0"]
 font_names = PackedStringArray("Impact")
@@ -70,6 +71,7 @@ alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 24
 alignment = 1
 
@@ -77,26 +79,26 @@ alignment = 1
 layout_mode = 2
 
 [node name="Start_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_i4rv0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Start Game
 "
 
 [node name="Options_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_i4rv0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Options
 "
 
 [node name="Exit_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_i4rv0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Exit Game
 "
 
