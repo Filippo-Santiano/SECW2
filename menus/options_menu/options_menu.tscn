@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dofds288rwwbx"]
+[gd_scene load_steps=5 format=3 uid="uid://dofds288rwwbx"]
 
-[ext_resource type="Script" path="res://options_menu/options_menu.gd" id="1_2opo1"]
-[ext_resource type="PackedScene" uid="uid://dqv2o8qvia63r" path="res://options_menu/settings_tab_container.tscn" id="2_p4r1b"]
+[ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_2opo1"]
+[ext_resource type="PackedScene" uid="uid://dqv2o8qvia63r" path="res://menus/options_menu/settings_tab_container.tscn" id="2_p4r1b"]
 
 [sub_resource type="SystemFont" id="SystemFont_3qach"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_ejoa0"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
@@ -43,7 +47,7 @@ theme_override_constants/shadow_offset_y = 8
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
 theme_override_fonts/font = SubResource("SystemFont_3qach")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 96
 text = "Options
 "
 horizontal_alignment = 1
@@ -55,8 +59,10 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 15.0
 
 [node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 60)
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_fonts/font = SubResource("SystemFont_ejoa0")
+theme_override_font_sizes/font_size = 48
 text = "Exit"
