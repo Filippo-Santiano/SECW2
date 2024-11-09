@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqlusht6vhp02"]
+[gd_scene load_steps=5 format=3 uid="uid://bqlusht6vhp02"]
 
 [ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="1_p2vlx"]
-[ext_resource type="Texture2D" uid="uid://d4b7ibgcx8ja8" path="res://Backgrounds/main_menu_background.png" id="2_knd7j"]
 [ext_resource type="PackedScene" uid="uid://dofds288rwwbx" path="res://menus/options_menu/options_menu.tscn" id="3_bgtht"]
 
 [sub_resource type="SystemFont" id="SystemFont_238mq"]
@@ -20,15 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p2vlx")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_knd7j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
