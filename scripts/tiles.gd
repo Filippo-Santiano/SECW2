@@ -20,7 +20,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func placeTile(tile,x,y):
+func editTile(mode,tile,x,y):
 	
 	#layer stuff is weird, needs properly thinking about
 	if _currentLayer == 0:
@@ -28,7 +28,12 @@ func placeTile(tile,x,y):
 	elif _currentLayer >= 1:
 		TilesLayer = $BuildingLayer
 	
-	TilesLayer.placeTile(tile,x,y)
+	if mode == "ADD":
+		TilesLayer.placeTile(tile,x,y)
+	elif mode =="DEL":
+		TilesLayer.clearTile(x,y)
+	else:
+		print("tried to edit tile, but mode unknown")
 	#print("placed tile on",TilesLayer) #for debug
 	print(currentPollution())
 	

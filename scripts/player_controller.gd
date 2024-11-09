@@ -42,8 +42,10 @@ func _physics_process(delta: float) -> void:
 #There are ways to make this more efficient, triggering things on an Input instead of constantly checking every
 #frame. But works for the time being and I haven't yet ran into an issue with this approach
 func allInputs():
-	if Input.is_action_just_pressed("click"):
-		placeTile()
+	if Input.is_action_just_pressed("lmb"):
+		editTile("ADD")
+	if Input.is_action_just_pressed("mmb"):
+		editTile("DEL")
 	if Input.is_action_just_pressed("ui_accept"):
 		changeTile()
 
@@ -61,11 +63,12 @@ func mouseInputToTileMap():
 	
 	return currentTilePosition
 
-func placeTile():
+func editTile(mode):
 	TilesNode.set("_currentLayer",activeLayer) #Sets the layer to place the tile onto. Should be dependent on the type
 	#of tile?
 	var TilePosition = mouseInputToTileMap()
-	TilesNode.placeTile(currentTile,TilePosition.x,TilePosition.y) #places a tile of ID currentTile at the mouse position
+	
+	TilesNode.editTile(mode,currentTile,TilePosition.x,TilePosition.y) #places a tile of ID currentTile at the mouse position
 
 func changeTile():
 	#Right now we just toggle between 1 and 0 since we only have two tiles.
