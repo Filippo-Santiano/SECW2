@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=13 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="2_4hx6j"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="3_y1et5"]
+[ext_resource type="Texture2D" uid="uid://der14yow77vbh" path="res://assets/tree-test-1.png" id="4_nxgfp"]
 [ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
@@ -27,6 +28,13 @@ texture_region_size = Vector2i(99, 85)
 0:0/0/y_sort_origin = 1
 0:0/0/custom_data_0 = 100
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvh2h"]
+texture = ExtResource("4_nxgfp")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 50)
+0:0/0/z_index = 1
+
 [sub_resource type="TileSet" id="TileSet_glyl1"]
 tile_shape = 1
 tile_size = Vector2i(128, 64)
@@ -34,6 +42,7 @@ custom_data_layer_0/name = "Pollution"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_mtdat")
 sources/1 = SubResource("TileSetAtlasSource_fjgbj")
+sources/2 = SubResource("TileSetAtlasSource_wvh2h")
 
 [node name="Main" type="Node2D"]
 
@@ -43,6 +52,7 @@ TilesLayer = NodePath("BuildingLayer")
 
 [node name="BuildingLayer" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_glyl1")
 script = ExtResource("4_ustpy")
 
