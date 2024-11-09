@@ -15,12 +15,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -507.0
-offset_top = -300.0
-offset_right = 507.0
-offset_bottom = 301.0
+offset_left = -535.0
+offset_top = -392.0
+offset_right = 535.0
+offset_bottom = 393.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 48
 tab_alignment = 1
 current_tab = 0
 
@@ -45,25 +46,25 @@ layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Sound1" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Sound 1"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Sound2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sound 2"
+theme_override_font_sizes/font_size = 48
+text = "Sound 1"
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Sound3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sound 3"
+theme_override_font_sizes/font_size = 48
+text = "Sound 1"
 
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="Sound4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Sound 4"
-
-[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Sound 5"
+theme_override_font_sizes/font_size = 48
+text = "Sound 1"
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false
@@ -87,25 +88,25 @@ layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="Graphic1" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Graphic 1"
 
-[node name="Label2" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="Graphic2" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Graphic 2"
 
-[node name="Label3" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="Graphic3" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Graphic 3"
 
-[node name="Label4" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="Graphic4" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
-
-[node name="Label5" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Graphic 4"
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
 visible = false
@@ -160,22 +161,22 @@ layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
+[node name="Setting1" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Setting 1"
 
-[node name="Label2" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
+[node name="Setting2" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Setting 2"
 
-[node name="Label3" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
+[node name="Setting3" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Setting 3"
 
-[node name="Label4" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
+[node name="Setting4" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "1243567"
-
-[node name="Label5" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "1243567"
+theme_override_font_sizes/font_size = 48
+text = "Setting 4"
