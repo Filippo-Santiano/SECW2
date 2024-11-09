@@ -12,10 +12,12 @@ extends Node2D
 #with its name being the identifier and the value being its ID. It would likely make more sense to
 #use an array of dictionaries so that each tile can have more properties. Unsure whether that should be stored here
 #or somewhere within the Tiles node
-var Grass = 0
-var Building = 1
-var currentTile = Grass
+#var Grass = 0
+#var Building = 1   irrelevant for now. will add dict with names and IDs + any other needed info like location within atlas
+
+var currentTile = 0
 var activeLayer = 0
+
 #activeLayer controls which layer (GrassLayer,BuildingLayer) the user is placing the tiles on.
 #Right now I'm unsure how necessary this is going to be for what we're doing -- would the player only need
 #to interact with one plane?
@@ -74,7 +76,7 @@ func changeTile():
 	#Right now we just toggle between 1 and 0 since we only have two tiles.
 	#Eventually we'd be moving through a list (list of dictionaries would be ideal, then could be
 	# Tiles[0].ID // possibly we'd just assume the ID is the item index
-	if currentTile > 0:
+	if currentTile > 1:
 		currentTile = 0
 		activeLayer = 0
 	else:

@@ -1,15 +1,14 @@
 extends Control
-@onready var pause_menu: Control = $"."
 
 # Called when the node enters the scene tree for the first time.
 func resume():
 	get_tree().paused = false
-	pause_menu.visible = false
+	visible = false
 	$AnimationPlayer.play_backwards("blur")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func pause():
-	pause_menu.visible = true
+	visible = true
 	get_tree().paused = true
 	$AnimationPlayer.play("blur")
 
