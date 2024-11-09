@@ -6,8 +6,8 @@ extends Control
 # Array of messages to be displayed in the feed
 var messages = []
 var is_expanded = false # Track whether the feed is expanded to show all messages
-@onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
-@onready var show_all_button: Button = $ScrollContainer/VBoxContainer/ShowAllButton
+@onready var v_box_container: VFlowContainer = $ScrollContainer/Feed
+@onready var show_all_button: Button = $ScrollContainer/Feed/ShowAllButton
 
 @onready var prevPollution = $"../../Tiles".currentPollution()
 
@@ -34,7 +34,7 @@ func add_messages():
 		
 		# Eventually, message types randomly selected from pool of "Bad" or "Good" messages
 		if currentPollution < 300:
-			add_message(str("Good ", pollutionChangeCount))
+			add_message(str("Good GoodGoodGoodGoodGoodGoodGoodGoodGoodGoodGoodGood", pollutionChangeCount))
 		else:
 			add_message(str("Bad ", pollutionChangeCount))
 		pollutionChangeCount += 1
@@ -52,13 +52,22 @@ func clear_feed() -> void:
 		if child is Label:
 			child.queue_free()
 
+func create_label() -> Label:
+	var label = Label.new()
+	label.autowrap_mode = true
+	var styleBox = StyleBoxFlat.new()
+	styleBox.bg_color = Color(1, 1, 1)
+	label.add_theme_stylebox_override("normal", styleBox)
+	label.add_theme_color_override("font_color", Color(0, 0, 0))
+	return label
+
 # Function to update the feed display based on how many messages to show
 func update_feed(count):
 	clear_feed() # Clear previous messages
 	
 	# Add the specified number of messages
 	for i in range(min(count, messages.size())):
-		var label = Label.new()
+		var label = create_label()
 		label.text = messages[i]
 		v_box_container.add_child(label)
 		
