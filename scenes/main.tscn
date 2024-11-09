@@ -15,7 +15,7 @@ texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
 0:0/0/y_sort_origin = 1
-0:0/0/custom_data_0 = 10
+0:0/0/custom_data_0 = -10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjgbj"]
 resource_name = "Building"
