@@ -9,9 +9,9 @@ var is_expanded = false # Track whether the feed is expanded to show all message
 @export var v_box_container: VBoxContainer
 @export var show_all_button: Button
 #@export var TilesNode: Node2D
-@onready var prevPollution = $"../../Tiles".currentPollution()
+#@onready var prevPollution = $"../../Tiles".currentPollution()
 @onready var feed_item_scene = load("res://scenes/feed_item.tscn")
-#var prevPollution = TilesNode.currentPollution()
+var prevPollution = Global.Pollution #TilesNode.currentPollution()
 var pollutionChangeCount = 0
 
 # We thought that we could also add a button to hide this entire view
@@ -24,10 +24,11 @@ func _ready():
 func _process(delta):
 	add_messages()
 	show_messages()
-
+	pass
+	
 func add_messages():
 	#var currentPollution = TilesNode.currentPollution()
-	var currentPollution = $"../../Tiles".currentPollution()
+	var currentPollution = Global.Pollution #$"../../Tiles".currentPollution()
 	
 	# Also plan to change messages after certain events/time.
 	# Currently it adds a message every time pollution changes

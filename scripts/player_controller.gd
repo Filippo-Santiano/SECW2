@@ -28,15 +28,11 @@ var _HoverTilePosition = Vector2i(0,0)
 func _ready() -> void:
 	TilesNode.set("_currentLayer",activeLayer) #set the initial tile layer as soon as possible to avoid weirdness
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 #Called every 'physics' frame which, ideally, runs at x frames per second regardless of the game's actual framerate.
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
 func _physics_process(delta: float) -> void:
 	allInputs()
-	hoverTiles()
+	hoverTiles(false)
 	setLabel()
 	
 #I like to have a function that contains all of my Input events
@@ -50,6 +46,7 @@ func allInputs():
 		editTile("DEL")
 	if Input.is_action_just_pressed("ui_accept"):
 		changeTile()
+		hoverTiles(true)
 
 func mouseInput():
 	#Grabs the position of the mouse cursor in terms of x and y
@@ -83,9 +80,9 @@ func changeTile():
 		currentTile += 1
 		activeLayer = 1
 
-func hoverTiles():
+func hoverTiles(override):
 	#HoverTiles.set_cell(mouseInputToTileMap(),currentTile,Vector2i(0,0),0)
-	if _HoverTilePosition != mouseInputToTileMap():
+	if _HoverTilePosition != mouseInputToTileMap() or override:
 		HoverTiles.clearTile(_HoverTilePosition.x,_HoverTilePosition.y)
 		_HoverTilePosition = mouseInputToTileMap()
 		HoverTiles.placeTile(currentTile,_HoverTilePosition.x,_HoverTilePosition.y)

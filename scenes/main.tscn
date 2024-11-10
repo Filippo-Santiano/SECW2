@@ -16,7 +16,6 @@ texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
 0:0/0/y_sort_origin = 1
-0:0/0/custom_data_0 = -10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjgbj"]
 resource_name = "Building"
@@ -35,6 +34,7 @@ texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 50)
 0:0/0/z_index = 1
+0:0/0/custom_data_0 = -100
 
 [sub_resource type="TileSet" id="TileSet_glyl1"]
 tile_shape = 1
@@ -49,15 +49,15 @@ sources/2 = SubResource("TileSetAtlasSource_wvh2h")
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer")]
 script = ExtResource("1_10c5s")
-TilesLayer = NodePath("BuildingLayer")
+TilesLayer = NodePath("Layer1")
 
-[node name="BuildingLayer" type="TileMapLayer" parent="Tiles"]
+[node name="Layer1" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_glyl1")
 script = ExtResource("4_ustpy")
 
-[node name="GrassLayer" type="TileMapLayer" parent="Tiles"]
+[node name="Layer0" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD///v/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD///z/AAAAAAAAAAD+//3/AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAD+//7/AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD9////AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_glyl1")
