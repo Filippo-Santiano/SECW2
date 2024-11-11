@@ -6,6 +6,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_pnx5q"]
 font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjy2t"]
 content_margin_left = 5.0

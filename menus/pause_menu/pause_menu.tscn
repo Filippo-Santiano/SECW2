@@ -83,6 +83,7 @@ grow_vertical = 2
 script = ExtResource("1_q1itc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 2
 material = SubResource("ShaderMaterial_fi7wq")
 layout_mode = 1
 anchors_preset = 15
@@ -92,6 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -174,6 +176,7 @@ theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_qp0so")
 }
