@@ -62,3 +62,31 @@ func updatePollution():
 		Global.Pollution = Pollution
 	
 	print(Global.Pollution)
+	
+## Handles input for clicking tiles and displaying popup info
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var world_pos = get_global_mouse_position()
+		var tile_pos = TilesLayer.local_to_map(world_pos)
+
+		# Retrieve tile ID and information
+		var tile_id = get_tile_id(tile_pos)
+		if tile_id != -1: # Check if a tile exists at the position
+			show_popup(tile_pos, tile_id)
+
+# Shows the popup with tile information
+func show_popup(tile_pos: Vector2i, tile_id: int):
+	var popup = get_node("../CanvasLayer/Popup")
+	
+	# Customize popup content with tile details
+	popup.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
+	
+	# Show and center the popup
+	popup.popup_centered()
+# Shows the popup with tile information
+	
+
+# Custom method to get a tile ID
+func get_tile_id(tile_pos: Vector2i) -> int:
+	var tile_id = TilesLayer.get_cell_source_id(Vector2i(tile_pos.x, tile_pos.y))
+	return tile_id if tile_id != -1 else -1 # Return the tile ID or -1 if no tile is present 

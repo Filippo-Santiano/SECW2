@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="2_4hx6j"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="3_y1et5"]
-[ext_resource type="Texture2D" uid="uid://der14yow77vbh" path="res://assets/tree-test-1.png" id="4_nxgfp"]
+[ext_resource type="Texture2D" uid="uid://dq4g0yn5sna4y" path="res://assets/tree-test-1.png" id="4_nxgfp"]
 [ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
@@ -95,3 +95,9 @@ offset_left = 590.0
 offset_top = 178.0
 offset_right = -590.0
 offset_bottom = -178.0
+
+[node name="Popup" type="Popup" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer/Popup"]
+offset_right = 40.0
+offset_bottom = 23.0
