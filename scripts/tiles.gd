@@ -42,8 +42,9 @@ func editTile(mode,tile,x,y):
 
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
-		TilesLayer.placeTile(tile,x,y) #place tile.
-		updatePollution()
+		if $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") == "Ground":
+			TilesLayer.placeTile(tile,x,y) #place tile.
+			updatePollution()
 		#this is currently living in this script so that the generic 'placeTile' function within
 		#each TileMapLayer's script can still be used for the hovering tiles, plus any other instance where we might
 		#need to forcibly replace a tile.
