@@ -16,10 +16,11 @@ var _currentLayer = 0:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	updatePollution()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(Global.Pollution)
 	pass
 
 func editTile(mode,tile,x,y):
@@ -31,7 +32,7 @@ func editTile(mode,tile,x,y):
 	
 	if mode == "ADD":
 		placeTile(tile,x,y)
-		updatePollution()
+		
 	elif mode =="DEL":
 		TilesLayer.clearTile(x,y)
 		updatePollution()
@@ -42,6 +43,7 @@ func editTile(mode,tile,x,y):
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
 		TilesLayer.placeTile(tile,x,y) #place tile.
+		updatePollution()
 		#this is currently living in this script so that the generic 'placeTile' function within
 		#each TileMapLayer's script can still be used for the hovering tiles, plus any other instance where we might
 		#need to forcibly replace a tile.
@@ -51,14 +53,16 @@ func placeTile(tile,x,y):
 #about. This could be fine as it is with a single layer, or a parent script that contains global variables such
 #as this could sum each layer to calculate the total.
 func updatePollution():
-	var TileList = TilesLayer.get_used_cells()
+	
 	var Pollution = 0
 	
-	for i in len(TileList):
-		var NewTileData = TilesLayer.get_cell_tile_data(TileList[i])
-		Pollution += NewTileData.get_custom_data("Pollution")
+	for x in LAYERS+1: #Updates pollution for ALL layers by checking all current tiles
+		var currentLayer = get_node("Layer"+str(x))
+		var TileList = currentLayer.get_used_cells()
+		for i in len(TileList):
+			var NewTileData = currentLayer.get_cell_tile_data(TileList[i])
+			Pollution += NewTileData.get_custom_data("Pollution")
 	
 	if Global.Pollution != Pollution:
 		Global.Pollution = Pollution
-	
 	print(Global.Pollution)
