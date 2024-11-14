@@ -96,3 +96,9 @@ offset_left = 590.0
 offset_top = 178.0
 offset_right = -590.0
 offset_bottom = -178.0
+
+[node name="Popup" type="Popup" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer/Popup"]
+offset_right = 40.0
+offset_bottom = 23.0
