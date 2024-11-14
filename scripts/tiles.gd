@@ -76,13 +76,17 @@ func _input(event):
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
 	var popup = get_node("../CanvasLayer/Popup")
-	
 	# Customize popup content with tile details
 	popup.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
-	
+	print(tile_pos)
+	var world_pos = TilesLayer.map_to_local(tile_pos)
+	print(world_pos)
+	var offset_x = (world_pos.x + 576)*1.5
+	var offset_y = (world_pos.y + 352)*1.48
+	popup.position = Vector2(offset_x,offset_y)
 	# Show and center the popup
-	popup.popup_centered()
-# Shows the popup with tile information
+	popup.show()
+	# Shows the popup with tile information
 	
 
 # Custom method to get a tile ID
