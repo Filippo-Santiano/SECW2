@@ -45,6 +45,10 @@ func editTile(mode,tile,x,y):
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
 		if $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") == "Ground":
+			
+			var tileToPlace = TilesLayer.tile_set.get_source(tile).get_tile_data(Vector2i(0,0),0) #Gets the custom data of the current Tile ID.
+			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
+			
 			TilesLayer.placeTile(tile,x,y) #place tile.
 			updatePollution()
 		#this is currently living in this script so that the generic 'placeTile' function within
