@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bci5hkvusv73b"]
+
+[ext_resource type="Script" path="res://scenes/in_progress_building.gd" id="1_rmqco"]
+[ext_resource type="Texture2D" uid="uid://bcu0q7d5fctxh" path="res://assets/InProgressBuilding.png" id="2_fft57"]
+
+[node name="InProgressBuilding" type="Node2D"]
+script = ExtResource("1_rmqco")
+
+[node name="Tile" type="Sprite2D" parent="."]
+texture = ExtResource("2_fft57")

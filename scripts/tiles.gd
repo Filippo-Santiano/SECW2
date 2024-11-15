@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var TilesLayer : TileMapLayer
+@export var HoverTiles : TileMapLayer
 
 # the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
 # nodes but we can limit their access. This is good practice for alleviating bugs
@@ -33,6 +34,7 @@ func editTile(mode,tile,x,y):
 	if mode == "ADD":
 		placeTile(tile,x,y)
 		
+		
 	elif mode =="DEL":
 		TilesLayer.clearTile(x,y)
 		updatePollution()
@@ -62,7 +64,8 @@ func updatePollution():
 		var TileList = currentLayer.get_used_cells()
 		for i in len(TileList):
 			var NewTileData = currentLayer.get_cell_tile_data(TileList[i])
-			Pollution += NewTileData.get_custom_data("Pollution")
+			if NewTileData:
+				Pollution += NewTileData.get_custom_data("Pollution")
 	
 	if Global.Pollution != Pollution:
 		Global.Pollution = Pollution
@@ -92,7 +95,6 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Show and center the popup
 	popup.show()
 	# Shows the popup with tile information
-	
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
