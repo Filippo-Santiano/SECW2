@@ -51,8 +51,8 @@ var yearly_pollution: int = 0  # Dynamic yearly pollution
 
 # Mapping IDs to default yearly pollution values
 const Initial_Yearly_Tile_Pollution = {
-	1: -10,  # Forest reduces pollution yearly
-	2: 15    # Office adds yearly pollution
+	1: 15,  # Office adds pollution yearly
+	2: -10    # Forest reduces yearly pollution
 }
 
 # Initialize dynamic pollution value
@@ -61,7 +61,7 @@ func initialise_pollution():
 		yearly_pollution = Initial_Yearly_Tile_Pollution[id]
 	else:
 		yearly_pollution = 0  # Default if ID is not in the mapping
-	print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
+	#print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
 
 
 func placeTile(tile,x,y):
@@ -79,7 +79,16 @@ func placeTile(tile,x,y):
 			
 			
 			TilesLayer.placeTile(tile,x,y) #place tile.
+			
 			updatePollution()
+			
+			var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+			Global.Pollution += fixed_pollution
+			#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
+			#updatePollution()
+			
+			Global.YearlyPollution +=new_tile.yearly_pollution
+			#print("Added yearly pollution:", new_tile.yearly_pollution, "_> Total Yearly Pollution:", Global.YearlyPollution)
 		#this is currently living in this script so that the generic 'placeTile' function within
 		#each TileMapLayer's script can still be used for the hovering tiles, plus any other instance where we might
 		#need to forcibly replace a tile.
@@ -88,26 +97,41 @@ func placeTile(tile,x,y):
 #Grabs every tile on a layer and sums the total pollution. Again, how necessary the layers are is worth thinking
 #about. This could be fine as it is with a single layer, or a parent script that contains global variables such
 #as this could sum each layer to calculate the total.
+#func updatePollution():
+	#
+	#var total_fixed_pollution = 0
+	#var total_yearly_pollution = 0
+	#
+	#for x in LAYERS+1: #Updates pollution for ALL layers by checking all current tiles
+		#var currentLayer = get_node("Layer"+str(x))
+		#var TileList = currentLayer.get_used_cells()
+		#for tile_pos in TileList:
+			#var NewTileData = currentLayer.get_cell_tile_data(tile_pos)
+			#if NewTileData:
+				#total_fixed_pollution += NewTileData.get_custom_data("Pollution")
+				#for tile in Global.placed_tiles:
+					#if tile.id == currentLayer.get_cell_source_id(tile_pos):
+						#total_yearly_pollution += tile.yearly_pollution
+	#
+	#Global.Pollution = total_fixed_pollution
+	#Global.YearlyPollution = total_yearly_pollution
+				#
+	#print("Global Pollution:", Global.Pollution, "Yearly Pollution:", Global.YearlyPollution)
+	#var pollution_label = get_node("YearsTimer/PollutionLabel")
+	#
+	#if pollution_label:
+		#pollution_label.update_pollution_label()
+	#else:
+		#print("pollution_label not found in the scene tree!")
+		
 func updatePollution():
-	
-	var total_fixed_pollution = 0
 	var total_yearly_pollution = 0
-	
-	for x in LAYERS+1: #Updates pollution for ALL layers by checking all current tiles
-		var currentLayer = get_node("Layer"+str(x))
-		var TileList = currentLayer.get_used_cells()
-		for tile_pos in TileList:
-			var NewTileData = currentLayer.get_cell_tile_data(tile_pos)
-			if NewTileData:
-				total_fixed_pollution += NewTileData.get_custom_data("Pollution")
-				for tile in Global.placed_tiles:
-					if tile.id == currentLayer.get_cell_source_id(tile_pos):
-						total_yearly_pollution += tile.yearly_pollution
-	
-	Global.Pollution = total_fixed_pollution
+	for i in Global.placed_tiles:
+		total_yearly_pollution += i.yearly_pollution
+		
 	Global.YearlyPollution = total_yearly_pollution
-				
-	print("Global Pollution:", Global.Pollution, "Yearly Pollution:", Global.YearlyPollution)
+	#print("Recalculated Yearly Pollution:", Global.YearlyPollution)
+
 	
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):

@@ -13,4 +13,10 @@ func _process(delta: float) -> void:
 
 func _on_timeout() -> void:
 	start()
-	Years += 0.25
+	#Years += 0.25
+	#For testing
+	Years += 1
+	Global.Pollution += Global.YearlyPollution
+	var pollution_label = get_node("PollutionLabel")
+	pollution_label.update_pollution_label()
+	print("Pollution:", Global.Pollution)
