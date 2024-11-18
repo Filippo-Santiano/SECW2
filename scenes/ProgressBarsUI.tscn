@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4hanurnndll1"]
+
+[ext_resource type="Script" path="res://scripts/ProgressBarsUI.gd" id="1_sbi27"]
+
+[node name="ProgressBarsUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbi27")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -756.0
+offset_top = -417.0
+offset_right = -597.0
+offset_bottom = -285.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(15, 30)
+layout_mode = 2
+color = Color(0.0946232, 0.324102, 0.191595, 1)
+
+[node name="Environment" type="HBoxContainer" parent="VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = -5.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorRect/Environment"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0.243137, 0, 1)
+text = "Environment      "
+
+[node name="EnvBar" type="ProgressBar" parent="VBoxContainer/ColorRect/Environment"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(15, 30)
+layout_mode = 2
+color = Color(0.957375, 0.451547, 0.630844, 1)
+
+[node name="Happiness" type="HBoxContainer" parent="VBoxContainer/ColorRect2"]
+layout_mode = 2
+offset_left = 9.0
+offset_right = 143.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorRect2/Happiness"]
+layout_mode = 2
+text = "Happiness         "
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/ColorRect2/Happiness"]
+layout_mode = 2
+rounded = true
+
+[node name="ColorRect3" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(15, 30)
+layout_mode = 2
+color = Color(0.054902, 0.980392, 0.470588, 1)
+
+[node name="Economy" type="HBoxContainer" parent="VBoxContainer/ColorRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = -4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorRect3/Economy"]
+layout_mode = 2
+text = "Economy           "
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/ColorRect3/Economy"]
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(15, 30)
+layout_mode = 2
+color = Color(0.276717, 0.723772, 0.977305, 1)
+
+[node name="Coins" type="HBoxContainer" parent="VBoxContainer/ColorRect4"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 3.0
+offset_right = 143.0
+offset_bottom = 31.0
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorRect4/Coins"]
+layout_mode = 2
+text = "Coins              "
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
+layout_mode = 2
+max_value = 500.0
