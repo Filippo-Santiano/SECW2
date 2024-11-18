@@ -4,6 +4,7 @@ class_name Tile
 
 @export var TilesLayer : TileMapLayer
 @export var HoverTiles : TileMapLayer
+@export var PollutionLabel : Label
 
 # the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
 # nodes but we can limit their access. This is good practice for alleviating bugs
@@ -80,14 +81,16 @@ func placeTile(tile,x,y):
 			
 			TilesLayer.placeTile(tile,x,y) #place tile.
 			
-			updatePollution()
+			
 			
 			var fixed_pollution = tileToPlace.get_custom_data("Pollution")
 			Global.Pollution += fixed_pollution
 			#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
 			#updatePollution()
 			
-			Global.YearlyPollution +=new_tile.yearly_pollution
+			updatePollution()
+			
+			#Global.YearlyPollution +=new_tile.yearly_pollution
 			#print("Added yearly pollution:", new_tile.yearly_pollution, "_> Total Yearly Pollution:", Global.YearlyPollution)
 		#this is currently living in this script so that the generic 'placeTile' function within
 		#each TileMapLayer's script can still be used for the hovering tiles, plus any other instance where we might
@@ -128,8 +131,9 @@ func updatePollution():
 	var total_yearly_pollution = 0
 	for i in Global.placed_tiles:
 		total_yearly_pollution += i.yearly_pollution
-		
 	Global.YearlyPollution = total_yearly_pollution
+	print(Global.Pollution)
+	PollutionLabel.update_pollution_label()
 	#print("Recalculated Yearly Pollution:", Global.YearlyPollution)
 
 	

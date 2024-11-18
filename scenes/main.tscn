@@ -29,17 +29,20 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("2_onncf")
 YearsTimer = NodePath("..")
 
-[node name="PollutionLabel" type="Label" parent="YearsTimer"]
+[node name="PollutionLabel" type="Label" parent="YearsTimer" node_paths=PackedStringArray("YearsTimer", "PollutionLabel")]
 offset_left = -594.0
 offset_top = -289.0
 offset_right = -400.0
 offset_bottom = -220.0
 script = ExtResource("3_5erya")
+YearsTimer = NodePath("..")
+PollutionLabel = NodePath(".")
 
-[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles")]
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel")]
 script = ExtResource("1_10c5s")
 TilesLayer = NodePath("Layer1")
 HoverTiles = NodePath("../PlayerController/HoverTiles")
+PollutionLabel = NodePath("../YearsTimer/PollutionLabel")
 
 [node name="Layer1" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true

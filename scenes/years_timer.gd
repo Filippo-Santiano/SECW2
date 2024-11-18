@@ -20,3 +20,4 @@ func _on_timeout() -> void:
 	var pollution_label = get_node("PollutionLabel")
 	pollution_label.update_pollution_label()
 	print("Pollution:", Global.Pollution)
+	print(Global.YearlyPollution)
