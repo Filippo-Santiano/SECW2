@@ -5,6 +5,8 @@ class_name Tile
 @export var TilesLayer : TileMapLayer
 @export var HoverTiles : TileMapLayer
 @export var PollutionLabel : Label
+@export var IncomeLabel : Label
+@export var MoneyLabel : Label
 
 # the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
 # nodes but we can limit their access. This is good practice for alleviating bugs
@@ -49,11 +51,16 @@ func editTile(mode,tile,x,y):
 
 var id: int = 0  # Tile ID
 var yearly_pollution: int = 0  # Dynamic yearly pollution
+var yearly_income: int = 0 # Dynamic income
 
 # Mapping IDs to default yearly pollution values
 const Initial_Yearly_Tile_Pollution = {
 	1: 15,  # Office adds pollution yearly
 	2: -10    # Forest reduces yearly pollution
+}
+
+const Initial_Yearly_Income = {
+	1: 20
 }
 
 # Initialize dynamic pollution value
@@ -65,30 +72,47 @@ func initialise_pollution():
 	#print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
 
 
+func initialise_income():
+	if id in Initial_Yearly_Income:
+		yearly_income = Initial_Yearly_Income[id]
+	else:
+		yearly_income = 0
+
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
 		if $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") == "Ground":
-			
 			var tileToPlace = TilesLayer.tile_set.get_source(tile).get_tile_data(Vector2i(0,0),0) #Gets the custom data of the current Tile ID.
 			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
+			var cost = tileToPlace.get_custom_data("Cost")
+			if Global.Money >= cost:
+				print(Global.Money)
+				var new_tile = Tile.new()
+				new_tile.id = tile
+				new_tile.initialise_pollution()
+				
+				new_tile.initialise_income()
+				
+				Global.placed_tiles.append(new_tile)
+				
+				
+				TilesLayer.placeTile(tile,x,y) #place tile.
+				
+				
+				
+				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+				Global.Pollution += fixed_pollution
+				#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
+				#updatePollution()
+				
+				updatePollution()
+				Global.Money -= cost
+				print(Global.Money)
+				updateIncome()
+				MoneyLabel.update_money_label()
+
+			else:
+				print("Not enough molah")
 			
-			var new_tile = Tile.new()
-			new_tile.id = tile
-			new_tile.initialise_pollution()
-			
-			Global.placed_tiles.append(new_tile)
-			
-			
-			TilesLayer.placeTile(tile,x,y) #place tile.
-			
-			
-			
-			var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-			Global.Pollution += fixed_pollution
-			#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
-			#updatePollution()
-			
-			updatePollution()
 			
 			#Global.YearlyPollution +=new_tile.yearly_pollution
 			#print("Added yearly pollution:", new_tile.yearly_pollution, "_> Total Yearly Pollution:", Global.YearlyPollution)
@@ -135,7 +159,14 @@ func updatePollution():
 	print(Global.Pollution)
 	PollutionLabel.update_pollution_label()
 	#print("Recalculated Yearly Pollution:", Global.YearlyPollution)
-
+	
+func updateIncome():
+	var total_yearly_income = 0
+	for i in Global.placed_tiles:
+		total_yearly_income += i.yearly_income
+	Global.Income = total_yearly_income
+	print(Global.Income)
+	IncomeLabel.update_income_label()
 	
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
