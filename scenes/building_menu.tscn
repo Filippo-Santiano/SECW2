@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://mlgjwly0sjst"]
 
-[ext_resource type="Texture2D" uid="uid://ds0f5ri44wjqu" path="res://assets/buidingIcon.png" id="1_bug68"]
-[ext_resource type="Script" path="res://scenes/building_menu.gd" id="1_jr522"]
+[ext_resource type="Script" path="res://scripts/building_menu.gd" id="1_jr522"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_tr6n0"]
 [ext_resource type="Texture2D" uid="uid://dq4g0yn5sna4y" path="res://assets/tree-test-1.png" id="3_b1f85"]
+[ext_resource type="Texture2D" uid="uid://kv6gbhpt1oj6" path="res://assets/buildingIcon2.png" id="4_qb2i8"]
 
 [node name="BuildingMenu" type="Control" node_paths=PackedStringArray("build_menu_container", "build_button", "building_item", "tree_item")]
 layout_mode = 3
@@ -21,6 +21,7 @@ building_item = NodePath("ScrollContainer/HBoxContainer/BuildingItem")
 tree_item = NodePath("ScrollContainer/HBoxContainer/TreeItem")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+z_index = 2
 layout_direction = 3
 layout_mode = 0
 offset_left = 46.0
@@ -48,8 +49,9 @@ $50"
 icon = ExtResource("3_b1f85")
 
 [node name="BuildButton" type="MenuButton" parent="ScrollContainer/HBoxContainer"]
+z_index = 2
 layout_mode = 2
-icon = ExtResource("1_bug68")
+icon = ExtResource("4_qb2i8")
 icon_alignment = 2
 
 [connection signal="pressed" from="ScrollContainer/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
