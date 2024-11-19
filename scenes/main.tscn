@@ -1,4 +1,5 @@
-[gd_scene load_steps=12 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=17 format=4 uid="uid://mud7fkp6q72l"]
+
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scenes/years_timer.gd" id="1_g2f2i"]
@@ -11,6 +12,9 @@
 [ext_resource type="Script" path="res://scenes/money_label.gd" id="5_qly35"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="10_w48qm"]
+[ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
+[ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [node name="Main" type="Node2D"]
 
@@ -115,7 +119,14 @@ offset_bottom = -178.0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/YearsLabel" method="_on_years_timer_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/IncomeLabel" method="_on_years_timer_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/MoneyLabel" method="_on_years_timer_timeout"]
+[node name="GameManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("10_w48qm")
+
+[node name="ProgressBarsUi" parent="." instance=ExtResource("11_4udw2")]
+
+[node name="BuildingMenu" parent="." instance=ExtResource("12_t8mhr")]
+offset_left = 463.0
+offset_top = 45.0
+offset_right = 684.52
+offset_bottom = 165.32

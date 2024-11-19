@@ -23,6 +23,10 @@ var _currentLayer = 0:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updatePollution()
+	#var gm = get_node("/root/Main/GameManager")
+	#gm.update_stat("environment", -10)
+	#gm.update_stat("coins", 500)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -38,6 +42,10 @@ func editTile(mode,tile,x,y):
 	
 	if mode == "ADD":
 		placeTile(tile,x,y)
+		#var gm = get_node("/root/Main/GameManager")
+		#gm.update_stat("happiness",+10)
+		#gm.update_stat("environment", -10)
+		#gm.update_stat("coins", 500)
 		
 		
 	elif mode =="DEL":
