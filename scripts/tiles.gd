@@ -103,10 +103,6 @@ func placeTile(tile,x,y):
 				Global.placed_tiles.append(new_tile)
 				
 				
-				TilesLayer.placeTile(tile,x,y) #place tile.
-				
-				
-				
 				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
 				Global.Pollution += fixed_pollution
 				#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
@@ -117,6 +113,11 @@ func placeTile(tile,x,y):
 				print(Global.Money)
 				updateIncome()
 				MoneyLabel.update_money_label()
+				
+				$TilePlacer.currentLayer = TilesLayer
+				$TilePlacer.initialYear = Global.currentYear
+				$TilePlacer.timeToBuild = timeToBuild
+				$TilePlacer.place(tile,x,y)
 
 			else:
 				print("Not enough molah")
