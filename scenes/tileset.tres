@@ -45,6 +45,8 @@ texture_region_size = Vector2i(99, 85)
 0:0/0/y_sort_origin = 1
 0:0/0/custom_data_0 = 100
 0:0/0/custom_data_1 = "Building"
+0:0/0/custom_data_2 = 0.5
+0:0/0/custom_data_4 = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_206c8"]
 texture = ExtResource("3_eatjh")
@@ -125,6 +127,8 @@ texture_region_size = Vector2i(128, 128)
 0:0/0/z_index = 1
 0:0/0/custom_data_0 = -100
 0:0/0/custom_data_1 = "Tree"
+0:0/0/custom_data_3 = 5.0
+0:0/0/custom_data_4 = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jeqi3"]
 texture = ExtResource("14_fr56y")
@@ -228,6 +232,12 @@ custom_data_layer_0/name = "Pollution"
 custom_data_layer_0/type = 2
 custom_data_layer_1/name = "Type"
 custom_data_layer_1/type = 4
+custom_data_layer_2/name = "timeToBuild"
+custom_data_layer_2/type = 3
+custom_data_layer_3/name = "timeToGrow"
+custom_data_layer_3/type = 3
+custom_data_layer_4/name = "Cost"
+custom_data_layer_4/type = 2
 sources/0 = SubResource("TileSetAtlasSource_mtdat")
 sources/1 = SubResource("TileSetAtlasSource_fjgbj")
 sources/2 = SubResource("TileSetAtlasSource_wvh2h")
