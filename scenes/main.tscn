@@ -18,7 +18,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="YearsTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 5.0
 autostart = true
 script = ExtResource("1_g2f2i")
 
@@ -26,41 +26,37 @@ script = ExtResource("1_g2f2i")
 anchors_preset = -1
 anchor_right = 0.286
 anchor_bottom = 0.15
-offset_left = -619.0
-offset_top = -158.0
-offset_right = -1076.12
-offset_bottom = -297.0
+offset_left = -629.0
+offset_top = -313.0
+offset_right = -1086.12
+offset_bottom = -452.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("2_onncf")
 YearsTimer = NodePath("..")
 
-[node name="PollutionLabel" type="Label" parent="YearsTimer" node_paths=PackedStringArray("YearsTimer", "PollutionLabel")]
-offset_left = -619.0
-offset_top = -125.0
-offset_right = -470.0
-offset_bottom = -82.0
+[node name="PollutionLabel" type="Label" parent="YearsTimer"]
+offset_left = -629.0
+offset_top = -268.0
+offset_right = -480.0
+offset_bottom = -225.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("3_5erya")
-YearsTimer = NodePath("..")
-PollutionLabel = NodePath(".")
 
 [node name="IncomeLabel" type="Label" parent="YearsTimer"]
-offset_left = -620.0
-offset_top = -89.0
-offset_right = -442.0
-offset_bottom = -43.0
+offset_left = -629.0
+offset_top = -225.0
+offset_right = -467.0
+offset_bottom = -179.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("4_2ypus")
 
-[node name="MoneyLabel" type="Label" parent="YearsTimer" node_paths=PackedStringArray("YearsTimer", "MoneyLabel")]
-offset_left = -619.0
-offset_top = -51.0
-offset_right = -419.0
-offset_bottom = 10.0
+[node name="MoneyLabel" type="Label" parent="YearsTimer"]
+offset_left = -629.0
+offset_top = -179.0
+offset_right = -429.0
+offset_bottom = -118.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("5_qly35")
-YearsTimer = NodePath("..")
-MoneyLabel = NodePath(".")
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel")]
 script = ExtResource("1_10c5s")
@@ -126,6 +122,10 @@ process_mode = 3
 script = ExtResource("10_w48qm")
 
 [node name="ProgressBarsUi" parent="." instance=ExtResource("11_4udw2")]
+offset_left = -659.0
+offset_top = -565.0
+offset_right = -659.0
+offset_bottom = -565.0
 
 [node name="BuildingMenu" parent="." instance=ExtResource("12_t8mhr")]
 offset_left = 463.0
