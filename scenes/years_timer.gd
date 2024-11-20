@@ -16,6 +16,7 @@ func _on_timeout() -> void:
 	#Years += 0.25
 	#For testing
 	Years += 1
+	Global.currentYear = Years
 	Global.Pollution += Global.YearlyPollution
 	var pollution_label = get_node("PollutionLabel")
 	pollution_label.update_pollution_label()
