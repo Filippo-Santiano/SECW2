@@ -25,6 +25,5 @@ func update_money_label() -> void:
 
 
 func _on_years_timer_timeout() -> void:
-	Global.Money += Global.Income
 	update_money_label()
 	
