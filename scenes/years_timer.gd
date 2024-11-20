@@ -4,8 +4,9 @@ var Years = 0.0
 
 func _ready() -> void:
 	# Correct connection: Use "self" as the target and specify the callback function correctly.
-	connect("timeout", Callable(self, "_on_timeout"))
-
+	#connect("timeout", Callable(self, "_on_timeout"))
+	pass
+	
 func _on_timeout() -> void:
 	#Years += 1  # Increment the year
 	#Global.Pollution += Global.YearlyPollution  # Update pollution
