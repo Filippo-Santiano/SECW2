@@ -17,18 +17,24 @@ func _process(delta: float) -> void:
 	if waiting:
 		wait()
 
+func initialise(layer,year,buildTime):
+	currentLayer = layer
+	initialYear = year
+	timeToBuild = buildTime
+
 func wait():
-	if Global.currentYear >= initialYear + timeToBuild:
-		emit_signal("waited")
-		waiting = false
+	if Global.currentYear >= initialYear + timeToBuild: #if enough years have passed, waiting complete. Right now the years
+		emit_signal("waited")							#are counted in 1s and thus even though a building takes 0.5 years, we can
+		waiting = false									#only place after a year has gone by. Need to adjust the YearsTimer to combat this
 
 func place(tile,x,y):
 	if timeToBuild > 0:
-		currentLayer.placeTile(IN_PROGRESS_ID,x,y)
-		print("Placed construction tile")
-		waiting = true
-		await(waited)
-		currentLayer.clearTile(x,y)
-		currentLayer.placeTile(tile,x,y)
+		currentLayer.placeTile(IN_PROGRESS_ID,x,y) #Place the construction (in progress) building tile
+		print("Placed construction tile on layer ", currentLayer, " ID: ", IN_PROGRESS_ID, " at",Vector2i(x,y))
+		waiting = true #Begins the wait function (runs in _process())
+		await(waited) #waits for the signal from the wait function that says we have finished waiting
+		currentLayer.clearTile(x,y) #delete the construction tile and 
+		currentLayer.placeTile(tile,x,y) #place the real one
 	else:
 		currentLayer.placeTile(tile,x,y)
+	queue_free()

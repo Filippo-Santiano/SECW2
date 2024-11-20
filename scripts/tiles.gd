@@ -11,6 +11,7 @@ class_name Tile
 # the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
 # nodes but we can limit their access. This is good practice for alleviating bugs
 const LAYERS = 1
+const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
 
 var _currentLayer = 0:
 	get:
@@ -114,10 +115,15 @@ func placeTile(tile,x,y):
 				updateIncome()
 				MoneyLabel.update_money_label()
 				
-				$TilePlacer.currentLayer = TilesLayer
-				$TilePlacer.initialYear = Global.currentYear
-				$TilePlacer.timeToBuild = timeToBuild
-				$TilePlacer.place(tile,x,y)
+				
+				var tilePlacer = TILE_PLACER.instantiate()
+				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
+				add_child(tilePlacer)
+				tilePlacer.place(tile,x,y)
+				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
+				#places the tile. This means we can have multiple tiles being constructed at once.
+				
+				
 
 			else:
 				print("Not enough molah")
