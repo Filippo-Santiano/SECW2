@@ -3,29 +3,29 @@ extends Camera2D
 const MOVE_SPEED = 20
 const ZOOM_STEPS = [1.0,1.5,2.0]
 
+@export var WorldBounds : Area2D
 var currentStep = 1
 var startPos = Vector2()
 var startZoom = Vector2()
 var zoomDirection = 1
+var prevPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	startPos = position
-
+	prevPos = startPos
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var Inputs = getInputs()
-
-	position += Inputs * MOVE_SPEED
 	
-	if Input.is_action_just_pressed("R"):
-		reset()
-	
-	if Input.is_action_just_pressed("scroll up") and currentStep < len(ZOOM_STEPS)-1:
-		currentStep += 1
-	elif Input.is_action_just_pressed("scroll down") and currentStep > 0:
-		currentStep -= 1
-	zoom = lerp(zoom,Vector2(ZOOM_STEPS[currentStep],ZOOM_STEPS[currentStep]),0.1)
+	if WorldBounds in $CameraCollider.get_overlapping_areas(): #If the camera is currently within the WorldBounds area
+		prevPos = position
+		
+		var Inputs = getInputs()
+		position += Inputs * MOVE_SPEED
+		zoom = lerp(zoom,Vector2(ZOOM_STEPS[currentStep],ZOOM_STEPS[currentStep]),0.1)
+	else:
+		position = prevPos
 
 func getInputs():
 	
@@ -44,6 +44,16 @@ func getInputs():
 		Inputs.x = 1
 	else:
 		Inputs.x = 0
+		#WASD controls the camera direction. If not presssing any buttons, direction 0.
+		
+	if Input.is_action_just_pressed("R"):
+		reset() #R resets to original position
+		
+	if Input.is_action_just_pressed("scroll up") and currentStep < len(ZOOM_STEPS)-1:
+		currentStep += 1
+	elif Input.is_action_just_pressed("scroll down") and currentStep > 0:
+		currentStep -= 1
+		#Scroll wheel scrolls between three zoom steps set at the top of this script
 	
 	return Inputs.normalized()
 

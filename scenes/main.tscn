@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=14 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -11,6 +11,12 @@
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="10_w48qm"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
+size = Vector2(880, 581)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
+size = Vector2(388, 324)
 
 [node name="Main" type="Node2D"]
 
@@ -58,11 +64,24 @@ y_sort_enabled = true
 tile_set = ExtResource("2_kjq6j")
 script = ExtResource("4_ustpy")
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="WorldBounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(3, -11.5)
+shape = SubResource("RectangleShape2D_rnb82")
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds")]
 physics_interpolation_mode = 1
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 script = ExtResource("6_0oufy")
+WorldBounds = NodePath("../WorldBounds")
+
+[node name="CameraCollider" type="Area2D" parent="MainCamera"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/CameraCollider"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g14un")
 
 [node name="UI" type="CanvasLayer" parent="."]
 auto_translate_mode = 1
