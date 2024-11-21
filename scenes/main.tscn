@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://deenobcu650sx" path="res://scenes/tileset.tres" id="2_kjq6j"]
 [ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
-[ext_resource type="Script" path="res://scenes/main_camera.gd" id="6_0oufy"]
+[ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="10_w48qm"]
