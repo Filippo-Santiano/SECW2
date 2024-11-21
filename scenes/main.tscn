@@ -130,6 +130,18 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Selected Tile:"
 
+[node name="ControlsLabel" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.249
+anchor_bottom = 0.277
+offset_left = 512.0
+offset_top = 1013.0
+offset_right = 184.92
+offset_bottom = 747.84
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Use WASD to move camera, R to reset. Scroll to zoom"
+
 [node name="TwitterFeed" parent="UI" instance=ExtResource("6_6tdp6")]
 offset_left = 1653.0
 offset_top = 7.0
@@ -137,10 +149,6 @@ offset_right = -3.0
 offset_bottom = -637.0
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
-offset_left = 587.0
-offset_top = 185.0
-offset_right = -593.0
-offset_bottom = -171.0
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
 offset_left = -20.0
