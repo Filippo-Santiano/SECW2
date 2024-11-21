@@ -1,12 +1,16 @@
 extends Node2D
-var currentLayer : TileMapLayer
-@export var sprite : Sprite2D
 
-signal waited
+@export var sprite : Sprite2D
+@onready var Tiles = get_parent()
+
+var currentLayer : TileMapLayer
 var waiting = false
 var initialYear = 0
 var timeToBuild = 0
+
 const IN_PROGRESS_ID = 26
+
+signal waited
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +21,7 @@ func _process(delta: float) -> void:
 	if waiting:
 		wait()
 
-func initialise(layer,year,buildTime):
+func initialise(layer,year,buildTime): #should be called when instantiating a new tile placer. Sets parameters
 	currentLayer = layer
 	initialYear = year
 	timeToBuild = buildTime
@@ -37,4 +41,6 @@ func place(tile,x,y):
 		currentLayer.placeTile(tile,x,y) #place the real one
 	else:
 		currentLayer.placeTile(tile,x,y)
+	
+	Global.updateData()
 	queue_free()

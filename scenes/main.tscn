@@ -1,70 +1,44 @@
-[gd_scene load_steps=15 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=14 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
-[ext_resource type="Script" path="res://scenes/years_timer.gd" id="1_g2f2i"]
+[ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
 [ext_resource type="TileSet" uid="uid://deenobcu650sx" path="res://scenes/tileset.tres" id="2_kjq6j"]
-[ext_resource type="Script" path="res://scenes/years_label.gd" id="2_onncf"]
-[ext_resource type="Script" path="res://scenes/pollution_label.gd" id="3_5erya"]
-[ext_resource type="Script" path="res://scenes/income_label.gd" id="4_2ypus"]
 [ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
-[ext_resource type="Script" path="res://scenes/money_label.gd" id="5_qly35"]
+[ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="10_w48qm"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
+size = Vector2(880, 581)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
+size = Vector2(388, 324)
+
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm")]
 autostart = true
 script = ExtResource("1_g2f2i")
+YearsLabel = NodePath("../UI/YearsLabel")
+PollutionLabel = NodePath("../UI/PollutionLabel")
+IncomeLabel = NodePath("../UI/IncomeLabel")
+MoneyLabel = NodePath("../UI/MoneyLabel")
+gm = NodePath("../GameManager")
+yearsPerMinute = 4.0
 
-[node name="YearsLabel" type="Label" parent="YearsTimer" node_paths=PackedStringArray("YearsTimer")]
-anchors_preset = -1
-anchor_right = 0.286
-anchor_bottom = 0.15
-offset_left = -629.0
-offset_top = -313.0
-offset_right = -1086.12
-offset_bottom = -452.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-script = ExtResource("2_onncf")
-YearsTimer = NodePath("..")
-
-[node name="PollutionLabel" type="Label" parent="YearsTimer"]
-offset_left = -629.0
-offset_top = -268.0
-offset_right = -480.0
-offset_bottom = -225.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-script = ExtResource("3_5erya")
-
-[node name="IncomeLabel" type="Label" parent="YearsTimer"]
-offset_left = -629.0
-offset_top = -225.0
-offset_right = -467.0
-offset_bottom = -179.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-script = ExtResource("4_2ypus")
-
-[node name="MoneyLabel" type="Label" parent="YearsTimer"]
-offset_left = -629.0
-offset_top = -179.0
-offset_right = -429.0
-offset_bottom = -118.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-script = ExtResource("5_qly35")
-
-[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel")]
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox", "Camera")]
 script = ExtResource("1_10c5s")
 TilesLayer = NodePath("Layer1")
 HoverTiles = NodePath("../PlayerController/HoverTiles")
-PollutionLabel = NodePath("../YearsTimer/PollutionLabel")
-IncomeLabel = NodePath("../YearsTimer/IncomeLabel")
-MoneyLabel = NodePath("../YearsTimer/MoneyLabel")
+PollutionLabel = NodePath("../UI/PollutionLabel")
+IncomeLabel = NodePath("../UI/IncomeLabel")
+MoneyLabel = NodePath("../UI/MoneyLabel")
+PopupBox = NodePath("../UI/Popup")
+Camera = NodePath("../MainCamera")
 
 [node name="Layer1" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true
@@ -82,7 +56,7 @@ script = ExtResource("4_ustpy")
 script = ExtResource("5_p11hm")
 TilesNode = NodePath("../Tiles")
 HoverTiles = NodePath("HoverTiles")
-TextLabel = NodePath("Label")
+TextLabel = NodePath("../UI/SelectedTileLabel")
 
 [node name="HoverTiles" type="TileMapLayer" parent="PlayerController"]
 modulate = Color(1, 1, 1, 0.470588)
@@ -90,50 +64,121 @@ y_sort_enabled = true
 tile_set = ExtResource("2_kjq6j")
 script = ExtResource("4_ustpy")
 
-[node name="Label" type="Label" parent="PlayerController"]
-offset_left = -629.0
-offset_top = -351.0
-offset_right = -528.0
-offset_bottom = -328.0
+[node name="WorldBounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(3, -11.5)
+shape = SubResource("RectangleShape2D_rnb82")
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds")]
+physics_interpolation_mode = 1
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+script = ExtResource("6_0oufy")
+WorldBounds = NodePath("../WorldBounds")
+
+[node name="CameraCollider" type="Area2D" parent="MainCamera"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/CameraCollider"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g14un")
+
+[node name="UI" type="CanvasLayer" parent="."]
+auto_translate_mode = 1
+
+[node name="YearsLabel" type="Label" parent="UI"]
+offset_left = 19.0
+offset_top = 73.0
+offset_right = 111.0
+offset_bottom = 96.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="PollutionLabel" type="Label" parent="UI"]
+offset_left = 19.0
+offset_top = 118.0
+offset_right = 168.0
+offset_bottom = 161.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="IncomeLabel" type="Label" parent="UI"]
+offset_left = 19.0
+offset_top = 161.0
+offset_right = 181.0
+offset_bottom = 207.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="MoneyLabel" type="Label" parent="UI"]
+offset_left = 19.0
+offset_top = 207.0
+offset_right = 219.0
+offset_bottom = 268.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="SelectedTileLabel" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.249
+anchor_bottom = 0.277
+offset_left = 19.0
+offset_top = 35.0
+offset_right = -358.08
+offset_bottom = -241.16
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "Selected Tile:"
 
-[node name="MainCamera" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+[node name="ControlsLabel" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.249
+anchor_bottom = 0.277
+offset_left = 512.0
+offset_top = 1013.0
+offset_right = 184.92
+offset_bottom = 747.84
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Use WASD to move camera, R to reset. Scroll to zoom"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TwitterFeed" parent="UI" instance=ExtResource("6_6tdp6")]
+offset_left = 1653.0
+offset_top = 7.0
+offset_right = -3.0
+offset_bottom = -637.0
 
-[node name="TwitterFeed" parent="CanvasLayer" instance=ExtResource("6_6tdp6")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_0whll")]
-offset_left = 590.0
-offset_top = 178.0
-offset_right = -590.0
-offset_bottom = -178.0
+[node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
+offset_left = -20.0
+offset_top = -273.0
+offset_right = -20.0
+offset_bottom = -273.0
+scale = Vector2(1.5, 1.5)
 
-[node name="Popup" type="Popup" parent="CanvasLayer"]
+[node name="BuildingMenu" parent="UI" instance=ExtResource("12_t8mhr")]
+offset_left = 1275.0
+offset_top = 779.0
+offset_right = 1496.52
+offset_bottom = 899.32
 
-[node name="Label" type="Label" parent="CanvasLayer/Popup"]
+[node name="Popup" type="Popup" parent="UI"]
+
+[node name="Label" type="Label" parent="UI/Popup"]
+z_index = 1
+texture_filter = 6
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 0
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("10_w48qm")
 
-[node name="ProgressBarsUi" parent="." instance=ExtResource("11_4udw2")]
-offset_left = -659.0
-offset_top = -565.0
-offset_right = -659.0
-offset_bottom = -565.0
-
-[node name="BuildingMenu" parent="." instance=ExtResource("12_t8mhr")]
-offset_left = 463.0
-offset_top = 45.0
-offset_right = 684.52
-offset_bottom = 165.32
-
+[connection signal="YearPassed" from="YearsTimer" to="YearsTimer" method="_on_year_passed"]
 [connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/YearsLabel" method="_on_years_timer_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/IncomeLabel" method="_on_years_timer_timeout"]
-[connection signal="timeout" from="YearsTimer" to="YearsTimer/MoneyLabel" method="_on_years_timer_timeout"]
+[connection signal="timeout" from="YearsTimer" to="UI/YearsLabel" method="_on_years_timer_timeout"]
+[connection signal="timeout" from="YearsTimer" to="UI/IncomeLabel" method="_on_years_timer_timeout"]
+[connection signal="timeout" from="YearsTimer" to="UI/MoneyLabel" method="_on_years_timer_timeout"]

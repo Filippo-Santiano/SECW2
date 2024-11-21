@@ -1,5 +1,4 @@
 extends Node2D
-
 class_name Tile
 
 @export var TilesLayer : TileMapLayer
@@ -7,25 +6,24 @@ class_name Tile
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
+@export var PopupBox : Popup
+@export var Camera : Camera2D
 
-# the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
-# nodes but we can limit their access. This is good practice for alleviating bugs
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
 
+# the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
+# nodes but we can limit their access. This is good practice for alleviating bugs
 var _currentLayer = 0:
 	get:
 		return _currentLayer
 	set(value):
-		if value >= 0:
+		if value > 0:
 			_currentLayer = value
-			
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	updatePollution()
-	
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,28 +31,20 @@ func _process(delta: float) -> void:
 	pass
 
 func editTile(mode,tile,x,y):
-	#layer stuff is weird, needs properly thinking about
-	if _currentLayer == 0:
-		TilesLayer = $Layer0
-	elif _currentLayer >= LAYERS:
-		TilesLayer = $Layer1
+	#if the layer has been set within max layers
+	if _currentLayer <= LAYERS:
+		TilesLayer = get_node(str("Layer",_currentLayer)) #edit on that layer
+	else:
+		TilesLayer = $Layer1 #otherwise, default to 1.
 	
 	if mode == "ADD":
 		placeTile(tile,x,y)
-		#var gm = get_node("/root/Main/GameManager")
-		#gm.update_stat("happiness",+10)
-		#gm.update_stat("environment", +10)
-		#gm.update_stat("coins", 10)
-		
 		
 	elif mode =="DEL":
-		TilesLayer.clearTile(x,y)
-		updatePollution()
+		sellTile(x,y)
+		
 	else:
 		print("tried to edit tile, but mode unknown")
-	#print("placed tile on",TilesLayer) #for debug
-
-
 
 var id: int = 0  # Tile ID
 var yearly_pollution: int = 0  # Dynamic yearly pollution
@@ -87,100 +77,48 @@ func initialise_income():
 
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
-		if $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") == "Ground":
+		var floorType = null
+		if $Layer0.get_cell_tile_data(Vector2i(x,y)) != null: #if the tile below exists
+			floorType = $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") #grab its type
+		if floorType == "Ground":
+			
 			var tileToPlace = TilesLayer.tile_set.get_source(tile).get_tile_data(Vector2i(0,0),0) #Gets the custom data of the current Tile ID.
 			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
 			var cost = tileToPlace.get_custom_data("Cost")
+			
 			if Global.Money >= cost:
-				print(Global.Money)
-				var new_tile = Tile.new()
-				new_tile.id = tile
-				new_tile.initialise_pollution()
-				
-				new_tile.initialise_income()
-				
-				Global.placed_tiles.append(new_tile)
-				
-				
-				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-				Global.Pollution += fixed_pollution
-				#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
-				#updatePollution()
-				
-				updatePollution()
 				Global.Money -= cost
-				print(Global.Money)
-				updateIncome()
-				MoneyLabel.update_money_label()
 				
-				
+				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
+				#places the tile. This means we can have multiple tiles being constructed at once.
 				var tilePlacer = TILE_PLACER.instantiate()
 				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
-				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
-				#places the tile. This means we can have multiple tiles being constructed at once.
 				
+				#Adds the placed tile to the global placed tiles array + sets initial pollution
+				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+				Global.addNewTile(tile, fixed_pollution)
 				
-
 			else:
 				print("Not enough molah")
+				
+func sellTile(x,y):
+	var currentTileData = TilesLayer.get_cell_tile_data(Vector2i(x,y))
+	if currentTileData != null:
+		if currentTileData.get_custom_data("canSell"):
+			var moneyBack = currentTileData.get_custom_data("Cost") / 2
+			var pollutionBack = currentTileData.get_custom_data("Pollution")
+			print("Sold tile at: ", Vector2i(x,y)," for ",moneyBack," molah.")
 			
+			Global.Money += moneyBack
+			Global.Pollution -= pollutionBack
 			
-			#Global.YearlyPollution +=new_tile.yearly_pollution
-			#print("Added yearly pollution:", new_tile.yearly_pollution, "_> Total Yearly Pollution:", Global.YearlyPollution)
-		#this is currently living in this script so that the generic 'placeTile' function within
-		#each TileMapLayer's script can still be used for the hovering tiles, plus any other instance where we might
-		#need to forcibly replace a tile.
-	
+			TilesLayer.clearTile(x,y)
+			
+		else:
+			print("Can't sell this!")
 
-#Grabs every tile on a layer and sums the total pollution. Again, how necessary the layers are is worth thinking
-#about. This could be fine as it is with a single layer, or a parent script that contains global variables such
-#as this could sum each layer to calculate the total.
-#func updatePollution():
-	#
-	#var total_fixed_pollution = 0
-	#var total_yearly_pollution = 0
-	#
-	#for x in LAYERS+1: #Updates pollution for ALL layers by checking all current tiles
-		#var currentLayer = get_node("Layer"+str(x))
-		#var TileList = currentLayer.get_used_cells()
-		#for tile_pos in TileList:
-			#var NewTileData = currentLayer.get_cell_tile_data(tile_pos)
-			#if NewTileData:
-				#total_fixed_pollution += NewTileData.get_custom_data("Pollution")
-				#for tile in Global.placed_tiles:
-					#if tile.id == currentLayer.get_cell_source_id(tile_pos):
-						#total_yearly_pollution += tile.yearly_pollution
-	#
-	#Global.Pollution = total_fixed_pollution
-	#Global.YearlyPollution = total_yearly_pollution
-				#
-	#print("Global Pollution:", Global.Pollution, "Yearly Pollution:", Global.YearlyPollution)
-	#var pollution_label = get_node("YearsTimer/PollutionLabel")
-	#
-	#if pollution_label:
-		#pollution_label.update_pollution_label()
-	#else:
-		#print("pollution_label not found in the scene tree!")
-		
-func updatePollution():
-	var total_yearly_pollution = 0
-	for i in Global.placed_tiles:
-		total_yearly_pollution += i.yearly_pollution
-	Global.YearlyPollution = total_yearly_pollution
-	print(Global.Pollution)
-	PollutionLabel.update_pollution_label()
-	#print("Recalculated Yearly Pollution:", Global.YearlyPollution)
-	
-func updateIncome():
-	var total_yearly_income = 0
-	for i in Global.placed_tiles:
-		total_yearly_income += i.yearly_income
-	Global.Income = total_yearly_income
-	print(Global.Income)
-	IncomeLabel.update_income_label()
-	
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -193,17 +131,14 @@ func _input(event):
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
-	var popup = get_node("../CanvasLayer/Popup")
 	# Customize popup content with tile details
-	popup.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
-	print(tile_pos)
+	PopupBox.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
 	var world_pos = TilesLayer.map_to_local(tile_pos)
-	print(world_pos)
 	var offset_x = (world_pos.x + 576)*1.5
 	var offset_y = (world_pos.y + 352)*1.48
-	popup.position = Vector2(offset_x,offset_y)
+	PopupBox.position = Vector2(offset_x,offset_y) - Camera.position
 	# Show and center the popup
-	popup.show()
+	PopupBox.show()
 	# Shows the popup with tile information
 
 # Custom method to get a tile ID

@@ -8,21 +8,17 @@ extends Node2D
 @export var HoverTiles : TileMapLayer
 @export var TextLabel : Label
 
-#We need a more elegant solution for this, but right now I'm just storing the tiles as integers,
-#with its name being the identifier and the value being its ID. It would likely make more sense to
-#use an array of dictionaries so that each tile can have more properties. Unsure whether that should be stored here
-#or somewhere within the Tiles node
-#var Grass = 0
-#var Building = 1   irrelevant for now. will add dict with names and IDs + any other needed info like location within atlas
+@export var buildMode = true #player can only place and delete tiles when build mode is active (true)
 
-var currentTile = 0
-var activeLayer = 0
+var currentTile = 1
+var activeLayer = 1
 
 #activeLayer controls which layer (GrassLayer,BuildingLayer) the user is placing the tiles on.
-#Right now I'm unsure how necessary this is going to be for what we're doing -- would the player only need
-#to interact with one plane?
+#Currently we have this set to 1 and may find that we don't need to edit 0 (grass etc.) directly at all.
 
 var _HoverTilePosition = Vector2i(0,0)
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,9 +27,10 @@ func _ready() -> void:
 #Called every 'physics' frame which, ideally, runs at x frames per second regardless of the game's actual framerate.
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
 func _physics_process(delta: float) -> void:
-	allInputs()
-	hoverTiles(false)
-	setLabel()
+	if buildMode:
+		allInputs()
+		hoverTiles(false)
+		setLabel()
 	
 #I like to have a function that contains all of my Input events
 #This gets called every frame in _physics_process()
@@ -48,16 +45,10 @@ func allInputs():
 		changeTile()
 		hoverTiles(true)
 
-func mouseInput():
-	#Grabs the position of the mouse cursor in terms of x and y
-	var mousePosition = get_global_mouse_position()
-	
-	return mousePosition
-
 func mouseInputToTileMap():
 	#Takes the mouse location and returns coordinates in terms of the tilemap - very important for placing tiles,
 	#showing which time the user is hovering over etc.
-	var currentMousePosition = mouseInput()
+	var currentMousePosition = get_global_mouse_position()
 	var currentTilePosition = TilesNode.TilesLayer.local_to_map(currentMousePosition)
 	
 	return currentTilePosition
@@ -74,8 +65,8 @@ func changeTile():
 	#Eventually we'd be moving through a list (list of dictionaries would be ideal, then could be
 	# Tiles[0].ID // possibly we'd just assume the ID is the item index
 	if currentTile > 1:
-		currentTile = 0
-		activeLayer = 0
+		currentTile = 1
+		activeLayer = 1
 	else:
 		currentTile += 1
 		activeLayer = 1
