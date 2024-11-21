@@ -6,6 +6,7 @@ signal waited
 var waiting = false
 var initialYear = 0
 var timeToBuild = 0
+@onready var Tiles = get_parent()
 const IN_PROGRESS_ID = 26
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +28,17 @@ func wait():
 		emit_signal("waited")							#are counted in 1s and thus even though a building takes 0.5 years, we can
 		waiting = false									#only place after a year has gone by. Need to adjust the YearsTimer to combat this
 
+func addNewTile(tile):
+	var new_tile = Tile.new()
+	new_tile.id = tile
+	new_tile.initialise_pollution()
+	new_tile.initialise_income()
+	Global.placed_tiles.append(new_tile)
+
+func updateData():
+	Tiles.updatePollution()
+	Tiles.updateIncome()
+
 func place(tile,x,y):
 	if timeToBuild > 0:
 		currentLayer.placeTile(IN_PROGRESS_ID,x,y) #Place the construction (in progress) building tile
@@ -37,4 +49,6 @@ func place(tile,x,y):
 		currentLayer.placeTile(tile,x,y) #place the real one
 	else:
 		currentLayer.placeTile(tile,x,y)
+	
+	updateData()
 	queue_free()

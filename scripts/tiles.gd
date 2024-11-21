@@ -8,11 +8,11 @@ class_name Tile
 @export var MoneyLabel : Label
 @export var PopupBox : Popup
 
-# the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
-# nodes but we can limit their access. This is good practice for alleviating bugs
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
 
+# the _ underscore denotes a private variable. Get and set allow for the variable to be accessed by different
+# nodes but we can limit their access. This is good practice for alleviating bugs
 var _currentLayer = 0:
 	get:
 		return _currentLayer
@@ -23,7 +23,6 @@ var _currentLayer = 0:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updatePollution()
-	print(PopupBox)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,20 +30,20 @@ func _process(delta: float) -> void:
 	pass
 
 func editTile(mode,tile,x,y):
-	#layer stuff is weird, needs properly thinking about
-	if _currentLayer == 0:
-		TilesLayer = $Layer0
-	elif _currentLayer >= LAYERS:
-		TilesLayer = $Layer1
+	#if the layer has been set within max layers
+	if _currentLayer <= LAYERS:
+		TilesLayer = get_node(str("Layer",_currentLayer)) #edit on that layer
+	else:
+		TilesLayer = $Layer1 #otherwise, default to 1.
 	
 	if mode == "ADD":
 		placeTile(tile,x,y)
 		
 	elif mode =="DEL":
 		sellTile(x,y)
+		
 	else:
 		print("tried to edit tile, but mode unknown")
-	#print("placed tile on",TilesLayer) #for debug
 
 var id: int = 0  # Tile ID
 var yearly_pollution: int = 0  # Dynamic yearly pollution
@@ -78,43 +77,31 @@ func initialise_income():
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
 		var floorType = null
-		
-		if $Layer0.get_cell_tile_data(Vector2i(x,y)) != null:
-			floorType = $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type")
-			
+		if $Layer0.get_cell_tile_data(Vector2i(x,y)) != null: #if the tile below exists
+			floorType = $Layer0.get_cell_tile_data(Vector2i(x,y)).get_custom_data("Type") #grab its type
 		if floorType == "Ground":
+			
 			var tileToPlace = TilesLayer.tile_set.get_source(tile).get_tile_data(Vector2i(0,0),0) #Gets the custom data of the current Tile ID.
 			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
 			var cost = tileToPlace.get_custom_data("Cost")
+			
 			if Global.Money >= cost:
-				print(Global.Money)
-				var new_tile = Tile.new()
-				new_tile.id = tile
-				new_tile.initialise_pollution()
-				
-				new_tile.initialise_income()
-				
-				Global.placed_tiles.append(new_tile)
-				
-				
-				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-				Global.Pollution += fixed_pollution
-				#print("Added fixed pollution:", fixed_pollution, "-> Total Pollution:", Global.Pollution)
-				#updatePollution()
-				
-				updatePollution()
 				Global.Money -= cost
-				print(Global.Money)
-				updateIncome()
 				
+				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
+				#places the tile. This means we can have multiple tiles being constructed at once.
 				
 				var tilePlacer = TILE_PLACER.instantiate()
 				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
 				add_child(tilePlacer)
+				tilePlacer.addNewTile(tile)
 				tilePlacer.place(tile,x,y)
-				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
-				#places the tile. This means we can have multiple tiles being constructed at once.
-
+				#updatePollution() and updateIncome() are now called within tilePlacer, after the tile is built.
+				
+				
+				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+				Global.Pollution += fixed_pollution
+				
 			else:
 				print("Not enough molah")
 				

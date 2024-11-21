@@ -1,5 +1,4 @@
 extends Timer
-
 @export var YearsLabel : Label
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
@@ -41,11 +40,7 @@ func yearPassed():
 func _on_year_passed() -> void:
 	
 	Global.Money += Global.Income
-	
 	Global.Pollution += Global.YearlyPollution
-	
-	print("Pollution:", Global.Pollution)
-	print(Global.YearlyPollution)
 
 	# Update stats in GameManager
 	gm.update_stat("environment", -Global.YearlyPollution)  #  Decrease environment health
