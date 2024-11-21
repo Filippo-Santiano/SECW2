@@ -24,7 +24,7 @@ MoneyLabel = NodePath("../UI/MoneyLabel")
 gm = NodePath("../GameManager")
 yearsPerMinute = 4.0
 
-[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox")]
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox", "Camera")]
 script = ExtResource("1_10c5s")
 TilesLayer = NodePath("Layer1")
 HoverTiles = NodePath("../PlayerController/HoverTiles")
@@ -32,6 +32,7 @@ PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
 PopupBox = NodePath("../UI/Popup")
+Camera = NodePath("../MainCamera")
 
 [node name="Layer1" type="TileMapLayer" parent="Tiles"]
 y_sort_enabled = true

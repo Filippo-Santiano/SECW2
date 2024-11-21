@@ -7,6 +7,7 @@ class_name Tile
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
 @export var PopupBox : Popup
+@export var Camera : Camera2D
 
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
@@ -135,7 +136,7 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 	var world_pos = TilesLayer.map_to_local(tile_pos)
 	var offset_x = (world_pos.x + 576)*1.5
 	var offset_y = (world_pos.y + 352)*1.48
-	PopupBox.position = Vector2(offset_x,offset_y)
+	PopupBox.position = Vector2(offset_x,offset_y) - Camera.position
 	# Show and center the popup
 	PopupBox.show()
 	# Shows the popup with tile information
