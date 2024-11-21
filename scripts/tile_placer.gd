@@ -1,13 +1,16 @@
 extends Node2D
-var currentLayer : TileMapLayer
-@export var sprite : Sprite2D
 
-signal waited
+@export var sprite : Sprite2D
+@onready var Tiles = get_parent()
+
+var currentLayer : TileMapLayer
 var waiting = false
 var initialYear = 0
 var timeToBuild = 0
-@onready var Tiles = get_parent()
+
 const IN_PROGRESS_ID = 26
+
+signal waited
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +21,7 @@ func _process(delta: float) -> void:
 	if waiting:
 		wait()
 
-func initialise(layer,year,buildTime):
+func initialise(layer,year,buildTime): #should be called when instantiating a new tile placer. Sets parameters
 	currentLayer = layer
 	initialYear = year
 	timeToBuild = buildTime
@@ -27,17 +30,6 @@ func wait():
 	if Global.currentYear >= initialYear + timeToBuild: #if enough years have passed, waiting complete. Right now the years
 		emit_signal("waited")							#are counted in 1s and thus even though a building takes 0.5 years, we can
 		waiting = false									#only place after a year has gone by. Need to adjust the YearsTimer to combat this
-
-func addNewTile(tile):
-	var new_tile = Tile.new()
-	new_tile.id = tile
-	new_tile.initialise_pollution()
-	new_tile.initialise_income()
-	Global.placed_tiles.append(new_tile)
-
-func updateData():
-	Tiles.updatePollution()
-	Tiles.updateIncome()
 
 func place(tile,x,y):
 	if timeToBuild > 0:
@@ -50,5 +42,5 @@ func place(tile,x,y):
 	else:
 		currentLayer.placeTile(tile,x,y)
 	
-	updateData()
+	Global.updateData()
 	queue_free()

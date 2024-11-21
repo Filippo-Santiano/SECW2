@@ -122,12 +122,6 @@ offset_top = 185.0
 offset_right = -593.0
 offset_bottom = -171.0
 
-[node name="Popup" type="Popup" parent="UI"]
-
-[node name="Label" type="Label" parent="UI/Popup"]
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
 offset_left = -20.0
 offset_top = -273.0
@@ -140,6 +134,16 @@ offset_left = 1275.0
 offset_top = 779.0
 offset_right = 1496.52
 offset_bottom = 899.32
+
+[node name="Popup" type="Popup" parent="UI"]
+
+[node name="Label" type="Label" parent="UI/Popup"]
+z_index = 1
+texture_filter = 6
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 0
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
