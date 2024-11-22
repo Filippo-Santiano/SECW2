@@ -37,6 +37,7 @@ v_box_container = NodePath("ScrollContainer/Feed")
 show_all_button = NodePath("ScrollContainer/Feed/ShowAllButton")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -52,6 +53,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ShowAllButton" type="Button" parent="ScrollContainer/Feed"]
+z_index = 2
 layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0

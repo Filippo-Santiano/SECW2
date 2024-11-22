@@ -77,7 +77,7 @@ func show_messages():
 		update_feed(message_queue.size()) # Show all messages
 		show_all_button.text = "Show Less" # Update button text
 	else:
-		update_feed(2) # Show only the first 2 messages
+		update_feed(0) # Show only the first 2 messages
 		show_all_button.text = "Show All" # Reset button text
  
 func clear_feed() -> void:
@@ -101,6 +101,7 @@ func update_feed(count):
 	v_box_container.move_child(show_all_button, -1)
  
 func _on_show_all_button_button_down() -> void:
+	print(is_expanded)
 	# Toggle between collapsed (2 messages) and expanded (all messages)
 	is_expanded = !is_expanded
  
