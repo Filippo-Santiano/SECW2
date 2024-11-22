@@ -2,6 +2,8 @@ extends Node
 
 var Money = 10
 var Pollution = 0
+var Electricity = 0
+var Happiness = 0
 
 var currentYear : float
 
@@ -23,6 +25,18 @@ func updateIncome():
 		total_yearly_income += i.yearly_income
 	Income = total_yearly_income
 	
+func updateElectricity():
+	var total_electricity = 0
+	for i in placed_tiles:
+		total_electricity += i.electricity
+	Electricity = total_electricity
+	
+func updateHappiness():
+	var total_happiness = 0
+	for i in placed_tiles:
+		total_happiness += i.happiness
+	Happiness = total_happiness
+	
 func addNewTile(tile,initial_pollution):
 	Pollution += initial_pollution
 	
@@ -30,9 +44,13 @@ func addNewTile(tile,initial_pollution):
 	new_tile.id = tile #id of the tile being placed.
 	new_tile.initialise_pollution()
 	new_tile.initialise_income() #then sets the pollution/income variables based on the ID
+	new_tile.initialise_electricity()
+	new_tile.initialise_happiness()
 	placed_tiles.append(new_tile) #and adds that tile to the global placed_tiles array.
 	#this is used for adding pollution/income yearly
 
 func updateData():
 	updatePollution()
 	updateIncome()
+	updateElectricity()	
+	updateHappiness()

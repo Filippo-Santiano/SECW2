@@ -4,6 +4,8 @@ extends Timer
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
 @export var gm : Node
+@export var ElectricityLabel: Label
+@export var HappinessLabel: Label
 
 @export var yearsPerMinute : float = 1.0
 var Years = 0.0
@@ -15,6 +17,8 @@ func updateLabels():
 	PollutionLabel.text = str("Pollution: ", Global.Pollution)
 	IncomeLabel.text = str("Income: ", Global.Income)
 	MoneyLabel.text = str("Money: ", Global.Money)
+	ElectricityLabel.text = str("Electricity: ", Global.Electricity)
+	HappinessLabel.text = str("Happiness: ", Global.Happiness)
 
 func _ready() -> void:
 	updateLabels()
@@ -26,7 +30,7 @@ func _on_timeout() -> void:
 	yearPassed() #Checks if one year has passed. If so, emits the YearPassed signal for use with adding pollution, income etc.
 	Global.currentYear = Years
 
-	print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income)
+	print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
 	
 	updateLabels() #update labels every second
 
@@ -41,6 +45,8 @@ func _on_year_passed() -> void:
 	
 	Global.Money += Global.Income
 	Global.Pollution += Global.YearlyPollution
+	Global.Electricity = Global.Electricity # May not be necessary
+	Global.Happiness = Global.Happiness
 
 	# Update stats in GameManager
 	gm.update_stat("environment", -Global.YearlyPollution)  #  Decrease environment health
