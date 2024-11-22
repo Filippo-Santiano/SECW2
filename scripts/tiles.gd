@@ -49,6 +49,8 @@ func editTile(mode,tile,x,y):
 var id: int = 0  # Tile ID
 var yearly_pollution: int = 0  # Dynamic yearly pollution
 var yearly_income: int = 0 # Dynamic income
+var electricity: int = 0 # Non dynamic electricity
+var happiness: int = 50 # comme ci comme ca
 
 # Mapping IDs to default yearly pollution values
 const Initial_Yearly_Tile_Pollution = {
@@ -58,6 +60,15 @@ const Initial_Yearly_Tile_Pollution = {
 
 const Initial_Yearly_Income = {
 	1: 20
+}
+
+const Initial_Electricity = {
+	1: -10
+}
+
+const Initial_Happiness = {
+	1: 5,
+	2: 10 # Tree makes me happy
 }
 
 # Initialize dynamic pollution value
@@ -74,6 +85,19 @@ func initialise_income():
 		yearly_income = Initial_Yearly_Income[id]
 	else:
 		yearly_income = 0
+		
+func initialise_electricity():
+	if id in Initial_Electricity:
+		electricity = Initial_Electricity[id]
+	else:
+		electricity = 0
+		
+func initialise_happiness():
+	if id in Initial_Happiness:
+		happiness = Initial_Happiness[id]
+	else:
+		happiness = 0
+		
 
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
