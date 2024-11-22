@@ -143,18 +143,20 @@ theme_override_font_sizes/font_size = 24
 text = "Use WASD to move camera, R to reset. Scroll to zoom"
 
 [node name="TwitterFeed" parent="UI" instance=ExtResource("6_6tdp6")]
+anchors_preset = -1
 offset_left = 1653.0
 offset_top = 7.0
 offset_right = -3.0
 offset_bottom = -637.0
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
+anchors_preset = -1
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
-offset_left = -20.0
-offset_top = -273.0
-offset_right = -20.0
-offset_bottom = -273.0
+offset_left = -139.0
+offset_top = 722.0
+offset_right = -1695.0
+offset_bottom = -119.0
 scale = Vector2(1.5, 1.5)
 
 [node name="BuildingMenu" parent="UI" instance=ExtResource("12_t8mhr")]

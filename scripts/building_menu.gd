@@ -24,10 +24,10 @@ func _ready() -> void:
 # Hide the buttons when build icon is pressed
 func _on_build_button_pressed() -> void:
 	if is_pressed == true:
-		building_item.show()
-		tree_item.show()
-		is_pressed = false
-	else:
 		building_item.hide()
 		tree_item.hide()
+		is_pressed = false
+	else:
+		building_item.show()
+		tree_item.show()
 		is_pressed = true
