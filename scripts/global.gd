@@ -1,17 +1,19 @@
 extends Node
 
-var Money = 10
+var Money = 15
 var Pollution = 0
 var Electricity = 0
-var Happiness = 0
+var Happiness = 1
+var PollutionThreshold = 1000
 
 var currentYear : float
 
 var YearlyPollution: = 0
 var placed_tiles: Array = []
 var Income = 0
+var ExternalPollution = 1
 
-
+# Fix this, current doesn't update income, fixed pollution levels etc when tiles are built
 func updatePollution():
 	var total_yearly_pollution = 0
 	for i in placed_tiles:
@@ -37,6 +39,13 @@ func updateHappiness():
 		total_happiness += i.happiness
 	Happiness = total_happiness
 	
+func updateExternalPollution():
+	var totalExternalPollutionMultiplier = 1.08
+	ExternalPollution *= totalExternalPollutionMultiplier
+
+	
+	
+	
 func addNewTile(tile,initial_pollution):
 	Pollution += initial_pollution
 	
@@ -54,3 +63,14 @@ func updateData():
 	updateIncome()
 	updateElectricity()	
 	updateHappiness()
+
+var tile_data = {}
+
+func update_tile_attributes():
+	for pos in tile_data.keys():
+		var tile = tile_data[pos]
+		var years_elapsed = currentYear - tile["placed_time"]
+		for attr in tile["attributes"].keys():
+			var multipler = tile["multipliers"].get(attr, 0)
+			tile["attributes"][attr] *= pow(1 + tile["multipliers"][attr], years_elapsed)
+		print("Updated tile at", pos, ":", tile["attributes"])  # Debug print

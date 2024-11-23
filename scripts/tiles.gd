@@ -71,33 +71,73 @@ const Initial_Happiness = {
 	2: 10 # Tree makes me happy
 }
 
-# Initialize dynamic pollution value
-func initialise_pollution():
-	if id in Initial_Yearly_Tile_Pollution:
-		yearly_pollution = Initial_Yearly_Tile_Pollution[id]
-	else:
-		yearly_pollution = 0  # Default if ID is not in the mapping
-	#print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
+const Initial_Tile_Attributes = {
+	1: { #Office
+		"yearly_pollution": 50,
+		"income": 20,
+		"electricityRequired": 10,
+		"electricityGenerated": 9,
+		"positiveHappiness": 9,
+		"negativeHappiness": 10
+	},
+	2: { #Forrest
+		"yearly_pollution": -10,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 10,
+		"negativeHappiness": 0
+	}
+}
 
+const Tile_Multupliers = {
+		1: { #Office
+		"yearly_pollution": 0.1, #+10% pollution
+		"income": -0.05,
+		"electricityRequired": 0.05,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.05
+		},
+	2: { #Forrest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		}
+}
 
-func initialise_income():
-	if id in Initial_Yearly_Income:
-		yearly_income = Initial_Yearly_Income[id]
-	else:
-		yearly_income = 0
-		
-func initialise_electricity():
-	if id in Initial_Electricity:
-		electricity = Initial_Electricity[id]
-	else:
-		electricity = 0
-		
-func initialise_happiness():
-	if id in Initial_Happiness:
-		happiness = Initial_Happiness[id]
-	else:
-		happiness = 0
-		
+## Initialize dynamic pollution value
+#func initialise_pollution():
+	#if id in Initial_Yearly_Tile_Pollution:
+		#yearly_pollution = Initial_Yearly_Tile_Pollution[id]
+	#else:
+		#yearly_pollution = 0  # Default if ID is not in the mapping
+	##print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
+#
+#
+#func initialise_income():
+	#if id in Initial_Yearly_Income:
+		#yearly_income = Initial_Yearly_Income[id]
+	#else:
+		#yearly_income = 0
+		#
+#func initialise_electricity():
+	#if id in Initial_Electricity:
+		#electricity = Initial_Electricity[id]
+	#else:
+		#electricity = 0
+		#
+#func initialise_happiness():
+	#if id in Initial_Happiness:
+		#happiness = Initial_Happiness[id]
+	#else:
+		#happiness = 0
+		#
+		#
+
 
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
@@ -122,8 +162,34 @@ func placeTile(tile,x,y):
 				
 				#Adds the placed tile to the global placed tiles array + sets initial pollution
 				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-				Global.addNewTile(tile, fixed_pollution)
+				#Global.addNewTile(tile, fixed_pollution)
 				
+				if Global.tile_data == null:
+					Global.tile_data = {}
+				
+				var initial_attributes = Initial_Tile_Attributes.get(tile,{
+					"yearly_pollution": 0,
+					"income": 0,
+					"electricityRequired": 0,
+					"electricityGenerated": 0,
+					"positiveHappiness": 0,
+					"negativeHappiness": 0
+				})
+				
+				var multipliers = Tile_Multupliers.get(tile,{
+					"yearly_pollution": 0,
+					"income": 0,
+					"electricityRequired": 0,
+					"electricityGenerated": 0,
+					"positiveHappiness": 0,
+					"negativeHappiness": 0
+				})
+				
+				Global.tile_data[Vector2(x,y)] = {
+					"attributes": initial_attributes.duplicate(true),
+					"multipliers": multipliers.duplicate(true),
+					"placed_time": Global.currentYear
+				}
 			else:
 				print("Not enough molah")
 				
