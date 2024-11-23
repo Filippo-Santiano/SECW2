@@ -71,6 +71,36 @@ const Initial_Happiness = {
 	2: 10 # Tree makes me happy
 }
 
+const Initial_Tile_Attributes = {
+	1: { #Office
+		"yearly_pollution": 15,
+		"income": 20,
+		"electricity": -10,
+		"happiness": 5
+	},
+	2: { #Forrest
+		"yearly_pollution": -10,
+		"income": 0,
+		"electricity": 0,
+		"happiness": 10
+	}
+}
+
+const Tile_Multupliers = {
+		1: { #Office
+		"yearly_pollution": 0.1, #+10% pollution
+		"income": -0.05,
+		"electricity": 0,
+		"happiness": -0.01
+	},
+	2: { #Forrest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricity": 0,
+		"happiness": 0.03
+	}
+}
+
 # Initialize dynamic pollution value
 func initialise_pollution():
 	if id in Initial_Yearly_Tile_Pollution:
@@ -98,6 +128,8 @@ func initialise_happiness():
 	else:
 		happiness = 0
 		
+		
+
 
 func placeTile(tile,x,y):
 	if TilesLayer.get_cell_tile_data(Vector2i(x,y)) == null: #if no tile is present at those coordinates on that layer
@@ -124,6 +156,28 @@ func placeTile(tile,x,y):
 				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
 				Global.addNewTile(tile, fixed_pollution)
 				
+				if Global.tile_data == null:
+					Global.tile_data = {}
+				
+				var initial_attributes = Initial_Tile_Attributes.get(tile,{
+					"yearly_pollution": 0,
+					"income": 0,
+					"electricity": 0,
+					"happiness": 0
+				})
+				
+				var multipliers = Tile_Multupliers.get(tile,{
+					"yearly_pollution": 0,
+					"income": 0,
+					"electricity": 0,
+					"happiness": 0
+				})	
+				
+				Global.tile_data[Vector2(x,y)] = {
+					"attributes": initial_attributes.duplicate(true),
+					"multipliers": multipliers.duplicate(true),
+					"placed_time": Global.currentYear
+				}
 			else:
 				print("Not enough molah")
 				

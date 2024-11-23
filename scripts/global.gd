@@ -54,3 +54,14 @@ func updateData():
 	updateIncome()
 	updateElectricity()	
 	updateHappiness()
+
+var tile_data = {}
+
+func update_tile_attributes():
+	for pos in tile_data.keys():
+		var tile = tile_data[pos]
+		var years_elapsed = currentYear - tile["placed_time"]
+		for attr in tile["attributes"].keys():
+			var multipler = tile["multipliers"].get(attr, 0)
+			tile["attributes"][attr] *= pow(1 + tile["multipliers"][attr], years_elapsed)
+		print("Updated tile at", pos, ":", tile["attributes"])  # Debug print
