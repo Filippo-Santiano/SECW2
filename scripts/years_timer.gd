@@ -6,6 +6,8 @@ extends Timer
 @export var gm : Node
 @export var ElectricityLabel: Label
 @export var HappinessLabel: Label
+@export var YearlyPollution: Label
+@export var ExternalPollution: Label
 
 @export var yearsPerMinute : float = 1.0
 var Years = 0.0
@@ -14,14 +16,15 @@ signal YearPassed
 
 func updateLabels():
 	YearsLabel.text = str("Year: ", int(Global.currentYear))
-	PollutionLabel.text = str("Pollution: ", Global.Pollution)
-	IncomeLabel.text = str("Income: ", Global.Income)
-	MoneyLabel.text = str("Money: ", Global.Money)
-	ElectricityLabel.text = str("Electricity: ", Global.Electricity)
-	HappinessLabel.text = str("Happiness: ", Global.Happiness)
+	PollutionLabel.text = str("Pollution: ", round(Global.Pollution))
+	YearlyPollution.text = str("Yearly Pollution: ", round(Global.YearlyPollution))
+	IncomeLabel.text = str("Income: ", round(Global.Income))
+	MoneyLabel.text = str("Money: ", round(Global.Money))
+	ElectricityLabel.text = str("Electricity: ", round(Global.Electricity))
+	HappinessLabel.text = str("Happiness: ", round(Global.Happiness))
 
 func _ready() -> void:
-	connect("YearPassed", Callable(self, "_on_year_passed"))
+	#connect("YearPassed", Callable(self, "_on_year_passed"))
 	updateLabels()
 	
 func _on_timeout() -> void:
@@ -38,6 +41,33 @@ func _on_timeout() -> void:
 	print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
 	
 	updateLabels() #update labels every second
+	
+func update_stats_every_year():
+	print("IM WORKING")
+	Global.update_tile_attributes()
+	var tempYearlyPollution = 0
+	var tempIncome = 0
+	var tempElectricityReq = 0
+	var tempElectricityGen = 0
+	var tempHappiness = 0
+	for pos in Global.tile_data.keys():
+		var tile = Global.tile_data[pos]
+		tempYearlyPollution += tile["attributes"]["yearly_pollution"]
+		tempIncome += tile["attributes"]["income"]
+		tempElectricityReq += tile["attributes"]["electricityRequired"]
+		tempElectricityGen += tile["attributes"]["electricityGenerated"]
+		tempHappiness += tile["attributes"]["happiness"]
+	if (tempElectricityGen < tempElectricityReq):
+		tempIncome *= (tempElectricityGen / tempElectricityReq)
+		 
+	Global.YearlyPollution = tempYearlyPollution
+	Global.Income = tempIncome
+	Global.Electricity = tempElectricityGen - tempElectricityReq
+	Global.Happiness = tempHappiness
+	Global.Money += Global.Income
+	Global.Pollution += Global.YearlyPollution
+	Global.updateExternalPollution()
+	Global.Pollution += Global.ExternalPollution
 
 var prevYear = 0
 func yearPassed():
@@ -45,27 +75,14 @@ func yearPassed():
 		emit_signal("YearPassed")
 		print("YEAR PASSED")
 		prevYear = Years
+		update_stats_every_year()
+
 
 func _on_year_passed() -> void:
 	
-	Global.update_tile_attributes()
+	print(Global.tile_data)
 	
-	Global.YearlyPollution = 0
-	Global.Income = 0
-	Global.Electricity = 0
-	Global.Happiness = 0
-	for pos in Global.tile_data.keys():
-		var tile = Global.tile_data[pos]
-		print("============================")
-		print(tile["attributes"]["yearly_pollution"])
-		print("============================")
-		Global.YearlyPollution += tile["attributes"]["yearly_pollution"]
-		Global.Income += tile["attributes"]["income"]
-		Global.Electricity += tile["attributes"]["income"]
-		Global.Happiness += tile["attributes"]["income"]
-	
-	Global.Money += Global.Income
-	Global.Pollution += Global.YearlyPollution
+
 	updateLabels()
 	print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)
 	#Global.Electricity = Global.Electricity # May not be necessary

@@ -10,6 +10,7 @@ var currentYear : float
 var YearlyPollution: = 0
 var placed_tiles: Array = []
 var Income = 0
+var ExternalPollution = 1
 
 
 func updatePollution():
@@ -36,6 +37,11 @@ func updateHappiness():
 	for i in placed_tiles:
 		total_happiness += i.happiness
 	Happiness = total_happiness
+	
+func updateExternalPollution():
+	var totalExternalPollutionMultiplier = 1.08
+	ExternalPollution *= totalExternalPollutionMultiplier
+	
 	
 func addNewTile(tile,initial_pollution):
 	Pollution += initial_pollution

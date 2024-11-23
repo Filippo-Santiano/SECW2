@@ -20,7 +20,7 @@ size = Vector2(388, 324)
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm", "ElectricityLabel", "HappinessLabel")]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution")]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")
@@ -30,6 +30,8 @@ MoneyLabel = NodePath("../UI/MoneyLabel")
 gm = NodePath("../GameManager")
 ElectricityLabel = NodePath("../UI/ElectricityLabel")
 HappinessLabel = NodePath("../UI/HappinessLabel")
+YearlyPollution = NodePath("../UI/YearlyPolution")
+ExternalPollution = NodePath("../UI/ExternalPollution")
 yearsPerMinute = 4.0
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox", "Camera")]
@@ -96,6 +98,10 @@ offset_bottom = 96.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 
+[node name="YearlyPolution" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="PollutionLabel" type="Label" parent="UI"]
 offset_left = 19.0
 offset_top = 118.0
@@ -103,6 +109,10 @@ offset_right = 168.0
 offset_bottom = 161.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
+
+[node name="ExternalPollution" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="IncomeLabel" type="Label" parent="UI"]
 offset_left = 19.0
