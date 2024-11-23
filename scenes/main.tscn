@@ -30,7 +30,7 @@ MoneyLabel = NodePath("../UI/MoneyLabel")
 gm = NodePath("../GameManager")
 ElectricityLabel = NodePath("../UI/ElectricityLabel")
 HappinessLabel = NodePath("../UI/HappinessLabel")
-YearlyPollution = NodePath("../UI/YearlyPolution")
+YearlyPollution = NodePath("../UI/YearlyPollution")
 ExternalPollution = NodePath("../UI/ExternalPollution")
 yearsPerMinute = 4.0
 
@@ -98,7 +98,7 @@ offset_bottom = 96.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 
-[node name="YearlyPolution" type="Label" parent="UI"]
+[node name="YearlyPollution" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
 
