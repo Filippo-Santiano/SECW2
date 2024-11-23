@@ -73,18 +73,20 @@ const Initial_Happiness = {
 
 const Initial_Tile_Attributes = {
 	1: { #Office
-		"yearly_pollution": 15,
+		"yearly_pollution": 50,
 		"income": 20,
 		"electricityRequired": 10,
-		"electricityGenerated": 0,
-		"happiness": 5
+		"electricityGenerated": 9,
+		"positiveHappiness": 9,
+		"negativeHappiness": 10
 	},
 	2: { #Forrest
 		"yearly_pollution": -10,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"happiness": 10
+		"positiveHappiness": 10,
+		"negativeHappiness": 0
 	}
 }
 
@@ -94,15 +96,17 @@ const Tile_Multupliers = {
 		"income": -0.05,
 		"electricityRequired": 0.05,
 		"electricityGenerated": 0,
-		"happiness": -0.01
-	},
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.05
+		},
 	2: { #Forrest
 		"yearly_pollution": 0.02,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"happiness": 0.03
-	}
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		}
 }
 
 ## Initialize dynamic pollution value
@@ -166,16 +170,20 @@ func placeTile(tile,x,y):
 				var initial_attributes = Initial_Tile_Attributes.get(tile,{
 					"yearly_pollution": 0,
 					"income": 0,
-					"electricity": 0,
-					"happiness": 0
+					"electricityRequired": 0,
+					"electricityGenerated": 0,
+					"positiveHappiness": 0,
+					"negativeHappiness": 0
 				})
 				
 				var multipliers = Tile_Multupliers.get(tile,{
 					"yearly_pollution": 0,
 					"income": 0,
-					"electricity": 0,
-					"happiness": 0
-				})	
+					"electricityRequired": 0,
+					"electricityGenerated": 0,
+					"positiveHappiness": 0,
+					"negativeHappiness": 0
+				})
 				
 				Global.tile_data[Vector2(x,y)] = {
 					"attributes": initial_attributes.duplicate(true),

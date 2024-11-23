@@ -21,7 +21,7 @@ func updateLabels():
 	IncomeLabel.text = str("Income: ", round(Global.Income))
 	MoneyLabel.text = str("Money: ", round(Global.Money))
 	ElectricityLabel.text = str("Electricity: ", round(Global.Electricity))
-	HappinessLabel.text = str("Happiness: ", round(Global.Happiness))
+	HappinessLabel.text = str("Happiness: ", round(100*Global.Happiness),"%")
 
 func _ready() -> void:
 	#connect("YearPassed", Callable(self, "_on_year_passed"))
@@ -38,7 +38,7 @@ func _on_timeout() -> void:
 		prevYear = Global.currentYear
 		emit_signal("YearPassed")  # Emit signal for yearly updates
 		
-	print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
+	#print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
 	
 	updateLabels() #update labels every second
 	
@@ -49,42 +49,64 @@ func update_stats_every_year():
 	var tempIncome = 0
 	var tempElectricityReq = 0
 	var tempElectricityGen = 0
-	var tempHappiness = 0
+	var tempHappinessPos = 0
+	var tempHappinessNeg = 0
 	for pos in Global.tile_data.keys():
 		var tile = Global.tile_data[pos]
 		tempYearlyPollution += tile["attributes"]["yearly_pollution"]
 		tempIncome += tile["attributes"]["income"]
 		tempElectricityReq += tile["attributes"]["electricityRequired"]
 		tempElectricityGen += tile["attributes"]["electricityGenerated"]
-		tempHappiness += tile["attributes"]["happiness"]
+		tempHappinessPos += tile["attributes"]["positiveHappiness"]
+		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 	if (tempElectricityGen < tempElectricityReq):
 		tempIncome *= (tempElectricityGen / tempElectricityReq)
 		 
 	Global.YearlyPollution = tempYearlyPollution
 	Global.Income = tempIncome
 	Global.Electricity = tempElectricityGen - tempElectricityReq
-	Global.Happiness = tempHappiness
+	if (tempHappinessPos > tempHappinessNeg):
+		Global.Happiness = 1 #This is 100%
+	else:
+		Global.Happiness = (tempHappinessPos/tempHappinessNeg)
+	Global.PollutionThreshold = 1000
+	Global.PollutionThreshold *= Global.Happiness
 	Global.Money += Global.Income
 	Global.Pollution += Global.YearlyPollution
 	Global.updateExternalPollution()
 	Global.Pollution += Global.ExternalPollution
 
 var prevYear = 0
+var exceed_threshold_count = 0
+
 func yearPassed():
 	if int(Years) > prevYear:
 		emit_signal("YearPassed")
 		print("YEAR PASSED")
 		prevYear = Years
 		update_stats_every_year()
+		print("Pollution Threshold: ", Global.PollutionThreshold)
+		if (Global.Money < 0):
+			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+			print("Bye Bye, not enough mulah")
+			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		elif (Global.Pollution > Global.PollutionThreshold):
+			exceed_threshold_count +=1
+			if (exceed_threshold_count > 3):
+				print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+				print("Bye Bye, too much pollution")
+				print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		else:
+			exceed_threshold_count = 0
 
 
 func _on_year_passed() -> void:
 	
-	print(Global.tile_data)
+	#print(Global.tile_data)
 	
 
 	updateLabels()
-	print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)
+	#print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)
 	#Global.Electricity = Global.Electricity # May not be necessary
 	#Global.Happiness = Global.Happiness
 #
