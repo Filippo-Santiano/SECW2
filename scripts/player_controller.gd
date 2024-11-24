@@ -18,8 +18,6 @@ var activeLayer = 1
 
 var _HoverTilePosition = Vector2i(0,0)
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	TilesNode.set("_currentLayer",activeLayer) #set the initial tile layer as soon as possible to avoid weirdness
@@ -29,8 +27,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if buildMode:
 		allInputs()
+	# 	hoverTiles(true)
+	# 	setLabel()
+	# else:
 		hoverTiles(false)
-		setLabel()
 	
 #I like to have a function that contains all of my Input events
 #This gets called every frame in _physics_process()
@@ -73,10 +73,13 @@ func changeTile():
 
 func hoverTiles(override):
 	#HoverTiles.set_cell(mouseInputToTileMap(),currentTile,Vector2i(0,0),0)
-	if _HoverTilePosition != mouseInputToTileMap() or override:
+	if buildMode:
+		if _HoverTilePosition != mouseInputToTileMap() or override:
+			HoverTiles.clearTile(_HoverTilePosition.x,_HoverTilePosition.y)
+			_HoverTilePosition = mouseInputToTileMap()
+			HoverTiles.placeTile(currentTile,_HoverTilePosition.x,_HoverTilePosition.y)
+	else:
 		HoverTiles.clearTile(_HoverTilePosition.x,_HoverTilePosition.y)
-		_HoverTilePosition = mouseInputToTileMap()
-		HoverTiles.placeTile(currentTile,_HoverTilePosition.x,_HoverTilePosition.y)
 	#If the mouse position has changed since the last iteration,
 	#clear the previous tile and then draw the new one.
 	#This is just for the visual effect of seeing the tile before you place it-

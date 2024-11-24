@@ -54,4 +54,6 @@ layout_mode = 2
 icon = ExtResource("4_qb2i8")
 icon_alignment = 2
 
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/BuildingItem" to="." method="_on_building_item_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/TreeItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="ScrollContainer/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
