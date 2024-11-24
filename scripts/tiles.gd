@@ -181,18 +181,18 @@ func placeTile(tile,x,y):
 			if Global.Money >= cost:
 				Global.Money -= cost
 				
+				#Adds the placed tile to the global placed tiles array + sets initial pollution
+				#var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+				#Global.addNewTile(tile, fixed_pollution)
+				
+				setInitialAttributes(tile,x,y)
+				
 				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
 				#places the tile. This means we can have multiple tiles being constructed at once.
 				var tilePlacer = TILE_PLACER.instantiate()
 				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
-				
-				#Adds the placed tile to the global placed tiles array + sets initial pollution
-				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-				#Global.addNewTile(tile, fixed_pollution)
-				
-				setInitialAttributes(tile,x,y)
 				
 			else:
 				print("Not enough molah")

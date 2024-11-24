@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=54 format=3 uid="uid://deenobcu650sx"]
+[gd_resource type="TileSet" load_steps=56 format=3 uid="uid://deenobcu650sx"]
 
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="1_bwhhb"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_gyy07"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b375s3u3uouue" path="res://assets/landscapeTiles_079.png" id="17_f1u2g"]
 [ext_resource type="Texture2D" uid="uid://jr0dr4ciwmfp" path="res://assets/buildingTiles_032.png" id="18_83n32"]
 [ext_resource type="Texture2D" uid="uid://bcu0q7d5fctxh" path="res://assets/InProgressBuilding.png" id="19_0sg2o"]
+[ext_resource type="Texture2D" uid="uid://0nax4i1xscw6" path="res://assets/powerstation.png" id="20_0huhl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtdat"]
 resource_name = "Grass"
@@ -188,6 +189,13 @@ texture_region_size = Vector2i(132, 101)
 0:0/0/z_index = 1
 0:0/0/custom_data_1 = "Building"
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0i3c5"]
+texture = ExtResource("20_0huhl")
+texture_region_size = Vector2i(132, 99)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 15)
+0:0/0/z_index = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnh3m"]
 texture = ExtResource("8_14et2")
 texture_region_size = Vector2i(132, 99)
@@ -279,3 +287,4 @@ sources/23 = SubResource("TileSetAtlasSource_gfblr")
 sources/24 = SubResource("TileSetAtlasSource_aufe5")
 sources/25 = SubResource("TileSetAtlasSource_j7wcb")
 sources/26 = SubResource("TileSetAtlasSource_kamyv")
+sources/27 = SubResource("TileSetAtlasSource_0i3c5")
