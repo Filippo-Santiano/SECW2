@@ -1,25 +1,51 @@
 extends Control
-#
-#var prev_environment = 0
-#var prev_happiness = 0
-#var prev_economy = 0
-#var prev_coins = 0
-#
-#func _ready() -> void:
-	## Connect to GameManager's stats_updated signal
-	#var gm = get_node("/root/Main/GameManager")
-	#gm.connect("stats_updated", Callable(self, "_on_stats_updated"))
-	#_update_ui()  # Initial update
-#
-#func _update_ui():
-	#var gm = get_node("/root/Main/GameManager")
-	#$VBoxContainer/ColorRect/Environment/EnvBar.value = gm.environment
-	#$VBoxContainer/ColorRect2/Happiness/ProgressBar.value = gm.happiness
-	#$VBoxContainer/ColorRect3/Economy/ProgressBar.value = gm.economy
-	#$VBoxContainer/ColorRect4/Coins/ProgressBar.value = gm.coins
-#
-#func _on_stats_updated():
-	#_update_ui()
+
+var prev_environment = 0
+var prev_happiness = 0
+var prev_economy = 0
+var prev_coins = 0
+
+func _ready() -> void:
+	# Connect to GameManager's stats_updated signal
+	var gm = get_node("/root/Main/GameManager")
+	gm.connect("stats_updated", Callable(self, "_on_stats_updated"))
+	_update_ui()  # Initial update
+
+func _update_ui():
+	var gm = get_node("/root/Main/GameManager")
+
+	$VBoxContainer/ColorRect/BarPercentage.text = str(round(gm.environment)) + '%'
+	$VBoxContainer/ColorRect2/BarPercentage2.text = str(round(gm.happiness)) + '%'
+	$VBoxContainer/ColorRect3/BarPercentage3.text = str(round(gm.economy)) + '%'
+	$VBoxContainer/ColorRect4/BarPercentage4.text = str(round(gm.coins)) + '%'
+	
+	if gm.environment < 0:
+		$VBoxContainer/ColorRect/Environment/EnvBar3.value = abs(gm.environment)
+		$VBoxContainer/ColorRect/Environment/EnvBar4.value = 0
+	elif gm.environment > 0:
+		$VBoxContainer/ColorRect/Environment/EnvBar4.value = gm.environment
+		$VBoxContainer/ColorRect/Environment/EnvBar3.value = 0
+	
+	if gm.happiness < 0:
+		$VBoxContainer/ColorRect2/Happiness/EnvBar5.value = abs(gm.happiness)
+		$VBoxContainer/ColorRect2/Happiness/EnvBar6.value = 0
+	elif gm.happiness > 0:
+		$VBoxContainer/ColorRect2/Happiness/EnvBar6.value = gm.happiness
+		$VBoxContainer/ColorRect2/Happiness/EnvBar5.value = 0
+	if gm.economy < 0:
+		$VBoxContainer/ColorRect3/Economy/EnvBar7.value = abs(gm.economy)
+		$VBoxContainer/ColorRect3/Economy/EnvBar8.value = 0
+	elif gm.economy > 0:
+		$VBoxContainer/ColorRect3/Economy/EnvBar8.value = gm.economy
+		$VBoxContainer/ColorRect3/Economy/EnvBar7.value = 0
+	if gm.coins < 0:
+		$VBoxContainer/ColorRect4/Coins/EnvBar9.value = abs(gm.coins)
+		$VBoxContainer/ColorRect4/Coins/EnvBar10.value = 0
+	elif gm.coins > 0:
+		$VBoxContainer/ColorRect4/Coins/EnvBar10.value = gm.coins
+		$VBoxContainer/ColorRect4/Coins/EnvBar9.value = 0
+func _on_stats_updated():
+	_update_ui()
 
 #extends Control
 #

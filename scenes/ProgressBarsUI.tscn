@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4hanurnndll1"]
+[gd_scene load_steps=9 format=3 uid="uid://b4hanurnndll1"]
 
 [ext_resource type="Script" path="res://scripts/ProgressBarsUI.gd" id="1_sbi27"]
 [ext_resource type="Texture2D" uid="uid://dltvrhirx8e73" path="res://assets/coins.png" id="2_fhkce"]
+[ext_resource type="StyleBox" uid="uid://cxyh4ilpqf7s1" path="res://scenes/negative_progress_bar.tres" id="2_plqa0"]
 [ext_resource type="Texture2D" uid="uid://bapsdg8yf4gya" path="res://assets/environment.png" id="2_stesq"]
 [ext_resource type="Texture2D" uid="uid://bicd7kncqjm4p" path="res://assets/happiness.png" id="3_4ft2f"]
+[ext_resource type="StyleBox" uid="uid://cvbig087t8erj" path="res://scenes/positive_progress_bar.tres" id="3_c04m3"]
 [ext_resource type="Texture2D" uid="uid://b7lwthxq5rwx2" path="res://assets/economy.png" id="4_wywtu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5fdf"]
@@ -61,7 +63,9 @@ custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
+fill_mode = 1
 show_percentage = false
 
 [node name="EnvBar4" type="ProgressBar" parent="VBoxContainer/ColorRect/Environment"]
@@ -69,8 +73,21 @@ custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("3_c04m3")
 step = 0.0
 show_percentage = false
+
+[node name="BarPercentage" type="Label" parent="VBoxContainer/ColorRect"]
+custom_minimum_size = Vector2(47, 23)
+layout_mode = 2
+offset_left = 208.5
+offset_top = 2.0
+offset_right = 255.5
+offset_bottom = 25.0
+theme_override_colors/font_outline_color = Color(0.20871, 0.20871, 0.20871, 1)
+theme_override_constants/outline_size = 10
+text = "-100%"
+horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="VBoxContainer/ColorRect"]
 layout_mode = 2
@@ -103,7 +120,9 @@ custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
+fill_mode = 1
 show_percentage = false
 
 [node name="EnvBar6" type="ProgressBar" parent="VBoxContainer/ColorRect2/Happiness"]
@@ -111,8 +130,21 @@ custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("3_c04m3")
 step = 0.0
 show_percentage = false
+
+[node name="BarPercentage2" type="Label" parent="VBoxContainer/ColorRect2"]
+custom_minimum_size = Vector2(47, 23)
+layout_mode = 2
+offset_left = 210.5
+offset_top = 2.0
+offset_right = 257.5
+offset_bottom = 25.0
+theme_override_colors/font_outline_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_constants/outline_size = 10
+text = "-100%"
+horizontal_alignment = 1
 
 [node name="Button3" type="Button" parent="VBoxContainer/ColorRect2"]
 layout_mode = 2
@@ -149,21 +181,36 @@ theme_override_constants/separation = 0
 layout_mode = 2
 text = "Economy           "
 
-[node name="EnvBar6" type="ProgressBar" parent="VBoxContainer/ColorRect3/Economy"]
-custom_minimum_size = Vector2(75, 27)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
-step = 0.0
-show_percentage = false
-
 [node name="EnvBar7" type="ProgressBar" parent="VBoxContainer/ColorRect3/Economy"]
 custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("2_plqa0")
+step = 0.0
+fill_mode = 1
+show_percentage = false
+
+[node name="EnvBar8" type="ProgressBar" parent="VBoxContainer/ColorRect3/Economy"]
+custom_minimum_size = Vector2(75, 27)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("3_c04m3")
 step = 0.0
 show_percentage = false
+
+[node name="BarPercentage3" type="Label" parent="VBoxContainer/ColorRect3"]
+custom_minimum_size = Vector2(47, 23)
+layout_mode = 2
+offset_left = 210.5
+offset_top = 3.0
+offset_right = 257.5
+offset_bottom = 26.0
+theme_override_colors/font_outline_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_constants/outline_size = 10
+text = "-100%"
+horizontal_alignment = 1
 
 [node name="Button4" type="Button" parent="VBoxContainer/ColorRect3"]
 layout_mode = 2
@@ -195,21 +242,36 @@ theme_override_constants/separation = 0
 layout_mode = 2
 text = "Coins                  "
 
-[node name="EnvBar7" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
+[node name="EnvBar9" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
 custom_minimum_size = Vector2(75, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("2_plqa0")
+step = 0.0
+fill_mode = 1
+show_percentage = false
+
+[node name="EnvBar10" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
+custom_minimum_size = Vector2(75, 27)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
+theme_override_styles/fill = ExtResource("3_c04m3")
 step = 0.0
 show_percentage = false
 
-[node name="EnvBar8" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
-custom_minimum_size = Vector2(75, 27)
+[node name="BarPercentage4" type="Label" parent="VBoxContainer/ColorRect4"]
+custom_minimum_size = Vector2(47, 23)
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
-step = 0.0
-show_percentage = false
+offset_left = 210.5
+offset_top = 2.0
+offset_right = 257.5
+offset_bottom = 25.0
+theme_override_colors/font_outline_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_constants/outline_size = 10
+text = "-100%"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/ColorRect4"]
 layout_mode = 2

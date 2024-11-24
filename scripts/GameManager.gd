@@ -12,13 +12,13 @@ signal stats_updated
 func update_stat(stat_name: String, value: float):
 	match stat_name:
 		"environment":
-			environment = clamp(environment + value, 0, 100) #clamp ensures the updated value remains within the valid range of 0 to 100.
+			environment = clamp(environment + value, -100, 100) #clamp ensures the updated value remains within the valid range of 0 to 100.
 		"happiness":
-			happiness = clamp(happiness + value, 0, 100)
+			happiness = clamp(happiness + value, -100, 100)
 		"economy":
-			economy = clamp(economy + value, 0, 100)
+			economy = clamp(economy + value, -100, 100)
 		"coins":
-			coins = clamp(coins + value, 0, 100)
+			coins = clamp(coins + value, -100, 100)
 	emit_signal("stats_updated")
 
 #extends Node
