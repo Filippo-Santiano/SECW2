@@ -20,7 +20,7 @@ size = Vector2(388, 324)
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution")]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution") groups=["YearsTimer"]]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")

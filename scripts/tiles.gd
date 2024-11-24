@@ -90,7 +90,7 @@ const Initial_Tile_Attributes = {
 	}
 }
 
-const Tile_Multupliers = {
+const Tile_Multipliers = {
 		1: { #Office
 		"yearly_pollution": 0.1, #+10% pollution
 		"income": -0.05,
@@ -108,6 +108,34 @@ const Tile_Multupliers = {
 		"negativeHappiness": 0
 		}
 }
+
+func setInitialAttributes(tile,x,y):
+	if Global.tile_data == null:
+		Global.tile_data = {}
+				
+	var initial_attributes = Initial_Tile_Attributes.get(tile,{
+		"yearly_pollution": 0,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0
+	})
+	
+	var multipliers = Tile_Multipliers.get(tile,{
+		"yearly_pollution": 0,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0
+	})
+	
+	Global.tile_data[Vector2(x,y)] = {
+		"attributes": initial_attributes.duplicate(true),
+		"multipliers": multipliers.duplicate(true),
+		"placed_time": Global.currentYear
+	}
 
 ## Initialize dynamic pollution value
 #func initialise_pollution():
@@ -153,6 +181,12 @@ func placeTile(tile,x,y):
 			if Global.Money >= cost:
 				Global.Money -= cost
 				
+				#Adds the placed tile to the global placed tiles array + sets initial pollution
+				#var fixed_pollution = tileToPlace.get_custom_data("Pollution")
+				#Global.addNewTile(tile, fixed_pollution)
+				
+				setInitialAttributes(tile,x,y)
+				
 				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
 				#places the tile. This means we can have multiple tiles being constructed at once.
 				var tilePlacer = TILE_PLACER.instantiate()
@@ -160,36 +194,6 @@ func placeTile(tile,x,y):
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
 				
-				#Adds the placed tile to the global placed tiles array + sets initial pollution
-				var fixed_pollution = tileToPlace.get_custom_data("Pollution")
-				#Global.addNewTile(tile, fixed_pollution)
-				
-				if Global.tile_data == null:
-					Global.tile_data = {}
-				
-				var initial_attributes = Initial_Tile_Attributes.get(tile,{
-					"yearly_pollution": 0,
-					"income": 0,
-					"electricityRequired": 0,
-					"electricityGenerated": 0,
-					"positiveHappiness": 0,
-					"negativeHappiness": 0
-				})
-				
-				var multipliers = Tile_Multupliers.get(tile,{
-					"yearly_pollution": 0,
-					"income": 0,
-					"electricityRequired": 0,
-					"electricityGenerated": 0,
-					"positiveHappiness": 0,
-					"negativeHappiness": 0
-				})
-				
-				Global.tile_data[Vector2(x,y)] = {
-					"attributes": initial_attributes.duplicate(true),
-					"multipliers": multipliers.duplicate(true),
-					"placed_time": Global.currentYear
-				}
 			else:
 				print("Not enough molah")
 				

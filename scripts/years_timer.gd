@@ -33,11 +33,7 @@ func _on_timeout() -> void:
 	#much time to add per second.
 	yearPassed() #Checks if one year has passed. If so, emits the YearPassed signal for use with adding pollution, income etc.
 	Global.currentYear = Years
-	# Check if a new year has passed
-	if Global.currentYear > prevYear:
-		prevYear = Global.currentYear
-		emit_signal("YearPassed")  # Emit signal for yearly updates
-		
+	
 	#print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
 	
 	updateLabels() #update labels every second

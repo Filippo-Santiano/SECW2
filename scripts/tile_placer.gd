@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var sprite : Sprite2D
 @onready var Tiles = get_parent()
 
 var currentLayer : TileMapLayer
@@ -14,7 +13,7 @@ signal waited
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -42,5 +41,6 @@ func place(tile,x,y):
 	else:
 		currentLayer.placeTile(tile,x,y)
 	
-	Global.updateData()
+	
+	Global.updateData(x,y)
 	queue_free()
