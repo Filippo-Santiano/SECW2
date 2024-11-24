@@ -60,7 +60,8 @@ func update_stats_every_year():
 		tempHappinessPos += tile["attributes"]["positiveHappiness"]
 		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 	if (tempElectricityGen < tempElectricityReq):
-		tempIncome *= (tempElectricityGen / tempElectricityReq)
+		if tempElectricityReq != 0:
+			tempIncome *= (tempElectricityGen / tempElectricityReq)
 		 
 	Global.YearlyPollution = tempYearlyPollution
 	Global.Income = tempIncome
@@ -68,7 +69,8 @@ func update_stats_every_year():
 	if (tempHappinessPos > tempHappinessNeg):
 		Global.Happiness = 1 #This is 100%
 	else:
-		Global.Happiness = (tempHappinessPos/tempHappinessNeg)
+		if tempHappinessNeg != 0:
+			Global.Happiness = (tempHappinessPos/tempHappinessNeg)
 	Global.PollutionThreshold = 1000
 	Global.PollutionThreshold *= Global.Happiness
 	Global.Money += Global.Income

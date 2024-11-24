@@ -187,11 +187,12 @@ offset_right = -1695.0
 offset_bottom = -119.0
 scale = Vector2(1.5, 1.5)
 
-[node name="BuildingMenu" parent="UI" instance=ExtResource("12_t8mhr")]
+[node name="BuildingMenu" parent="UI" node_paths=PackedStringArray("PlayerController") instance=ExtResource("12_t8mhr")]
 offset_left = 1275.0
 offset_top = 779.0
 offset_right = 1496.52
 offset_bottom = 899.32
+PlayerController = NodePath("../../PlayerController")
 
 [node name="Popup" type="Popup" parent="UI"]
 
