@@ -71,6 +71,7 @@ const Initial_Happiness = {
 	2: 10 # Tree makes me happy
 }
 
+# Sets the initial values for each of the different buildings based on ID value
 const Initial_Tile_Attributes = {
 	1: { #Office
 		"yearly_pollution": 50,
@@ -90,9 +91,11 @@ const Initial_Tile_Attributes = {
 	}
 }
 
+# Sets the multiplier values for each of the different buildings based on ID value
+# These values get added to 1, so 0.03 is 1.03 times the previous year
 const Tile_Multipliers = {
 		1: { #Office
-		"yearly_pollution": 0.1, #+10% pollution
+		"yearly_pollution": 0.03, #+3% pollution
 		"income": -0.05,
 		"electricityRequired": 0.05,
 		"electricityGenerated": 0,
@@ -109,10 +112,12 @@ const Tile_Multipliers = {
 		}
 }
 
+# This assigns these intial attributes to each new tile placed
 func setInitialAttributes(tile,x,y):
 	if Global.tile_data == null:
 		Global.tile_data = {}
 				
+	# Initialises the attributes
 	var initial_attributes = Initial_Tile_Attributes.get(tile,{
 		"yearly_pollution": 0,
 		"income": 0,
@@ -122,6 +127,7 @@ func setInitialAttributes(tile,x,y):
 		"negativeHappiness": 0
 	})
 	
+	# Initiailises the multiplers
 	var multipliers = Tile_Multipliers.get(tile,{
 		"yearly_pollution": 0,
 		"income": 0,
@@ -131,40 +137,16 @@ func setInitialAttributes(tile,x,y):
 		"negativeHappiness": 0
 	})
 	
+	# Assigns the attributes and multipliers to a each unique coordinate
 	Global.tile_data[Vector2(x,y)] = {
 		"attributes": initial_attributes.duplicate(true),
 		"multipliers": multipliers.duplicate(true),
 		"placed_time": Global.currentYear
 	}
 
-## Initialize dynamic pollution value
-#func initialise_pollution():
-	#if id in Initial_Yearly_Tile_Pollution:
-		#yearly_pollution = Initial_Yearly_Tile_Pollution[id]
-	#else:
-		#yearly_pollution = 0  # Default if ID is not in the mapping
-	##print("Initialised yearly pollution for Tile ID:", id, "->", yearly_pollution)
-#
-#
-#func initialise_income():
-	#if id in Initial_Yearly_Income:
-		#yearly_income = Initial_Yearly_Income[id]
-	#else:
-		#yearly_income = 0
-		#
-#func initialise_electricity():
-	#if id in Initial_Electricity:
-		#electricity = Initial_Electricity[id]
-	#else:
-		#electricity = 0
-		#
-#func initialise_happiness():
-	#if id in Initial_Happiness:
-		#happiness = Initial_Happiness[id]
-	#else:
-		#happiness = 0
-		#
-		#
+##############################################
+# When we sell, we need to remove it from the tile_data list
+##############################################
 
 
 func placeTile(tile,x,y):
