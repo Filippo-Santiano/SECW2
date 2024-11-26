@@ -3,11 +3,13 @@ extends Timer
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
-@export var gm : Node
+
 @export var ElectricityLabel: Label
 @export var HappinessLabel: Label
 @export var YearlyPollution: Label
 @export var ExternalPollution: Label
+
+@export var ProgressBars : Control
 
 @export var yearsPerMinute : float = 1.0
 var Years = 0.0
@@ -48,8 +50,8 @@ func update_stats_every_year():
 	# Temporary variables so that the labels don't go to zero at the beginning of each year
 	var tempYearlyPollution = 0
 	var tempIncome = 0
-	var tempElectricityReq = 0
-	var tempElectricityGen = 0
+	var electricityRequired = 0
+	var electricityGenerated = 0
 	var tempHappinessPos = 0
 	var tempHappinessNeg = 0
 	
@@ -58,22 +60,23 @@ func update_stats_every_year():
 		var tile = Global.tile_data[pos]
 		tempYearlyPollution += tile["attributes"]["yearly_pollution"]
 		tempIncome += tile["attributes"]["income"]
-		tempElectricityReq += tile["attributes"]["electricityRequired"]
-		tempElectricityGen += tile["attributes"]["electricityGenerated"]
+		electricityRequired += tile["attributes"]["electricityRequired"]
+		electricityGenerated += tile["attributes"]["electricityGenerated"]
 		tempHappinessPos += tile["attributes"]["positiveHappiness"]
 		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 		
 		# If generated is < required, income is decreased by a factor of generated / required
-	if (tempElectricityGen < tempElectricityReq):
-		
+	if (electricityGenerated < electricityRequired):
 		# # Avoids division by 0
-		if tempElectricityReq != 0:
-			tempIncome *= (tempElectricityGen / tempElectricityReq)
+		if electricityRequired != 0:
+			tempIncome *= (electricityGenerated / electricityRequired)
 	
 	# Updating the global values
 	Global.YearlyPollution = tempYearlyPollution
 	Global.Income = tempIncome
-	Global.Electricity = tempElectricityGen - tempElectricityReq
+	Global.ElectricityGenerated = electricityGenerated
+	Global.ElectricityRequired = electricityRequired
+	Global.Electricity = electricityGenerated - electricityRequired
 	Global.Money += Global.Income
 	Global.Pollution += Global.YearlyPollution
 	Global.Pollution += Global.ExternalPollution
@@ -89,7 +92,9 @@ func update_stats_every_year():
 	Global.PollutionThreshold = 1000 * Global.Happiness
 	Global.updateExternalPollution()
 	
-
+	# Yearly update happens then ui update
+	ProgressBars.update_ui()
+	
 var prevYear = 0
 var exceed_threshold_count = 0
 
@@ -128,6 +133,7 @@ func yearPassed():
 func _on_year_passed() -> void:
 	
 	#print(Global.tile_data)
+	Global.updateMaximumIncome()
 	
 	updateLabels()
 	#print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)

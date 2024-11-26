@@ -2,6 +2,11 @@ extends Node
 
 var Money = 15
 var Pollution = 0
+
+# Progress bars needs access to these so I've made them global
+var ElectricityGenerated = 0
+var ElectricityRequired = 0
+
 var Electricity = 0
 var Happiness = 1
 var PollutionThreshold = 1000
@@ -12,6 +17,8 @@ var YearlyPollution: = 0
 var placed_tiles: Array = []
 var Income = 0
 var ExternalPollution = 1
+# Maximum income shows income if all buildings are repaired
+var MaximumIncome = 0
 
 
 # This calculates the updated external pollution (multiplies by 1.08)
@@ -42,6 +49,13 @@ func update_tile_attributes():
 			# tile["attributes"][attr] *= pow(1 + tile["multipliers"][attr], years_elapsed)
 
 		print("Updated tile at", pos, ":", tile["attributes"])  # Debug print
+
+# Maximum income is updated every year until we have a tile_data that allows selling
+func updateMaximumIncome():
+	var maxIncome = 0
+	for tile in tile_data.values():
+		maxIncome += tile["attributes"]["income"]
+	Global.MaximumIncome = maxIncome
 
 func updateData(x,y):
 	

@@ -16,16 +16,14 @@ const POSITIVE_PROGRESS_BAR = preload("res://scenes/positive_progress_bar.tres")
 @export var happy_bar_percentage: Label
 
 @export var economy_bar: ProgressBar
-@export var electricity_bar_negative: ProgressBar
-@export var electricity_bar_positive: ProgressBar
+@export var econ_bar_percentage: Label
 
+@export var electricity_bar: ProgressBar
+@export var elec_bar_percentage: Label
 
 func _ready() -> void:
-	# Connect to GameManager's stats_updated signal
-	var yt = get_node("/root/Main/YearsTimer")
-	yt.connect("YearPassed", Callable(self, "_update_ui"))
-	_update_ui()  # Initial update
-	
+	update_ui()  # Initial update
+
 func change_bar_colour(progress_bar, value: float):
 	if value <= 25:
 		progress_bar.add_theme_stylebox_override("fill", NEGATIVE_PROGRESS_BAR)
@@ -35,7 +33,7 @@ func change_bar_colour(progress_bar, value: float):
 		progress_bar.add_theme_stylebox_override("fill", POSITIVE_PROGRESS_BAR)
 		
 	
-func _update_ui():
+func update_ui():
 	#Acces pollution values
 	var current_pollution = Global.Pollution
 	var pollution_threshold = Global.PollutionThreshold
@@ -57,96 +55,30 @@ func _update_ui():
 	happy_bar_percentage.text = str(happiness_percentage) + '%'
 	happiness_bar.value = happiness_percentage
 	
+	var economy_percentage = 0
+	if Global.MaximumIncome != 0:
+		economy_percentage = round(100 * Global.Income / Global.MaximumIncome)
+	change_bar_colour(economy_bar, economy_percentage)
 	
+	econ_bar_percentage.text = str(economy_percentage) + '%'
+	economy_bar.value = economy_percentage
 	
-	
-	
-	#$VBoxContainer/ColorRect3/BarPercentage3.text = str(round(gm.economy)) + '%'
-	#$VBoxContainer/ColorRect4/BarPercentage4.text = str(round(gm.coins)) + '%'
-	
-	#if gm.economy < 0:
-		#$VBoxContainer/ColorRect3/Economy/EnvBar7.value = abs(gm.economy)
-		#$VBoxContainer/ColorRect3/Economy/EnvBar8.value = 0
-	#elif gm.economy > 0:
-		#$VBoxContainer/ColorRect3/Economy/EnvBar8.value = gm.economy
-		#$VBoxContainer/ColorRect3/Economy/EnvBar7.value = 0
-	#if gm.coins < 0:
-		#$VBoxContainer/ColorRect4/Coins/EnvBar9.value = abs(gm.coins)
-		#$VBoxContainer/ColorRect4/Coins/EnvBar10.value = 0
-	#elif gm.coins > 0:
-		#$VBoxContainer/ColorRect4/Coins/EnvBar10.value = gm.coins
-		#$VBoxContainer/ColorRect4/Coins/EnvBar9.value = 0
+	# Calculate generated over required
+	var electricityPercentage = 0
 
-
-#extends Control
-#
-## Variables to store previous stat values
-#var prev_environment = 0
-#var prev_happiness = 0
-#var prev_economy = 0
-#var prev_coins = 0
-#
-## Called when the node is added to the scene
-#func _ready():
-	## Connect to GameManager's stats_updated signal
-	#var game_manager = get_node("/root/Main/GameManager")
-	#game_manager.connect("stats_updated", Callable(self, "_on_stats_updated"))
-	#_update_ui()  # Initial update
-#
-## Updates the UI with the current values from GameManager
-#func _update_ui():
-	#var gm = get_node("/root/Main/GameManager")
-	#$VBoxContainer/ColorRect/Environment/EnvBar.value = gm.environment
-	#$VBoxContainer/ColorRect2/Happiness/ProgressBar.value = gm.happiness
-	#$VBoxContainer/ColorRect3/Economy/ProgressBar.value = gm.economy
-	#$VBoxContainer/ColorRect4/Coins/ProgressBar.value = gm.coins
-#
-## Signal handler for when stats are updated
-#func _on_stats_updated():
-	#var gm = get_node("/root/Main/GameManager")
-	#
-	## Flash only containers with changed stats
-	#if gm.environment != prev_environment:
-		#_flash_env($VBoxContainer/ColorRect/Environment)
-	#if gm.happiness != prev_happiness:
-		#_flash_happiness($VBoxContainer/ColorRect2/Happiness)
-	#if gm.economy != prev_economy:
-		#_flash_economy($VBoxContainer/ColorRect3/Economy)
-	#if gm.coins != prev_coins:
-		#_flash_coins($VBoxContainer/ColorRect4/Coins)
-	#
-	## Update previous values
-	#prev_environment = gm.environment
-	#prev_happiness = gm.happiness
-	#prev_economy = gm.economy
-	#prev_coins = gm.coins
-	#
-	#_update_ui()  # Ensure the UI reflects the latest stats
-#
-## Flash the environment stat container
-#func _flash_env(_container):
-	#var original_color = _container.modulate
-	#_container.modulate = Color(1, 1, 0)  # Flash yellow
-	#await get_tree().create_timer(0.2).timeout  # Flash duration
-	#_container.modulate = original_color
-#
-## Flash the happiness stat container
-#func _flash_happiness(_container):
-	#var original_color = _container.modulate
-	#_container.modulate = Color(0, 1, 0)  # Flash green
-	#await get_tree().create_timer(0.2).timeout  # Flash duration
-	#_container.modulate = original_color
-#
-## Flash the economy stat container
-#func _flash_economy(_container):
-	#var original_color = _container.modulate
-	#_container.modulate = Color(1, 0, 0)  # Flash red
-	#await get_tree().create_timer(0.2).timeout  # Flash duration
-	#_container.modulate = original_color
-#
-## Flash the coins stat container
-#func _flash_coins(_container):
-	#var original_color = _container.modulate
-	#_container.modulate = Color(0, 0, 1)  # Flash blue
-	#await get_tree().create_timer(0.2).timeout  # Flash duration
-	#_container.modulate = original_color
+	if Global.ElectricityGenerated != 0:
+		electricityPercentage = round(100 * Global.ElectricityGenerated / Global.ElectricityRequired)
+	
+	# Display text
+	elec_bar_percentage.text = str(electricityPercentage) + '%'
+	
+	# the electricity bar shows 50% full when electricityPercentage is 100%
+	electricity_bar.value = clamp(electricityPercentage / 2, 0, 100)
+	
+	# Update electricity bar colours
+	if electricityPercentage <= 40 or electricityPercentage >= 160:
+		electricity_bar.add_theme_stylebox_override("fill", NEGATIVE_PROGRESS_BAR)
+	elif (electricityPercentage > 40 and electricityPercentage <= 80) or (electricityPercentage >= 120 and electricityPercentage < 160):
+		electricity_bar.add_theme_stylebox_override("fill", NEUTRAL_PROGRESS_BAR)
+	else:
+		electricity_bar.add_theme_stylebox_override("fill", POSITIVE_PROGRESS_BAR)
