@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=13 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="10_w48qm"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
@@ -20,14 +19,13 @@ size = Vector2(388, 324)
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "gm", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution") groups=["YearsTimer"]]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution") groups=["YearsTimer"]]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")
 PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
-gm = NodePath("../GameManager")
 ElectricityLabel = NodePath("../UI/ElectricityLabel")
 HappinessLabel = NodePath("../UI/HappinessLabel")
 YearlyPollution = NodePath("../UI/YearlyPollution")
@@ -203,10 +201,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 0
-
-[node name="GameManager" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("10_w48qm")
 
 [connection signal="YearPassed" from="YearsTimer" to="YearsTimer" method="_on_year_passed"]
 [connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]
