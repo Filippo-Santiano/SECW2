@@ -19,7 +19,7 @@ size = Vector2(388, 324)
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution") groups=["YearsTimer"]]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution", "ProgressBars") groups=["YearsTimer"]]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")
@@ -30,6 +30,7 @@ ElectricityLabel = NodePath("../UI/ElectricityLabel")
 HappinessLabel = NodePath("../UI/HappinessLabel")
 YearlyPollution = NodePath("../UI/YearlyPollution")
 ExternalPollution = NodePath("../UI/ExternalPollution")
+ProgressBars = NodePath("../UI/ProgressBarsUi")
 yearsPerMinute = 4.0
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox", "Camera")]

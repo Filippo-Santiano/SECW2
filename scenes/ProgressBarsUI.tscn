@@ -1,17 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4hanurnndll1"]
+[gd_scene load_steps=8 format=3 uid="uid://b4hanurnndll1"]
 
 [ext_resource type="Script" path="res://scripts/ProgressBarsUI.gd" id="1_sbi27"]
 [ext_resource type="StyleBox" uid="uid://cxyh4ilpqf7s1" path="res://scenes/negative_progress_bar.tres" id="2_plqa0"]
 [ext_resource type="Texture2D" uid="uid://bapsdg8yf4gya" path="res://assets/environment.png" id="2_stesq"]
 [ext_resource type="Texture2D" uid="uid://bicd7kncqjm4p" path="res://assets/happiness.png" id="3_4ft2f"]
-[ext_resource type="StyleBox" uid="uid://cvbig087t8erj" path="res://scenes/positive_progress_bar.tres" id="3_c04m3"]
 [ext_resource type="Texture2D" uid="uid://b7lwthxq5rwx2" path="res://assets/economy.png" id="4_wywtu"]
 [ext_resource type="Texture2D" uid="uid://b3x5k15x6o008" path="res://assets/flash.png" id="7_7eii8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5fdf"]
 bg_color = Color(0, 0, 0, 0.47451)
 
-[node name="ProgressBarsUi" type="Control" node_paths=PackedStringArray("environment_bar", "env_bar_percentage", "happiness_bar", "happy_bar_percentage", "economy_bar", "electricity_bar_negative", "electricity_bar_positive")]
+[node name="ProgressBarsUi" type="Control" node_paths=PackedStringArray("environment_bar", "env_bar_percentage", "happiness_bar", "happy_bar_percentage", "economy_bar", "econ_bar_percentage", "electricity_bar", "elec_bar_percentage")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,8 +29,9 @@ env_bar_percentage = NodePath("VBoxContainer/ColorRect/BarPercentage")
 happiness_bar = NodePath("VBoxContainer/ColorRect2/Happiness/EnvBar5")
 happy_bar_percentage = NodePath("VBoxContainer/ColorRect2/BarPercentage2")
 economy_bar = NodePath("VBoxContainer/ColorRect3/Economy/EnvBar7")
-electricity_bar_negative = NodePath("VBoxContainer/ColorRect4/Coins/EnvBar9")
-electricity_bar_positive = NodePath("VBoxContainer/ColorRect4/Coins/EnvBar10")
+econ_bar_percentage = NodePath("VBoxContainer/ColorRect3/BarPercentage3")
+electricity_bar = NodePath("VBoxContainer/ColorRect4/Electricity/EnvBar8")
+elec_bar_percentage = NodePath("VBoxContainer/ColorRect4/BarPercentage4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -175,7 +175,6 @@ size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
-fill_mode = 1
 show_percentage = false
 
 [node name="BarPercentage3" type="Label" parent="VBoxContainer/ColorRect3"]
@@ -208,7 +207,7 @@ custom_minimum_size = Vector2(15, 30)
 layout_mode = 2
 color = Color(0.278431, 0.47451, 0.976471, 1)
 
-[node name="Coins" type="HBoxContainer" parent="VBoxContainer/ColorRect4"]
+[node name="Electricity" type="HBoxContainer" parent="VBoxContainer/ColorRect4"]
 layout_mode = 0
 offset_left = 39.5
 offset_top = 1.0
@@ -216,26 +215,16 @@ offset_right = 315.5
 offset_bottom = 29.0
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/ColorRect4/Coins"]
+[node name="Label" type="Label" parent="VBoxContainer/ColorRect4/Electricity"]
 layout_mode = 2
 text = "Electricity          "
 
-[node name="EnvBar9" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
-custom_minimum_size = Vector2(75, 27)
+[node name="EnvBar8" type="ProgressBar" parent="VBoxContainer/ColorRect4/Electricity"]
+custom_minimum_size = Vector2(150, 27)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
-step = 0.0
-fill_mode = 1
-show_percentage = false
-
-[node name="EnvBar10" type="ProgressBar" parent="VBoxContainer/ColorRect4/Coins"]
-custom_minimum_size = Vector2(75, 27)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
-theme_override_styles/fill = ExtResource("3_c04m3")
 step = 0.0
 show_percentage = false
 
