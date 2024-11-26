@@ -124,18 +124,12 @@ func yearPassed():
 			exceed_threshold_count = 0
 
 
+
 func _on_year_passed() -> void:
 	
 	#print(Global.tile_data)
 	
-
 	updateLabels()
 	#print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)
 	#Global.Electricity = Global.Electricity # May not be necessary
 	#Global.Happiness = Global.Happiness
-#
-	# Update stats in GameManager
-	gm.update_stat("environment", -Global.YearlyPollution)  #  Decrease environment health
-	gm.update_stat("economy", Global.Income)  # Increase economy
-	gm.update_stat("happiness", 2)  # Arbitrary increase in happiness as no label present 
-	gm.update_stat("coins", Global.Money)
