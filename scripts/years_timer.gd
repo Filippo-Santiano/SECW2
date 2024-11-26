@@ -40,6 +40,7 @@ func _on_timeout() -> void:
 	#print("Year:", Years, " | Pollution:", Global.Pollution, " | Income:", Global.Income, " | Electricity:", Global.Electricity, " | Happiness:", Global.Happiness)
 	
 	updateLabels() #update labels every second
+	ProgressBars.update_ui()
 	
 	# Updates the stats evry year
 func update_stats_every_year():
@@ -91,9 +92,8 @@ func update_stats_every_year():
 	# Sets pollution threshold and then calculates pollution threshold based on happiness
 	Global.PollutionThreshold = 1000 * Global.Happiness
 	Global.updateExternalPollution()
+
 	
-	# Yearly update happens then ui update
-	ProgressBars.update_ui()
 	
 var prevYear = 0
 var exceed_threshold_count = 0
@@ -133,7 +133,7 @@ func yearPassed():
 func _on_year_passed() -> void:
 	
 	#print(Global.tile_data)
-	Global.updateMaximumIncome()
+	#Global.updateMaximumIncome()
 	
 	updateLabels()
 	#print("Year:", Global.currentYear, "| Pollution:", Global.Pollution, "| Income:", Global.Income)

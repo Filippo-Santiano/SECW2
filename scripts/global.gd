@@ -51,11 +51,11 @@ func update_tile_attributes():
 		print("Updated tile at", pos, ":", tile["attributes"])  # Debug print
 
 # Maximum income is updated every year until we have a tile_data that allows selling
-func updateMaximumIncome():
-	var maxIncome = 0
-	for tile in tile_data.values():
-		maxIncome += tile["attributes"]["income"]
-	Global.MaximumIncome = maxIncome
+#func updateMaximumIncome():
+	#var maxIncome = 0
+	#for tile in tile_data.values():
+		#maxIncome += tile["attributes"]["income"]
+	#Global.MaximumIncome = maxIncome
 
 func updateData(x,y):
 	
@@ -70,3 +70,4 @@ func updateData(x,y):
 	Pollution += attributes.get("yearly_pollution")
 	YearlyPollution += attributes.get("yearly_pollution")
 	Income += attributes.get("income")
+	MaximumIncome += attributes.get("income")
