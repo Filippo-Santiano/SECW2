@@ -8,6 +8,7 @@ class_name Tile
 @export var MoneyLabel : Label
 @export var PopupBox : Popup
 @export var Camera : Camera2D
+@export var PlayerController: Node
 
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
@@ -175,6 +176,9 @@ func placeTile(tile,x,y):
 				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
+				
+				# Finally set build mode to false so you can't place another tile again
+				PlayerController.buildMode = false
 				
 			else:
 				print("Not enough molah")
