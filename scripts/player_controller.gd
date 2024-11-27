@@ -8,10 +8,15 @@ extends Node2D
 @export var HoverTiles : TileMapLayer
 @export var TextLabel : Label
 
-@export var buildMode = true #player can only place and delete tiles when build mode is active (true)
+@export var buildMode = false #player can only place and delete tiles when build mode is active (true)
+
 
 var currentTile = 1
 var activeLayer = 1
+
+# these vars just add a delay between pressing the build button and being able to build
+var time_passed = 0.0
+var delay = 0.5  # 0.5 seconds
 
 #activeLayer controls which layer (GrassLayer,BuildingLayer) the user is placing the tiles on.
 #Currently we have this set to 1 and may find that we don't need to edit 0 (grass etc.) directly at all.
@@ -21,16 +26,20 @@ var _HoverTilePosition = Vector2i(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	TilesNode.set("_currentLayer",activeLayer) #set the initial tile layer as soon as possible to avoid weirdness
+	
 
 #Called every 'physics' frame which, ideally, runs at x frames per second regardless of the game's actual framerate.
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
 func _physics_process(delta: float) -> void:
+	# When build button pressed, begin delay so buildings cannot be immediately placed 
 	if buildMode:
-		allInputs()
-	# 	hoverTiles(true)
-	# 	setLabel()
-	# else:
-		hoverTiles(false)
+		time_passed += delta
+		if time_passed >= delay:
+			allInputs()
+			hoverTiles(false)
+	else:
+		time_passed = 0
+		hoverTiles(false) # remove hover tile if build mode is false
 	
 #I like to have a function that contains all of my Input events
 #This gets called every frame in _physics_process()
