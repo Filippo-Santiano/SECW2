@@ -26,7 +26,6 @@ var _HoverTilePosition = Vector2i(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	TilesNode.set("_currentLayer",activeLayer) #set the initial tile layer as soon as possible to avoid weirdness
-	
 
 #Called every 'physics' frame which, ideally, runs at x frames per second regardless of the game's actual framerate.
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
@@ -35,24 +34,28 @@ func _physics_process(delta: float) -> void:
 	if buildMode:
 		time_passed += delta
 		if time_passed >= delay:
-			allInputs()
-			hoverTiles(false)
+			build_inputs()
+		# player can see the tile before the delay but not able to place
+		hoverTiles(true)
 	else:
 		time_passed = 0
 		hoverTiles(false) # remove hover tile if build mode is false
+	
+	# The player is always able to sell buildings
+	sell_inputs()
 	
 #I like to have a function that contains all of my Input events
 #This gets called every frame in _physics_process()
 #There are ways to make this more efficient, triggering things on an Input instead of constantly checking every
 #frame. But works for the time being and I haven't yet ran into an issue with this approach
-func allInputs():
+
+func build_inputs():
 	if Input.is_action_just_pressed("lmb"):
 		editTile("ADD")
+
+func sell_inputs():
 	if Input.is_action_just_pressed("mmb"):
 		editTile("DEL")
-	if Input.is_action_just_pressed("ui_accept"):
-		changeTile()
-		hoverTiles(true)
 
 func mouseInputToTileMap():
 	#Takes the mouse location and returns coordinates in terms of the tilemap - very important for placing tiles,
@@ -69,16 +72,13 @@ func editTile(mode):
 	
 	TilesNode.editTile(mode,currentTile,TilePosition.x,TilePosition.y) #places a tile of ID currentTile at the mouse position
 
-func changeTile():
+func changeTile(tile):
 	#Right now we just toggle between 1 and 0 since we only have two tiles.
 	#Eventually we'd be moving through a list (list of dictionaries would be ideal, then could be
 	# Tiles[0].ID // possibly we'd just assume the ID is the item index
-	if currentTile > 1:
-		currentTile = 1
-		activeLayer = 1
-	else:
-		currentTile += 1
-		activeLayer = 1
+	
+	# Now changes the tile to ID it gets passed
+	currentTile = tile
 
 func hoverTiles(override):
 	#HoverTiles.set_cell(mouseInputToTileMap(),currentTile,Vector2i(0,0),0)

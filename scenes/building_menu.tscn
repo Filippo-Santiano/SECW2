@@ -38,12 +38,14 @@ size_flags_vertical = 10
 
 [node name="BuildingItem" type="Button" parent="ScrollContainer/HBoxContainer"]
 layout_mode = 2
+action_mode = 0
 text = "Building
 $100"
 icon = ExtResource("2_tr6n0")
 
 [node name="TreeItem" type="Button" parent="ScrollContainer/HBoxContainer"]
 layout_mode = 2
+action_mode = 0
 text = "Tree
 $50"
 icon = ExtResource("3_b1f85")
