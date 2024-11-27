@@ -94,7 +94,6 @@ func update_stats_every_year():
 	Global.updateExternalPollution()
 
 	
-	
 var prevYear = 0
 var exceed_threshold_count = 0
 
@@ -104,7 +103,12 @@ func yearPassed():
 		print("YEAR PASSED")
 		prevYear = Years
 		update_stats_every_year()
+		# Add the yearly stats to list
+		Global.collect_yearly_data()
 		print("Pollution Threshold: ", Global.PollutionThreshold)
+		# Variable to store current score, used for final score
+		var current_score = Global.calculate_final_score()
+		print("Current Score", current_score)
 		if (Global.Money < 0):
 			# prints Bye Bye, not enough mulah
 			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -116,7 +120,7 @@ func yearPassed():
 			exceed_threshold_count +=1
 			# prints number of years left
 			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-			print("Warning, above the threshold. You have ", (3-exceed_threshold_count), "years left")
+			print("Warning, above the threshold. You have ", (3-exceed_threshold_count), " years left")
 			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 			if (exceed_threshold_count > 3):
 				# prints you have lost the game
