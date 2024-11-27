@@ -72,9 +72,12 @@ func updateData(x,y):
 	Income += attributes.get("income")
 	MaximumIncome += attributes.get("income")
 	
+# Array to store yearly data
 var yearly_data = []
 
+# Function to append yearly data to array yearly_data
 func collect_yearly_data():
+	# All relevant yearly_data stoed in year_snapshot
 	var year_snapshot = {
 		"Year": currentYear,
 		"Money": Money,
@@ -82,11 +85,14 @@ func collect_yearly_data():
 		"Electricity": Electricity,
 		"Happiness": Happiness
 	}
+	# Append to array
 	yearly_data.append(year_snapshot)
 	
+# Function returns they yearly_data array
 func get_yearly_data():
 	return yearly_data
 
+# Final score calculaion - needs reviewing on how we do this
 func calculate_final_score():
 	var total_score = 0
 	for data in yearly_data:
