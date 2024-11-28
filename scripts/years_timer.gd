@@ -117,12 +117,12 @@ func yearPassed():
 			get_tree().quit()
 		# If above the threshold, add one to the count, if th count gets above 3, you lose, count resets if you go below
 		elif (Global.Pollution > Global.PollutionThreshold):
-			exceed_threshold_count +=1
+			Global.Years_Over +=1
 			# prints number of years left
 			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-			print("Warning, above the threshold. You have ", (3-exceed_threshold_count), " years left")
+			print("Warning, above the threshold. You have ", (3 - Global.Years_Over), " years left")
 			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-			if (exceed_threshold_count > 3):
+			if (Global.Years_Over > 2):
 				# prints you have lost the game
 				print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 				print("Bye Bye, too much pollution")
@@ -130,7 +130,7 @@ func yearPassed():
 				get_tree().quit()
 				
 		else:
-			exceed_threshold_count = 0
+			Global.Years_Over = 0
 
 
 
