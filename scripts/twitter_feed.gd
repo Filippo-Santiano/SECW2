@@ -1,62 +1,163 @@
 extends Control
- 
-# Eventually we will add functionality to remove the last message if the length of messages exceeds a number.
- 
-# Adjust the add function
-# add new messages for different instances in game
-# Create warning message when you are over the threshold
 
-
-
-# Positive Sustainability Headlines
-var good_messages = [
-	"City Makes Significant Strides in Reducing Carbon Footprint",
-	"New Initiatives Promote Clean Energy and Environmental Awareness",
-	"Green Spaces Flourish as City Invests in Biodiversity",
-	"Public Transit Improvements Support Sustainable City Goals",
-	"Water Conservation Efforts Gain Strong Community Support",
-	"City Takes Steps Towards Achieving Zero Waste",
-	"Recycling Programs Show Encouraging Progress",
-	"Air Quality Sees Positive Change with New Environmental Policies",
-	"Community-Led Projects Boost Sustainability Efforts",
-	"City Strengthens Partnership with Renewable Energy Providers"
-]
- 
-# Negative Sustainability Headlines
-var bad_messages = [
-	"City Struggles to Meet Sustainability Targets",
-	"Environmental Programs Face Setbacks Amid Funding Issues",
-	"Green Spaces Decline as Urbanization Increases",
-	"Challenges in Public Transit Affect City's Environmental Goals",
-	"Water Conservation Efforts Hampered by Drought Conditions",
-	"Recycling Programs See Decreased Participation",
-	"Air Quality Concerns Rise Due to Increased Pollution",
-	"Government Cuts Threaten Progress in Environmental Initiatives",
-	"Waste Management Faces Overload as Demands Grow",
-	"Renewable Energy Targets Delayed Due to Infrastructure Challenges"
-]
+# Initialise Dictionaries
+var conditions = {}
+var messages = {}
+var triggered_conditions = {}
+var message_history = {}
 
 # Queue of messages to be displayed in the feed
 var message_queue = []
 var rng = RandomNumberGenerator.new()
-var prev_good_message_index = 0
-var prev_bad_message_index = 0
+
+# Need to add in a new way of randomising
 
 var is_expanded = false # Track whether the feed is expanded to show all messages
 @export var v_box_container: VBoxContainer
 @export var show_all_button: Button
 @onready var feed_item_scene = load("res://scenes/feed_item.tscn")
+@export var MessageDelay: Timer
+@onready var check = Conditions.new()
+
 var prevPollution = Global.Pollution
 
 # We thought that we could also add a button to hide this entire view
 
 func _ready():
-	pass
- 
+	check = Conditions.new()
+	add_child(check)
+	# Add the different conditions
+	conditions = {
+		"Pollution": {
+			"pos_to_neg": check.poll_pos_to_neg,
+			"half_thresh": check.poll_half_thresh,
+		},
+		"Happiness": {
+			"low": check.happ_low,
+			"high": check.happ_high,
+		},
+	}
+	messages = {
+		"Pollution": {
+			"pos_to_neg": [
+				"Pollution has dropped below zero! Great job!",
+				"The city celebrates achieving a carbon-neutral status!"
+			],
+			"half_thresh": [
+				"Pollution is halfway to the threshold! Be cautious!",
+				"Environmental concerns rise as pollution nears dangerous levels."
+			],
+		},
+		"Happiness": {
+			"low": [
+				"Happiness is dangerously low. Residents are unhappy!",
+				"Citizens demand better living conditions as happiness plummets."
+			],
+			"high": [
+				"Happiness is at an all-time high!",
+				"Residents are thrilled with recent improvements!"
+			],
+		},
+	}
+	for variable in conditions.keys():
+		triggered_conditions[variable] = ""
+		message_history[variable] = {}
+	
+	MessageDelay.wait_time = 2.0
+	MessageDelay.connect("timeout", Callable(self, "_on_message_timeout"))
+	if message_queue.size() > 0:
+		MessageDelay.start()
+
+
 func _process(delta):
-	add_messages()
+	check_conditions()
 	show_messages()
 	pass
+
+
+func check_conditions():
+	for variable in conditions.keys():
+		var current_condition = triggered_conditions[variable]
+		var new_condition = ""
+		for condition in conditions[variable].keys():
+			if conditions[variable][condition].call():
+				new_condition = condition
+				break
+		if new_condition != current_condition:
+			triggered_conditions[variable] = new_condition
+			if new_condition != "":
+				queue_message(variable, new_condition)
+
+
+func queue_message(variable: String, condition: String):
+	var available_messages = messages[variable][condition]
+	var prev_message = message_history[variable].get(condition, null)
+	
+	var new_message = available_messages[rng.randi_range(0, available_messages.size() - 1)]
+	while available_messages.size() > 1 and new_message == prev_message:
+		new_message = available_messages[rng.randi_range(0, available_messages.size() - 1)]
+	
+	message_queue.push_back(new_message)
+	message_history[variable][condition] = new_message
+	
+	#if not MessageDelay.is_active() and message_queue.size() > 0:
+		#MessageDelay.start()
+
+
+func on_message_timeout():
+	if message_queue.size()>0:
+		var message = message_queue.pop_front()
+		add_to_feed(message)
+	if message_queue.size()>0:
+		MessageDelay.start()
+	else:
+		MessageDelay.stop()
+
+func add_to_feed(message: String):
+	var label = create_label()
+	label.text = message
+	v_box_container.add_child(label)
+	v_box_container.move_child(show_all_button, -1)
+
+func show_messages():
+	if is_expanded:
+		update_feed(message_queue.size()) # Show all messages
+		show_all_button.text = "Show Less" # Update button text
+	else:
+		update_feed(2) # Show only the first 2 messages
+		show_all_button.text = "Show All" # Reset button text
+ 
+func clear_feed() -> void:
+	for child in v_box_container.get_children():
+		if child is Label:
+			child.queue_free()
+ 
+func create_label() -> Label:
+	var new_label = feed_item_scene.instantiate()
+	return new_label
+ 
+# Function to update the feed display based on how many messages to show
+func update_feed(count):
+	clear_feed() # Clear previous messages
+	# Add the specified number of messages
+	for i in range(min(count, message_queue.size())):
+		var label = create_label()
+		label.text = message_queue[message_queue.size() - 1 - i]
+		v_box_container.add_child(label)
+	# Move button to bottom of list
+	v_box_container.move_child(show_all_button, -1)
+ 
+func _on_show_all_button_button_down() -> void:
+	# Toggle between collapsed (2 messages) and expanded (all messages)
+	is_expanded = !is_expanded
+ 
+func add_message(message):
+	message_queue.push_front(message)
+	if len(message_queue) > 5:
+		message_queue.pop_back()
+
+
+
 
 # Loop through: Pollution, Yearly_Pollution, Electricity, Happiness, Income
 
@@ -113,71 +214,3 @@ func _process(delta):
 	# at 30%, they then build a power station, electricity is at 80%, display a message saying
 	# residents are now happy that there is enough power
 # If Electricity decreases by more than 60% at any time, display negative message
-
-
-
-
-func add_messages():
-
-	var currentPollution = Global.Pollution
-	
-	if currentPollution < prevPollution - 500:
-
-		
-		
-#func add_messages():
-#
-	#var currentPollution = Global.Pollution
-	#
-	#if currentPollution < prevPollution - 500:
-		#var new_good_message_index = rng.randi_range(0, good_messages.size() - 1)
-		#prevPollution = currentPollution
-		#while new_good_message_index == prev_good_message_index:
-			#new_good_message_index = rng.randi_range(0, good_messages.size() - 1)
-		#add_message(good_messages[new_good_message_index])
-		#prev_good_message_index = new_good_message_index
-#
-	#elif currentPollution > prevPollution + 500:
-		#var new_bad_message_index = rng.randi_range(0, bad_messages.size() - 1)
-		#prevPollution = currentPollution
-		#while new_bad_message_index == prev_bad_message_index:
-			#new_bad_message_index = rng.randi_range(0, bad_messages.size() - 1)
-		#add_message(bad_messages[new_bad_message_index])
-		#prev_bad_message_index = new_bad_message_index
- 
-func show_messages():
-	if is_expanded:
-		update_feed(message_queue.size()) # Show all messages
-		show_all_button.text = "Show Less" # Update button text
-	else:
-		update_feed(2) # Show only the first 2 messages
-		show_all_button.text = "Show All" # Reset button text
- 
-func clear_feed() -> void:
-	for child in v_box_container.get_children():
-		if child is Label:
-			child.queue_free()
- 
-func create_label() -> Label:
-	var new_label = feed_item_scene.instantiate()
-	return new_label
- 
-# Function to update the feed display based on how many messages to show
-func update_feed(count):
-	clear_feed() # Clear previous messages
-	# Add the specified number of messages
-	for i in range(min(count, message_queue.size())):
-		var label = create_label()
-		label.text = message_queue[i]
-		v_box_container.add_child(label)
-	# Move button to bottom of list
-	v_box_container.move_child(show_all_button, -1)
- 
-func _on_show_all_button_button_down() -> void:
-	# Toggle between collapsed (2 messages) and expanded (all messages)
-	is_expanded = !is_expanded
- 
-func add_message(message):
-	message_queue.push_front(message)
-	if len(message_queue) > 5:
-		message_queue.pop_back()
