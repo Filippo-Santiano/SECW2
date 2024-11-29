@@ -9,6 +9,7 @@ var startPos = Vector2()
 var startZoom = Vector2()
 var zoomDirection = 1
 var prevPos
+var canScroll = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,11 +49,12 @@ func getInputs():
 		
 	if Input.is_action_just_pressed("R"):
 		reset() #R resets to original position
-		
-	if Input.is_action_just_pressed("scroll up") and currentStep < len(ZOOM_STEPS)-1:
-		currentStep += 1
-	elif Input.is_action_just_pressed("scroll down") and currentStep > 0:
-		currentStep -= 1
+	
+	if canScroll:
+		if Input.is_action_just_pressed("scroll up") and currentStep < len(ZOOM_STEPS)-1:
+			currentStep += 1
+		elif Input.is_action_just_pressed("scroll down") and currentStep > 0:
+			currentStep -= 1
 		#Scroll wheel scrolls between three zoom steps set at the top of this script
 	
 	return Inputs.normalized()
