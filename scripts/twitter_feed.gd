@@ -31,6 +31,7 @@ func _ready():
 		"Pollution": {
 			"pos_to_neg": check.poll_pos_to_neg,
 			"half_thresh": check.poll_half_thresh,
+			"poll_greater_thresh": check.poll_greater_thresh,
 		},
 		"Happiness": {
 			"low": check.happ_low,
@@ -48,7 +49,14 @@ func _ready():
 			"adequate": check.adequate,
 			"under_20": check.under_20,
 		},
+		"YearlyPollution": {
+			"strong_negative": check.strong_negative,
+			"negative": check.negative,
+			"strong_postive": check.strong_postive,
+			"positive": check.positive,
+		},
 	}
+# Messages to show after conditions match
 	messages = {
 		"Pollution": {
 			"pos_to_neg": [
@@ -59,6 +67,10 @@ func _ready():
 				"Pollution is halfway to the threshold! Be cautious!",
 				"Environmental concerns rise as pollution nears dangerous levels."
 			],
+			"poll_greater_thresh": [
+				"Pollution is greater than threshold please look out for the city."
+			
+			]
 		},
 		"Happiness": {
 			"low": [
@@ -108,61 +120,151 @@ func _ready():
 	]
 
 	
-		},
-	}
+},
+	"YearlyPollution": {
+		"strong_negative": [
+			"Pollution has increased significantly! The city is in a dangerous state.",
+			"Pollution is worsening at an alarming rate. Urgent measures are required."
+	],
+		"negative": [
+			"Pollution levels are still rising. Strong environmental policies needed.",
+			"Pollution has increased by 50%. Time to act now!"
+	],
+	"positive": [
+		"Pollution is reducing! Keep up the good work with green initiatives.",
+		"Pollution has decreased by 50%! Let's continue the progress."
+	],
+	"strong_positive": [
+		"Pollution has reduced by a significant amount. The city is becoming cleaner!",
+		"The city's pollution levels have dropped significantly. Keep it up!"
+	]
+},
+}
+# Initialized triggered_conditions and message_history dictionaries
 	for variable in conditions.keys():
 		triggered_conditions[variable] = ""
 		message_history[variable] = {}
-	
+		
+# Setting message delay for 2 seconds and connecting signal for timeout
 	MessageDelay.wait_time = 2.0
 	MessageDelay.connect("timeout", Callable(self, "_on_message_timeout"))
 	if message_queue.size() > 0:
-		MessageDelay.start()
+		MessageDelay.start() #Starting message delay if there are messages in the queue
+
 
 
 func _process(delta):
-	check_conditions()
-	show_messages()
+	if Global.currentYear > 2: # Process conditions and update feed after a certain year
+		age_over()
+		check_conditions()
+		show_messages()
 	pass
-
-
+# Functions to check if any conditions are met or not
 func check_conditions():
+	# Iterate over all conditions keys
 	for variable in conditions.keys():
 		var current_condition = triggered_conditions[variable]
 		var new_condition = ""
+		# Check each condition for the variable
 		for condition in conditions[variable].keys():
 			if conditions[variable][condition].call():
 				new_condition = condition
 				break
+	# If the condition has changed, update and queue a new message
 		if new_condition != current_condition:
 			triggered_conditions[variable] = new_condition
 			if new_condition != "":
 				queue_message(variable, new_condition)
 
+#func age_over():
+		##if (Global.Pollution > Global.PollutionThreshold):
+			##Global.Years_Over +=1
+			#if Global.Years_Over == 1:
+			## prints number of years left
+				#message_queue.push_back("Warning, above the threshold. You have 2 years left")
+			#elif Global.Years_Over == 2:
+			## prints number of years left
+				#message_queue.push_back("Warning, above the threshold. You have  1 years left")
+			##elif (Global.Years_Over > 2):
+					##get_tree().quit()
+					##
+				##else
+				##Global.Years_Over = 0
 
+#var message_triggered = false
+#func age_over():
+	#
+	## Check if the number of years over is 1 or 2 and if the message hasn't been triggered
+	#if not message_triggered:
+		#if Global.Years_Over == 1:
+			#message_queue.push_back("Warning, above the threshold. You have 2 years left")
+			#message_triggered = true  # Mark the message as triggered
+		#elif Global.Years_Over == 2:
+			#message_queue.push_back("Warning, above the threshold. You have 1 year left")
+			#message_triggered = true  # Mark the message as triggered
+		#
+#
+## Function to reset the flag when needed (for example, when years over change)
+#func reset_message_trigger():
+	#message_triggered = false
+#
+##  call reset_message_trigger when years change
+#func update_years():
+	#Global.Years_Over += 1
+	#reset_message_trigger()  # Reset the message trigger flag when years are updated
+	#age_over()  # Call age_over to potentially push a new message# Dictionary to track which messages have been triggered for each year threshold
+var years_messages_triggered = {}
+
+# Function to check the age-over condition and trigger messages
+func age_over():
+	# Check if a message has already been triggered for this year threshold
+	if not years_messages_triggered.has(Global.Years_Over):
+		# Trigger appropriate messages based on the current Global.Years_Over value
+		if Global.Years_Over == 1:
+			message_queue.push_back("Warning, above the threshold. You have 2 years left")
+		elif Global.Years_Over == 2:
+			message_queue.push_back("Warning, above the threshold. You have 1 year left")
+		else:
+			pass
+		
+		# Marked the year threshold as processed (message triggered)
+		years_messages_triggered[Global.Years_Over] = true
+
+# Function to reset all messages when needed (for example, when the year counter resets)
+func reset_message_trigger():
+	# Optionally, you can clear the dictionary if you want to reset the entire state
+	years_messages_triggered.clear()
+
+# Call this function whenever years change
+func update_years():
+	Global.Years_Over += 1  # Increment the number of years over threshold
+	age_over()  # Trigger messages based on the updated year
+
+
+# Function to queue a message based on the condition and variable
 func queue_message(variable: String, condition: String):
 	var available_messages = messages[variable][condition]
-	var prev_message = message_history[variable].get(condition, null)
-	
+	var prev_message = message_history[variable].get(condition, null) # Get the last message for this condition
+	# Randomly selecting a new message for  avoiding repetition
 	var new_message = available_messages[rng.randi_range(0, available_messages.size() - 1)]
 	while available_messages.size() > 1 and new_message == prev_message:
 		new_message = available_messages[rng.randi_range(0, available_messages.size() - 1)]
 	
-	message_queue.push_back(new_message)
+	message_queue.push_back(new_message) # Add the new message to the queue
 	message_history[variable][condition] = new_message
 	
 	#if not MessageDelay.is_active() and message_queue.size() > 0:
 		#MessageDelay.start()
 
-
+# Called when message delay timer times out
 func on_message_timeout():
 	if message_queue.size()>0:
-		var message = message_queue.pop_front()
-		add_to_feed(message)
+		var message = message_queue.pop_front() # Geting the next message from the queue
+		add_to_feed(message) # Adding the message to the feed
 	if message_queue.size()>0:
 		MessageDelay.start()
 	else:
-		MessageDelay.stop()
+		MessageDelay.stop() # Stopping the timer if no more messages
 
 func add_to_feed(message: String):
 	var label = create_label()
@@ -172,7 +274,7 @@ func add_to_feed(message: String):
 
 func show_messages():
 	if is_expanded:
-		update_feed(message_queue.size()) # Show all messages
+		update_feed(5) # Show all messages
 		show_all_button.text = "Show Less" # Update button text
 	else:
 		update_feed(2) # Show only the first 2 messages
