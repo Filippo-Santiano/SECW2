@@ -22,3 +22,26 @@ func happ_low() -> bool:
 
 func happ_high() -> bool:
 	return Global.Happiness > 0.99
+	
+func income_30() -> bool:
+	return Global.Income < 0.30
+	
+func income_50() -> bool:
+	return Global.Income <0.50
+func growth_above_150() -> bool:
+	return Global.Income > 1.5
+	
+func below_70_after_50() -> bool:
+	return Global.Income <0.7
+	
+func over_160() -> bool:
+	return Global.Electricity >1.6
+	
+func over_100() -> bool:
+	return Global.Electricity>1.0
+	
+func adequate() -> bool:
+	return Global.Income >0.5
+	
+func under_20() -> bool:
+	return Global.Income <0.2

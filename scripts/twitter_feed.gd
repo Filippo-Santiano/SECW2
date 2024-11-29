@@ -36,6 +36,18 @@ func _ready():
 			"low": check.happ_low,
 			"high": check.happ_high,
 		},
+		"Income": {
+			"drop_30": check.income_30,
+			"drop_50": check.income_50,
+			"growth_above_150": check.growth_above_150,
+			"below_70_after_50": check.below_70_after_50,
+		},
+		"Electricity": {
+			"over_160": check.over_160,
+			"over_100": check.over_100,
+			"adequate": check.adequate,
+			"under_20": check.under_20,
+		},
 	}
 	messages = {
 		"Pollution": {
@@ -57,6 +69,45 @@ func _ready():
 				"Happiness is at an all-time high!",
 				"Residents are thrilled with recent improvements!"
 			],
+		},
+		"Income": {
+			"drop_30": [
+				"Income has dropped by 30% compared to last year! This is a significant concern.",
+				"The economy is in a decline. We need to focus on sustainable growth to recover."
+		],
+			"drop_50": [
+				"Income has fallen by 50% since last year! This is a critical situation for the city's economy.",
+				"The city's income has taken a severe hit. Immediate economic intervention is needed."
+	],
+			"growth_above_150": [
+				"Income has grown by over 150%! The city's economy is booming!",
+				"The city's economy is flourishing. Investments in innovation are paying off."
+	],
+			"below_70_after_50": [
+				"After 50 years, income has fallen below 70%. The city needs to invest in future technologies and sustainable growth.",
+				"Income levels have stagnated after 50 years. New economic strategies are required."
+	],
+	
+		},	
+	"Electricity": {
+			"over_160": [
+		"The city is generating an excess of electricity! This is a huge win for renewable energy.",
+		"Electricity generation is way beyond the demand! Consider storing or exporting energy."
+	],
+	"over_100": [
+		"The city is generating more electricity than needed. Green energy is thriving!",
+		"Electricity generation is stable and exceeding demand. Good work on sustainability."
+	],
+	"adequate": [
+		"Electricity generation is stable, but we must keep an eye on future needs.",
+		"Electricity generation is adequate, but future investments in renewables are necessary."
+	],
+	"under_20": [
+		"Electricity generation is critically low. Immediate action needed to boost renewable sources.",
+		"The city's electricity supply is at risk. We need urgent action to stabilize the grid."
+	]
+
+	
 		},
 	}
 	for variable in conditions.keys():
