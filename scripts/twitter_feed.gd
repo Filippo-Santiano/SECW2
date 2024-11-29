@@ -40,23 +40,24 @@ func _ready():
 		"Income": {
 			"drop_30": check.income_30,
 			"drop_50": check.income_50,
-			"growth_above_150": check.growth_above_150,
-			"below_70_after_50": check.below_70_after_50,
+			"growth_above_150": check.inc_growth_above_150,
+			"below_200_after_50": check.inc_below_200_after_50,
+			"above_200_after_50": check.inc_above_200_after_50,
 		},
 		"Electricity": {
-			"over_160": check.over_160,
-			"over_100": check.over_100,
-			"adequate": check.adequate,
-			"under_20": check.under_20,
+			"over_160": check.elec_over_160,
+			"over_100": check.elec_over_100,
+			"adequate": check.elec_adequate,
+			"under_20": check.elec_under_20,
 		},
 		"YearlyPollution": {
-			"strong_negative": check.strong_negative,
-			"negative": check.negative,
-			"strong_postive": check.strong_postive,
-			"positive": check.positive,
+			"strong_negative": check.yp_strong_negative,
+			"negative": check.yp_negative,
+			"strong_postive": check.yp_strong_postive,
+			"positive": check.yp_positive,
 		},
 	}
-# Messages to show after conditions match
+	# Messages to show after conditions match
 	messages = {
 		"Pollution": {
 			"pos_to_neg": [
@@ -69,7 +70,6 @@ func _ready():
 			],
 			"poll_greater_thresh": [
 				"Pollution is greater than threshold please look out for the city."
-			
 			]
 		},
 		"Happiness": {
@@ -84,69 +84,70 @@ func _ready():
 		},
 		"Income": {
 			"drop_30": [
-				"Income has dropped by 30% compared to last year! This is a significant concern.",
+				"Income has dropped over 30% compared to last year! This is a significant concern.",
 				"The economy is in a decline. We need to focus on sustainable growth to recover."
-		],
+			],
 			"drop_50": [
-				"Income has fallen by 50% since last year! This is a critical situation for the city's economy.",
+				"Income has fallen by over 50% since last year! This is a critical situation for the city's economy.",
 				"The city's income has taken a severe hit. Immediate economic intervention is needed."
-	],
+			],
 			"growth_above_150": [
 				"Income has grown by over 150%! The city's economy is booming!",
 				"The city's economy is flourishing. Investments in innovation are paying off."
-	],
-			"below_70_after_50": [
-				"After 50 years, income has fallen below 70%. The city needs to invest in future technologies and sustainable growth.",
+			],
+			"below_200_after_50": [
+				"After 50 years, income has is particularly weak. The city needs to invest in future technologies and sustainable growth.",
 				"Income levels have stagnated after 50 years. New economic strategies are required."
-	],
-	
-		},	
-	"Electricity": {
+			],
+			"above_200_after_50": [
+				"After 50 years, income has is particularly strong. The city is prospering!",
+				"Economic strategies are finally paying off."
+			],
+		},
+		"Electricity": {
 			"over_160": [
-		"The city is generating an excess of electricity! This is a huge win for renewable energy.",
-		"Electricity generation is way beyond the demand! Consider storing or exporting energy."
-	],
-	"over_100": [
-		"The city is generating more electricity than needed. Green energy is thriving!",
-		"Electricity generation is stable and exceeding demand. Good work on sustainability."
-	],
-	"adequate": [
-		"Electricity generation is stable, but we must keep an eye on future needs.",
-		"Electricity generation is adequate, but future investments in renewables are necessary."
-	],
-	"under_20": [
-		"Electricity generation is critically low. Immediate action needed to boost renewable sources.",
-		"The city's electricity supply is at risk. We need urgent action to stabilize the grid."
-	]
-
-	
-},
-	"YearlyPollution": {
-		"strong_negative": [
-			"Pollution has increased significantly! The city is in a dangerous state.",
-			"Pollution is worsening at an alarming rate. Urgent measures are required."
-	],
-		"negative": [
-			"Pollution levels are still rising. Strong environmental policies needed.",
-			"Pollution has increased by 50%. Time to act now!"
-	],
-	"positive": [
-		"Pollution is reducing! Keep up the good work with green initiatives.",
-		"Pollution has decreased by 50%! Let's continue the progress."
-	],
-	"strong_positive": [
-		"Pollution has reduced by a significant amount. The city is becoming cleaner!",
-		"The city's pollution levels have dropped significantly. Keep it up!"
-	]
-},
-}
+				"The city is generating an excess of electricity! This is a huge win for renewable energy.",
+				"Electricity generation is way beyond the demand! Consider storing or exporting energy."
+			],
+			"over_100": [
+				"The city is generating more electricity than needed. Green energy is thriving!",
+				"Electricity generation is stable and exceeding demand. Good work on sustainability."
+				],
+			"adequate": [
+				"Electricity generation is stable, but we must keep an eye on future needs.",
+				"Electricity generation is adequate, but future investments in renewables are necessary."
+			],
+			"under_20": [
+				"Electricity generation is critically low. Immediate action needed to boost renewable sources.",
+				"The city's electricity supply is at risk. We need urgent action to stabilize the grid."
+			]	
+		},
+		"YearlyPollution": {
+			"strong_negative": [
+				"Pollution has increased significantly! The city is in a dangerous state.",
+				"Pollution is worsening at an alarming rate. Urgent measures are required."
+			],
+			"negative": [
+				"Pollution levels are still rising. Strong environmental policies needed.",
+				"Pollution has increased by 50%. Time to act now!"
+			],
+			"positive": [
+				"Pollution is reducing! Keep up the good work with green initiatives.",
+				"Pollution has decreased by 50%! Let's continue the progress."
+			],
+			"strong_positive": [
+				"Pollution has reduced by a significant amount. The city is becoming cleaner!",
+				"The city's pollution levels have dropped significantly. Keep it up!"
+			]
+		},
+	}
 # Initialized triggered_conditions and message_history dictionaries
 	for variable in conditions.keys():
 		triggered_conditions[variable] = ""
 		message_history[variable] = {}
 		
-# Setting message delay for 2 seconds and connecting signal for timeout
-	MessageDelay.wait_time = 2.0
+# Setting message delay for 3 seconds and connecting signal for timeout
+	MessageDelay.wait_time = 3.0
 	MessageDelay.connect("timeout", Callable(self, "_on_message_timeout"))
 	if message_queue.size() > 0:
 		MessageDelay.start() #Starting message delay if there are messages in the queue
@@ -159,6 +160,7 @@ func _process(delta):
 		check_conditions()
 		show_messages()
 	pass
+
 # Functions to check if any conditions are met or not
 func check_conditions():
 	# Iterate over all conditions keys
@@ -176,43 +178,6 @@ func check_conditions():
 			if new_condition != "":
 				queue_message(variable, new_condition)
 
-#func age_over():
-		##if (Global.Pollution > Global.PollutionThreshold):
-			##Global.Years_Over +=1
-			#if Global.Years_Over == 1:
-			## prints number of years left
-				#message_queue.push_back("Warning, above the threshold. You have 2 years left")
-			#elif Global.Years_Over == 2:
-			## prints number of years left
-				#message_queue.push_back("Warning, above the threshold. You have  1 years left")
-			##elif (Global.Years_Over > 2):
-					##get_tree().quit()
-					##
-				##else
-				##Global.Years_Over = 0
-
-#var message_triggered = false
-#func age_over():
-	#
-	## Check if the number of years over is 1 or 2 and if the message hasn't been triggered
-	#if not message_triggered:
-		#if Global.Years_Over == 1:
-			#message_queue.push_back("Warning, above the threshold. You have 2 years left")
-			#message_triggered = true  # Mark the message as triggered
-		#elif Global.Years_Over == 2:
-			#message_queue.push_back("Warning, above the threshold. You have 1 year left")
-			#message_triggered = true  # Mark the message as triggered
-		#
-#
-## Function to reset the flag when needed (for example, when years over change)
-#func reset_message_trigger():
-	#message_triggered = false
-#
-##  call reset_message_trigger when years change
-#func update_years():
-	#Global.Years_Over += 1
-	#reset_message_trigger()  # Reset the message trigger flag when years are updated
-	#age_over()  # Call age_over to potentially push a new message# Dictionary to track which messages have been triggered for each year threshold
 var years_messages_triggered = {}
 
 # Function to check the age-over condition and trigger messages
@@ -222,23 +187,16 @@ func age_over():
 		# Trigger appropriate messages based on the current Global.Years_Over value
 		if Global.Years_Over == 1:
 			message_queue.push_back("Warning, above the threshold. You have 2 years left")
+			# Marked the year threshold as processed (message triggered)
+			years_messages_triggered[Global.Years_Over] = true
 		elif Global.Years_Over == 2:
 			message_queue.push_back("Warning, above the threshold. You have 1 year left")
+			# Marked the year threshold as processed (message triggered)
+			years_messages_triggered[Global.Years_Over] = true
+		elif Global.Years_Over == 0:
+			years_messages_triggered.clear()
 		else:
 			pass
-		
-		# Marked the year threshold as processed (message triggered)
-		years_messages_triggered[Global.Years_Over] = true
-
-# Function to reset all messages when needed (for example, when the year counter resets)
-func reset_message_trigger():
-	# Optionally, you can clear the dictionary if you want to reset the entire state
-	years_messages_triggered.clear()
-
-# Call this function whenever years change
-func update_years():
-	Global.Years_Over += 1  # Increment the number of years over threshold
-	age_over()  # Trigger messages based on the updated year
 
 
 # Function to queue a message based on the condition and variable
@@ -252,9 +210,7 @@ func queue_message(variable: String, condition: String):
 	
 	message_queue.push_back(new_message) # Add the new message to the queue
 	message_history[variable][condition] = new_message
-	
-	#if not MessageDelay.is_active() and message_queue.size() > 0:
-		#MessageDelay.start()
+
 
 # Called when message delay timer times out
 func on_message_timeout():
@@ -343,16 +299,6 @@ func add_message(message):
 # Display messages at year 10, 25, 50, 75, 100
 # If after year 50, income is below 70 display negative
 # if after year 50, income is above 150 display positive
-
-
-# Dictionary for each of the different conditions for each variable
-	# Happines >= 100%, call neon green happiness dictionary etc etc
-# Dictionary for each of the different messages that could be displayed at that level
-	# Maybe 3-5 different positive messages for a neon green signal
-
-# Iterate through and check if each dictionary is going to get called
-# Separate function for checking its not displaying the same message twice
-# Some function to slow down the speed of messages displayed
 
 ######################## Extra More Specific Tile Messages ########################
 # If build certain tile

@@ -74,7 +74,7 @@ layout_mode = 0
 script = ExtResource("4_nt8oq")
 
 [node name="MessageDelay" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [connection signal="button_down" from="ScrollContainer/Feed/ShowAllButton" to="." method="_on_show_all_button_button_down"]

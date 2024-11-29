@@ -92,6 +92,15 @@ func update_stats_every_year():
 	# Sets pollution threshold and then calculates pollution threshold based on happiness
 	Global.PollutionThreshold = 1000 * Global.Happiness
 	Global.updateExternalPollution()
+	
+	# Calculate change in income
+	if Global.PreviousIncome > 0:
+		Global.IncomeChange = Global.Income / Global.PreviousIncome
+	else:
+		Global.IncomeChange = 1.0
+	
+	# Update Previous Income
+	Global.PreviousIncome = Global.Income
 
 	
 var prevYear = 0
@@ -111,22 +120,12 @@ func yearPassed():
 		print("Current Score", current_score)
 		if (Global.Money < 0):
 			# prints Bye Bye, not enough mulah
-			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 			print("Bye Bye, not enough mulah")
-			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 			get_tree().quit()
 		# If above the threshold, add one to the count, if th count gets above 3, you lose, count resets if you go below
 		elif (Global.Pollution > Global.PollutionThreshold):
 			Global.Years_Over +=1
-			# prints number of years left
-			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-			print("Warning, above the threshold. You have ", (3 - Global.Years_Over), " years left")
-			print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 			if (Global.Years_Over > 2):
-				# prints you have lost the game
-				print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-				print("Bye Bye, too much pollution")
-				print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 				get_tree().quit()
 				
 		else:
