@@ -1,0 +1,172 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3s2ybp1wv3sf"]
+
+[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="1_cr3k7"]
+
+[sub_resource type="SystemFont" id="SystemFont_23i2m"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_pt6uk"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_din7t"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cr3k7")
+
+[node name="HowToPlay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 80.0
+offset_right = 1918.0
+offset_bottom = 198.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_23i2m")
+theme_override_font_sizes/font_size = 96
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="Economy" type="Label" parent="."]
+offset_left = 241.0
+offset_top = 288.0
+offset_right = 478.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_23i2m")
+theme_override_font_sizes/font_size = 45
+text = "Economy"
+horizontal_alignment = 1
+
+[node name="EconomyExplanation" type="Label" parent="."]
+offset_left = 39.0
+offset_top = 364.0
+offset_right = 767.0
+offset_bottom = 493.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_pt6uk")
+theme_override_font_sizes/font_size = 33
+text = "Build income-generating structures to fund the city’s 
+operations and repair the air filter. Buildings produce 
+more income when fully powered.
+"
+
+[node name="Electricity" type="Label" parent="."]
+offset_left = 247.0
+offset_top = 556.0
+offset_right = 484.0
+offset_bottom = 625.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_23i2m")
+theme_override_font_sizes/font_size = 45
+text = "Electricity"
+horizontal_alignment = 1
+
+[node name="ElectricityExplanation" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 654.0
+offset_right = 906.0
+offset_bottom = 783.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_pt6uk")
+theme_override_font_sizes/font_size = 33
+text = "Balance power generation and consumption. Buildings
+need electricity to function, but some power sources
+create pollution. Be strategic!
+"
+
+[node name="Happiness" type="Label" parent="."]
+offset_left = 1273.0
+offset_top = 563.0
+offset_right = 1510.0
+offset_bottom = 632.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_23i2m")
+theme_override_font_sizes/font_size = 45
+text = "Happiness"
+horizontal_alignment = 1
+
+[node name="HappinessExplanation" type="Label" parent="."]
+offset_left = 1004.0
+offset_top = 651.0
+offset_right = 1829.0
+offset_bottom = 824.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_pt6uk")
+theme_override_font_sizes/font_size = 33
+text = "Keep your citizens happy by maintaining green spaces, 
+avoiding excessive pollution, and providing sustainable 
+solutions. Happiness directly impacts the pollution tolerance
+of the city."
+
+[node name="Pollution" type="Label" parent="."]
+offset_left = 1263.0
+offset_top = 279.0
+offset_right = 1500.0
+offset_bottom = 348.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_23i2m")
+theme_override_font_sizes/font_size = 45
+text = "Pollution"
+horizontal_alignment = 1
+
+[node name="PollutionExplanation" type="Label" parent="."]
+offset_left = 1003.0
+offset_top = 358.0
+offset_right = 1802.0
+offset_bottom = 487.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_pt6uk")
+theme_override_font_sizes/font_size = 33
+text = "Pollution levels must stay below the threshold, which is 
+influenced by citizen happiness. Failure to control pollution 
+will lead to disaster.
+"
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 834.0
+offset_top = 917.0
+offset_right = 1089.0
+offset_bottom = 1009.0
+theme_override_fonts/font = SubResource("SystemFont_din7t")
+theme_override_font_sizes/font_size = 46
+text = "Continue"

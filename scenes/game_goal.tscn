@@ -1,0 +1,173 @@
+[gd_scene load_steps=7 format=3 uid="uid://divo5kxr13lws"]
+
+[ext_resource type="Script" path="res://scripts/game_goal.gd" id="1_d4cko"]
+
+[sub_resource type="SystemFont" id="SystemFont_3ppgf"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_5uslq"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_mgjop"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_po3fk"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_3yu5t"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="GameGoal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4cko")
+
+[node name="YourGoal" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 80.0
+offset_right = 1918.0
+offset_bottom = 198.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_3ppgf")
+theme_override_font_sizes/font_size = 96
+text = "Your Goal"
+horizontal_alignment = 1
+
+[node name="YourGoalInfo" type="Label" parent="."]
+offset_left = -32.0
+offset_top = 262.0
+offset_right = 2015.0
+offset_bottom = 391.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_5uslq")
+theme_override_font_sizes/font_size = 33
+text = "Survive as long as possible and score big by balancing sustainability and growth. Can you 
+create a thriving, sustainable city in a dying world? Good luck!
+"
+horizontal_alignment = 1
+
+[node name="GameOverConditions" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 429.0
+offset_right = 1927.0
+offset_bottom = 527.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = SubResource("SystemFont_mgjop")
+theme_override_font_sizes/font_size = 80
+text = "Game Over Conditions"
+horizontal_alignment = 1
+
+[node name="PollutionCrisisInfo" type="Label" parent="."]
+offset_left = 84.0
+offset_top = 660.0
+offset_right = 764.0
+offset_bottom = 789.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_5uslq")
+theme_override_font_sizes/font_size = 33
+text = "Pollution exceeeds the threshold for 3 years.
+"
+horizontal_alignment = 1
+
+[node name="PollutionCrisis" type="Label" parent="."]
+offset_left = 281.0
+offset_top = 572.0
+offset_right = 563.0
+offset_bottom = 641.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_po3fk")
+theme_override_font_sizes/font_size = 45
+text = "Pollution Crisis"
+horizontal_alignment = 1
+
+[node name="Bankruptcy" type="Label" parent="."]
+offset_left = 1256.0
+offset_top = 574.0
+offset_right = 1538.0
+offset_bottom = 643.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_po3fk")
+theme_override_font_sizes/font_size = 45
+text = "Bankruptcy"
+horizontal_alignment = 1
+
+[node name="BankruptcyInfo" type="Label" parent="."]
+offset_left = 919.0
+offset_top = 664.0
+offset_right = 1924.0
+offset_bottom = 793.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_5uslq")
+theme_override_font_sizes/font_size = 33
+text = "No money to reair the air filter."
+horizontal_alignment = 1
+
+[node name="UnhappyCitizens" type="Label" parent="."]
+offset_left = 792.0
+offset_top = 729.0
+offset_right = 1074.0
+offset_bottom = 798.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_po3fk")
+theme_override_font_sizes/font_size = 45
+text = "Unhappy Citizens"
+horizontal_alignment = 1
+
+[node name="UnhappyCitizensInfo" type="Label" parent="."]
+offset_left = 455.0
+offset_top = 817.0
+offset_right = 1479.0
+offset_bottom = 946.0
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_5uslq")
+theme_override_font_sizes/font_size = 33
+text = "Low happiness reduces the pollution threshold, making survival impossible."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = 834.0
+offset_top = 917.0
+offset_right = 1089.0
+offset_bottom = 1009.0
+theme_override_fonts/font = SubResource("SystemFont_3yu5t")
+theme_override_font_sizes/font_size = 46
+text = "Let's Play!"
