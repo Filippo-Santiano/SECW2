@@ -110,3 +110,5 @@ offset_bottom = 1038.0
 theme_override_fonts/font = SubResource("SystemFont_sgokm")
 theme_override_font_sizes/font_size = 46
 text = "Continue"
+
+[connection signal="pressed" from="continue_button" to="." method="_on_continue_button_pressed"]
