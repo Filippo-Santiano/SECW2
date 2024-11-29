@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mlgjwly0sjst"]
+[gd_scene load_steps=18 format=3 uid="uid://mlgjwly0sjst"]
 
 [ext_resource type="Script" path="res://scripts/building_menu.gd" id="1_jr522"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_tr6n0"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://domeb086d0rq2" path="res://assets/Stadium-2.png" id="13_os74q"]
 [ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="14_bagps"]
 [ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="15_6odak"]
+[ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="17_5jgq6"]
 
 [node name="BuildingMenu" type="Control" node_paths=PackedStringArray("MenuContainer")]
 layout_mode = 3
@@ -185,6 +186,16 @@ script = ExtResource("3_4872b")
 ID = 38
 BuildingMenu = NodePath("../../..")
 
+[node name="WheatFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Wheat Farm
+$50"
+icon = ExtResource("17_5jgq6")
+script = ExtResource("3_4872b")
+ID = 39
+BuildingMenu = NodePath("../../..")
+
 [connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OfficeItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]
@@ -199,3 +210,4 @@ BuildingMenu = NodePath("../../..")
 [connection signal="pressed" from="MenuContainer/HBoxContainer/StadiumItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/DairyFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/ParkItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/WheatFarmItem" to="." method="_on_cocoa_forest_item_pressed"]

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=76 format=3 uid="uid://deenobcu650sx"]
+[gd_resource type="TileSet" load_steps=78 format=3 uid="uid://deenobcu650sx"]
 
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="1_bwhhb"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_gyy07"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://domeb086d0rq2" path="res://assets/Stadium-2.png" id="29_uf0aq"]
 [ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="30_5qudd"]
 [ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="31_olyqs"]
+[ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="32_mx627"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtdat"]
 resource_name = "Grass"
@@ -320,6 +321,16 @@ texture_region_size = Vector2i(132, 115)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -6)
 0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Park"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxvn4"]
+resource_name = "Wheat Farm"
+texture = ExtResource("32_mx627")
+texture_region_size = Vector2i(132, 123)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -1)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Farm"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gow2j"]
 texture = ExtResource("9_kfg6d")
@@ -416,3 +427,4 @@ sources/35 = SubResource("TileSetAtlasSource_vlibk")
 sources/36 = SubResource("TileSetAtlasSource_l7tu1")
 sources/37 = SubResource("TileSetAtlasSource_u7aky")
 sources/38 = SubResource("TileSetAtlasSource_upykk")
+sources/39 = SubResource("TileSetAtlasSource_kxvn4")
