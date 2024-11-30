@@ -177,8 +177,6 @@ func placeTile(tile,x,y):
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
 				
-				# Finally set build mode to false so you can't place another tile again
-				PlayerController.buildMode = false
 				
 			else:
 				print("Not enough molah")

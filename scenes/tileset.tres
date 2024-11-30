@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=56 format=3 uid="uid://deenobcu650sx"]
+[gd_resource type="TileSet" load_steps=78 format=3 uid="uid://deenobcu650sx"]
 
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="1_bwhhb"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_gyy07"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d22gacmjksobo" path="res://assets/landscapeTiles_125.png" id="4_ja5w1"]
 [ext_resource type="Texture2D" uid="uid://brb0b0nolap15" path="res://assets/landscapeTiles_126.png" id="5_p6vrs"]
 [ext_resource type="Texture2D" uid="uid://dbrbyvmuokct8" path="res://assets/landscapeTiles_127.png" id="6_iidi7"]
-[ext_resource type="Texture2D" uid="uid://dq4g0yn5sna4y" path="res://assets/tree-test-1.png" id="7_mw0ke"]
 [ext_resource type="Texture2D" uid="uid://cdd7gn0lw5vr1" path="res://assets/landscapeTiles_019.png" id="7_rq2sk"]
 [ext_resource type="Texture2D" uid="uid://beshf1k8fqeb3" path="res://assets/landscapeTiles_082.png" id="8_14et2"]
 [ext_resource type="Texture2D" uid="uid://dsntcjhx3m2ek" path="res://assets/landscapeTiles_023.png" id="8_fnx3u"]
@@ -18,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://belnhc7f18435" path="res://assets/landscapeTiles_090.png" id="11_mbude"]
 [ext_resource type="Texture2D" uid="uid://bbrg0687sxh5y" path="res://assets/landscapeTiles_071.png" id="12_7ftd1"]
 [ext_resource type="Texture2D" uid="uid://cne1dc5tfm4xt" path="res://assets/landscapeTiles_096.png" id="12_rw0x5"]
+[ext_resource type="Texture2D" uid="uid://dualfgy52kkyi" path="res://assets/Forest.png" id="13_2c3lw"]
 [ext_resource type="Texture2D" uid="uid://pj30ytxp208l" path="res://assets/landscapeTiles_097.png" id="13_414rb"]
 [ext_resource type="Texture2D" uid="uid://b1el8ywofhikd" path="res://assets/landscapeTiles_104.png" id="14_akmku"]
 [ext_resource type="Texture2D" uid="uid://cj8y0amev7xrm" path="res://assets/landscapeTiles_072.png" id="14_fr56y"]
@@ -26,7 +26,18 @@
 [ext_resource type="Texture2D" uid="uid://b375s3u3uouue" path="res://assets/landscapeTiles_079.png" id="17_f1u2g"]
 [ext_resource type="Texture2D" uid="uid://jr0dr4ciwmfp" path="res://assets/buildingTiles_032.png" id="18_83n32"]
 [ext_resource type="Texture2D" uid="uid://bcu0q7d5fctxh" path="res://assets/InProgressBuilding.png" id="19_0sg2o"]
-[ext_resource type="Texture2D" uid="uid://0nax4i1xscw6" path="res://assets/powerstation.png" id="20_0huhl"]
+[ext_resource type="Texture2D" uid="uid://db4fk8ryqcqmm" path="res://assets/Orange-Forest.png" id="20_13jae"]
+[ext_resource type="Texture2D" uid="uid://bgk5nm6jp1xu8" path="res://assets/Rubber-Forest (Custom).png" id="21_hpn6i"]
+[ext_resource type="Texture2D" uid="uid://b5mu2eklqrwp3" path="res://assets/Palm-Forest.png" id="23_gnlhs"]
+[ext_resource type="Texture2D" uid="uid://rir6tx2g52iy" path="res://assets/Cocoa-Forest.png" id="24_b82c3"]
+[ext_resource type="Texture2D" uid="uid://c3cgdx3vom66v" path="res://assets/Coal-Plant.png" id="25_auik8"]
+[ext_resource type="Texture2D" uid="uid://df8v5qx78pkj3" path="res://assets/Nuclear-Plant.png" id="26_n3v2u"]
+[ext_resource type="Texture2D" uid="uid://ct0w46wyyv0hk" path="res://assets/Wind-Farm.png" id="27_s1g7j"]
+[ext_resource type="Texture2D" uid="uid://d3otd1kc7m8nw" path="res://assets/Leisure Centre.png" id="28_ahgmo"]
+[ext_resource type="Texture2D" uid="uid://domeb086d0rq2" path="res://assets/Stadium-2.png" id="29_uf0aq"]
+[ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="30_5qudd"]
+[ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="31_olyqs"]
+[ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="32_mx627"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtdat"]
 resource_name = "Grass"
@@ -123,10 +134,10 @@ texture_region_size = Vector2i(133, 99)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvh2h"]
 resource_name = "Tree"
-texture = ExtResource("7_mw0ke")
-texture_region_size = Vector2i(128, 128)
+texture = ExtResource("13_2c3lw")
+texture_region_size = Vector2i(132, 109)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 50)
+0:0/0/texture_origin = Vector2i(0, -10)
 0:0/0/z_index = 1
 0:0/0/custom_data_0 = -100
 0:0/0/custom_data_1 = "Tree"
@@ -173,10 +184,10 @@ texture_region_size = Vector2i(99, 85)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wcb"]
 resource_name = "landscapeTree"
-texture = ExtResource("7_mw0ke")
-texture_region_size = Vector2i(128, 128)
+texture = ExtResource("13_2c3lw")
+texture_region_size = Vector2i(132, 108)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 50)
+0:0/0/texture_origin = Vector2i(0, -10)
 0:0/0/z_index = 1
 0:0/0/custom_data_1 = "Tree"
 
@@ -189,12 +200,29 @@ texture_region_size = Vector2i(132, 101)
 0:0/0/z_index = 1
 0:0/0/custom_data_1 = "Building"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0i3c5"]
-texture = ExtResource("20_0huhl")
-texture_region_size = Vector2i(132, 99)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ec1a"]
+resource_name = "Orange Forest"
+texture = ExtResource("20_13jae")
+texture_region_size = Vector2i(132, 108)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 15)
+0:0/0/texture_origin = Vector2i(0, -10)
 0:0/0/z_index = 1
+0:0/0/custom_data_0 = -100
+0:0/0/custom_data_1 = "Tree"
+0:0/0/custom_data_4 = 1
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkbwc"]
+resource_name = "Rubber Forest"
+texture = ExtResource("21_hpn6i")
+texture_region_size = Vector2i(132, 108)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -10)
+0:0/0/z_index = 1
+0:0/0/custom_data_0 = -100
+0:0/0/custom_data_1 = "Tree"
+0:0/0/custom_data_4 = 1
+0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnh3m"]
 texture = ExtResource("8_14et2")
@@ -202,6 +230,107 @@ texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
 0:0/0/custom_data_1 = "Road"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vjms"]
+resource_name = "Palm  Forest"
+texture = ExtResource("23_gnlhs")
+texture_region_size = Vector2i(132, 99)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/z_index = 1
+0:0/0/custom_data_0 = -100
+0:0/0/custom_data_1 = "Tree"
+0:0/0/custom_data_4 = 1
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_170wy"]
+resource_name = "Cocoa Forest"
+texture = ExtResource("24_b82c3")
+texture_region_size = Vector2i(132, 108)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -10)
+0:0/0/z_index = 1
+0:0/0/custom_data_0 = -100
+0:0/0/custom_data_1 = "Tree"
+0:0/0/custom_data_4 = 1
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byawv"]
+resource_name = "Coal Power Plant"
+texture = ExtResource("25_auik8")
+texture_region_size = Vector2i(132, 120)
+0:0/0 = 0
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "PowerPlant"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3bvhu"]
+resource_name = "Nuclear Power Plant"
+texture = ExtResource("26_n3v2u")
+texture_region_size = Vector2i(132, 115)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 15)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "PowerPlant"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dikic"]
+resource_name = "Wind Farm"
+texture = ExtResource("27_s1g7j")
+texture_region_size = Vector2i(132, 99)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "PowerPlant"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlibk"]
+resource_name = "Leisure Centre"
+texture = ExtResource("28_ahgmo")
+texture_region_size = Vector2i(99, 85)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Building"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l7tu1"]
+resource_name = "Stadium"
+texture = ExtResource("29_uf0aq")
+texture_region_size = Vector2i(132, 108)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 26)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Building"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u7aky"]
+resource_name = "Dairy Farm"
+texture = ExtResource("30_5qudd")
+texture_region_size = Vector2i(132, 115)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -7)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Farm"
+0:0/0/custom_data_5 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upykk"]
+resource_name = "Park"
+texture = ExtResource("31_olyqs")
+texture_region_size = Vector2i(132, 115)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -6)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Park"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxvn4"]
+resource_name = "Wheat Farm"
+texture = ExtResource("32_mx627")
+texture_region_size = Vector2i(132, 123)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -1)
+0:0/0/z_index = 1
+0:0/0/custom_data_1 = "Farm"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gow2j"]
 texture = ExtResource("9_kfg6d")
@@ -287,4 +416,15 @@ sources/23 = SubResource("TileSetAtlasSource_gfblr")
 sources/24 = SubResource("TileSetAtlasSource_aufe5")
 sources/25 = SubResource("TileSetAtlasSource_j7wcb")
 sources/26 = SubResource("TileSetAtlasSource_kamyv")
-sources/27 = SubResource("TileSetAtlasSource_0i3c5")
+sources/28 = SubResource("TileSetAtlasSource_0ec1a")
+sources/29 = SubResource("TileSetAtlasSource_xkbwc")
+sources/30 = SubResource("TileSetAtlasSource_1vjms")
+sources/31 = SubResource("TileSetAtlasSource_170wy")
+sources/32 = SubResource("TileSetAtlasSource_byawv")
+sources/33 = SubResource("TileSetAtlasSource_3bvhu")
+sources/34 = SubResource("TileSetAtlasSource_dikic")
+sources/35 = SubResource("TileSetAtlasSource_vlibk")
+sources/36 = SubResource("TileSetAtlasSource_l7tu1")
+sources/37 = SubResource("TileSetAtlasSource_u7aky")
+sources/38 = SubResource("TileSetAtlasSource_upykk")
+sources/39 = SubResource("TileSetAtlasSource_kxvn4")

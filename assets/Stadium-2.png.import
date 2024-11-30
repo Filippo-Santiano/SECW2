@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0nax4i1xscw6"
-path="res://.godot/imported/powerstation.png-483df562f85d0eddb598bd5e4f2359f1.ctex"
+uid="uid://domeb086d0rq2"
+path="res://.godot/imported/Stadium-2.png-4a9412066b4fa0f0df8b79b592732016.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerstation.png"
-dest_files=["res://.godot/imported/powerstation.png-483df562f85d0eddb598bd5e4f2359f1.ctex"]
+source_file="res://assets/Stadium-2.png"
+dest_files=["res://.godot/imported/Stadium-2.png-4a9412066b4fa0f0df8b79b592732016.ctex"]
 
 [params]
 

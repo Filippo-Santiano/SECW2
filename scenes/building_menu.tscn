@@ -1,61 +1,213 @@
-[gd_scene load_steps=5 format=3 uid="uid://mlgjwly0sjst"]
+[gd_scene load_steps=18 format=3 uid="uid://mlgjwly0sjst"]
 
 [ext_resource type="Script" path="res://scripts/building_menu.gd" id="1_jr522"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_tr6n0"]
-[ext_resource type="Texture2D" uid="uid://dq4g0yn5sna4y" path="res://assets/tree-test-1.png" id="3_b1f85"]
+[ext_resource type="Script" path="res://scenes/BuildingMenuItem.gd" id="3_4872b"]
+[ext_resource type="Texture2D" uid="uid://dualfgy52kkyi" path="res://assets/Forest.png" id="3_juhu7"]
+[ext_resource type="Texture2D" uid="uid://rir6tx2g52iy" path="res://assets/Cocoa-Forest.png" id="4_esmi4"]
 [ext_resource type="Texture2D" uid="uid://kv6gbhpt1oj6" path="res://assets/buildingIcon2.png" id="4_qb2i8"]
+[ext_resource type="Texture2D" uid="uid://db4fk8ryqcqmm" path="res://assets/Orange-Forest.png" id="6_7n4l8"]
+[ext_resource type="Texture2D" uid="uid://bgk5nm6jp1xu8" path="res://assets/Rubber-Forest (Custom).png" id="7_g6aud"]
+[ext_resource type="Texture2D" uid="uid://b5mu2eklqrwp3" path="res://assets/Palm-Forest.png" id="8_j7o2x"]
+[ext_resource type="Texture2D" uid="uid://c3cgdx3vom66v" path="res://assets/Coal-Plant.png" id="9_u5qwy"]
+[ext_resource type="Texture2D" uid="uid://df8v5qx78pkj3" path="res://assets/Nuclear-Plant.png" id="10_a80ut"]
+[ext_resource type="Texture2D" uid="uid://ct0w46wyyv0hk" path="res://assets/Wind-Farm.png" id="11_ht88h"]
+[ext_resource type="Texture2D" uid="uid://d3otd1kc7m8nw" path="res://assets/Leisure Centre.png" id="12_fo528"]
+[ext_resource type="Texture2D" uid="uid://domeb086d0rq2" path="res://assets/Stadium-2.png" id="13_os74q"]
+[ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="14_bagps"]
+[ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="15_6odak"]
+[ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="17_5jgq6"]
 
-[node name="BuildingMenu" type="Control" node_paths=PackedStringArray("build_menu_container", "build_button", "building_item", "tree_item")]
+[node name="BuildingMenu" type="Control" node_paths=PackedStringArray("MenuContainer")]
 layout_mode = 3
 anchor_right = 0.219
 anchor_bottom = 0.246
-offset_left = 1265.0
+offset_left = 857.0
 offset_top = 685.0
 offset_right = 1486.52
 offset_bottom = 805.32
 size_flags_horizontal = 3
 script = ExtResource("1_jr522")
-build_menu_container = NodePath("ScrollContainer/HBoxContainer")
-build_button = NodePath("ScrollContainer/HBoxContainer/BuildButton")
-building_item = NodePath("ScrollContainer/HBoxContainer/BuildingItem")
-tree_item = NodePath("ScrollContainer/HBoxContainer/TreeItem")
+MenuContainer = NodePath("MenuContainer")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="BuildButton" type="MenuButton" parent="."]
+z_index = 2
+layout_mode = 2
+offset_left = 502.0
+offset_top = 135.0
+offset_right = 638.0
+offset_bottom = 271.0
+icon = ExtResource("4_qb2i8")
+icon_alignment = 2
+
+[node name="MenuContainer" type="ScrollContainer" parent="."]
 z_index = 2
 layout_direction = 3
 layout_mode = 0
-offset_left = 46.0
-offset_top = 56.0
-offset_right = 615.0
-offset_bottom = 270.0
+offset_left = 149.0
+offset_top = 58.0
+offset_right = 1087.0
+offset_bottom = 272.0
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 10
 
-[node name="BuildingItem" type="Button" parent="ScrollContainer/HBoxContainer"]
+[node name="OfficeItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
-text = "Building
-$100"
-icon = ExtResource("2_tr6n0")
-
-[node name="TreeItem" type="Button" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
-action_mode = 0
-text = "Tree
+text = "Office
 $50"
-icon = ExtResource("3_b1f85")
+icon = ExtResource("2_tr6n0")
+script = ExtResource("3_4872b")
+ID = 1
+BuildingMenu = NodePath("../../..")
 
-[node name="BuildButton" type="MenuButton" parent="ScrollContainer/HBoxContainer"]
-z_index = 2
+[node name="ForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
-icon = ExtResource("4_qb2i8")
-icon_alignment = 2
+action_mode = 0
+text = "Forest
+$50"
+icon = ExtResource("3_juhu7")
+script = ExtResource("3_4872b")
+ID = 2
+BuildingMenu = NodePath("../../..")
 
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/BuildingItem" to="." method="_on_building_item_pressed"]
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/TreeItem" to="." method="_on_tree_item_pressed"]
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[node name="OrangeForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Orange Forest
+$50"
+icon = ExtResource("6_7n4l8")
+script = ExtResource("3_4872b")
+ID = 28
+BuildingMenu = NodePath("../../..")
+
+[node name="RubberForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Rubber Forest
+$50"
+icon = ExtResource("7_g6aud")
+script = ExtResource("3_4872b")
+ID = 29
+BuildingMenu = NodePath("../../..")
+
+[node name="PalmForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Palm Forest
+$50"
+icon = ExtResource("8_j7o2x")
+script = ExtResource("3_4872b")
+ID = 30
+BuildingMenu = NodePath("../../..")
+
+[node name="CocoaForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Cocoa Forest
+$50"
+icon = ExtResource("4_esmi4")
+script = ExtResource("3_4872b")
+ID = 31
+BuildingMenu = NodePath("../../..")
+
+[node name="CoalPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Coal Power Plant
+$50"
+icon = ExtResource("9_u5qwy")
+script = ExtResource("3_4872b")
+ID = 32
+BuildingMenu = NodePath("../../..")
+
+[node name="NuclearPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Coal Power Plant
+$50"
+icon = ExtResource("10_a80ut")
+script = ExtResource("3_4872b")
+ID = 33
+BuildingMenu = NodePath("../../..")
+
+[node name="WindFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Wind Farm
+$50"
+icon = ExtResource("11_ht88h")
+script = ExtResource("3_4872b")
+ID = 34
+BuildingMenu = NodePath("../../..")
+
+[node name="LeisureCentreItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Leisure Centre
+$50"
+icon = ExtResource("12_fo528")
+script = ExtResource("3_4872b")
+ID = 35
+BuildingMenu = NodePath("../../..")
+
+[node name="StadiumItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Stadium
+$50"
+icon = ExtResource("13_os74q")
+script = ExtResource("3_4872b")
+ID = 36
+BuildingMenu = NodePath("../../..")
+
+[node name="DairyFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Dairy Farm
+$50"
+icon = ExtResource("14_bagps")
+script = ExtResource("3_4872b")
+ID = 37
+BuildingMenu = NodePath("../../..")
+
+[node name="ParkItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Park
+$50"
+icon = ExtResource("15_6odak")
+script = ExtResource("3_4872b")
+ID = 38
+BuildingMenu = NodePath("../../..")
+
+[node name="WheatFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Wheat Farm
+$50"
+icon = ExtResource("17_5jgq6")
+script = ExtResource("3_4872b")
+ID = 39
+BuildingMenu = NodePath("../../..")
+
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/OfficeItem" to="." method="_on_tree_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/OrangeForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/RubberForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/PalmForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/CocoaForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/CoalPPItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/NuclearPPItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/WindFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/LeisureCentreItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/StadiumItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/DairyFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/ParkItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/WheatFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
