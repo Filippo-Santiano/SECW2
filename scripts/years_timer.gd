@@ -19,12 +19,11 @@ signal YearPassed
 # Updates the labels each year
 func updateLabels():
 	YearsLabel.text = str("Year: ", int(Global.currentYear))
-	PollutionLabel.text = str("Pollution: ", round(Global.Pollution))
-	YearlyPollution.text = str("Yearly Pollution: ", round(Global.YearlyPollution))
+	PollutionLabel.text = str("Pollution: ", round(Global.Pollution), " / ", round(Global.PollutionThreshold))
 	IncomeLabel.text = str("Income: ", round(Global.Income))
 	MoneyLabel.text = str("Money: ", round(Global.Money))
-	ElectricityLabel.text = str("Electricity: ", round(Global.Electricity))
-	HappinessLabel.text = str("Happiness: ", round(100*Global.Happiness),"%")
+
+
 
 func _ready() -> void:
 	#connect("YearPassed", Callable(self, "_on_year_passed"))

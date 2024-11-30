@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://catytm7ikbhqs"]
+
+[ext_resource type="Script" path="res://scripts/welcome_screen.gd" id="1_l2bth"]
+
+[sub_resource type="SystemFont" id="SystemFont_x1q6l"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_sbwgs"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_8rhwi"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_gt8c2"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_sgokm"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l2bth")
+
+[node name="Story" type="Label" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 217.0
+offset_right = 1921.0
+offset_bottom = 346.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.964742, 0.964742, 0.964742, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x1q6l")
+theme_override_font_sizes/font_size = 33
+text = "The world has fallen victim to its own neglect - pollution has rendered the air unbreathable. Humanity's last hope is cities enclosed in
+ protective domes equipped with advanced air filters. In one such dome, it's up to you to balance growth, sustainability and the well-being of 
+your citizens. Can you lead the city to thrive against the odds?
+"
+horizontal_alignment = 1
+
+[node name="Mission" type="Label" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 529.0
+offset_right = 1921.0
+offset_bottom = 922.0
+theme_override_colors/font_color = Color(0.986752, 0.986752, 0.986752, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = SubResource("SystemFont_sbwgs")
+theme_override_font_sizes/font_size = 33
+text = "As the city's leader you must:
+- Generate income to maintain the vital air filter and keep the city running.
+- Produce electricity to power your buildings and ensure their efficiency.
+- Manage pollution to prevent the air filter from being overwhelmed.
+- Keep citizens happy to increase the pollution threshold of your city.
+
+Each decision you make will affect the city's survival. 
+"
+horizontal_alignment = 1
+
+[node name="YourMission" type="Label" parent="."]
+layout_mode = 2
+offset_left = -2.0
+offset_top = 393.0
+offset_right = 1917.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = SubResource("SystemFont_8rhwi")
+theme_override_font_sizes/font_size = 80
+text = "Your Mission"
+horizontal_alignment = 1
+
+[node name="Welcome" type="Label" parent="."]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 58.0
+offset_right = 1922.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.991164, 0.991164, 0.991164, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_gt8c2")
+theme_override_font_sizes/font_size = 96
+text = "Welcome!"
+horizontal_alignment = 1
+
+[node name="continue_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 950.0
+offset_right = 1113.0
+offset_bottom = 1038.0
+theme_override_fonts/font = SubResource("SystemFont_sgokm")
+theme_override_font_sizes/font_size = 46
+text = "Continue"
+
+[connection signal="pressed" from="continue_button" to="." method="_on_continue_button_pressed"]
