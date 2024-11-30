@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bltldb7w81ec5"]
+[gd_scene load_steps=7 format=3 uid="uid://bltldb7w81ec5"]
 
 [ext_resource type="Script" path="res://scripts/twitter_feed.gd" id="1_5d1n2"]
 [ext_resource type="StyleBox" uid="uid://dgn1tqhvr3l5m" path="res://scenes/show_all_button.tres" id="2_opq6j"]
 [ext_resource type="PackedScene" uid="uid://bonwfhfnfpi5m" path="res://scenes/feed_item.tscn" id="2_r3ngf"]
+[ext_resource type="Script" path="res://scenes/conditions.gd" id="4_nt8oq"]
 
 [sub_resource type="SystemFont" id="SystemFont_pnx5q"]
 font_names = PackedStringArray("Arial")
@@ -23,7 +24,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="TwitterFeed" type="Control" node_paths=PackedStringArray("v_box_container", "show_all_button")]
+[node name="TwitterFeed" type="Control" node_paths=PackedStringArray("v_box_container", "show_all_button", "MessageDelay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +36,7 @@ grow_vertical = 2
 script = ExtResource("1_5d1n2")
 v_box_container = NodePath("ScrollContainer/Feed")
 show_all_button = NodePath("ScrollContainer/Feed/ShowAllButton")
+MessageDelay = NodePath("MessageDelay")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 z_index = 2
@@ -67,5 +69,12 @@ text = "Show All"
 [node name="FeedItem" parent="." instance=ExtResource("2_r3ngf")]
 visible = false
 layout_mode = 0
+
+[node name="Conditions" type="Node" parent="."]
+script = ExtResource("4_nt8oq")
+
+[node name="MessageDelay" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [connection signal="button_down" from="ScrollContainer/Feed/ShowAllButton" to="." method="_on_show_all_button_button_down"]

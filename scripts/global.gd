@@ -19,7 +19,10 @@ var Income = 0
 var ExternalPollution = 1
 # Maximum income shows income if all buildings are repaired
 var MaximumIncome = 0
+var PreviousIncome = 1
+var IncomeChange = 0
 
+var Years_Over = 0
 
 # This calculates the updated external pollution (multiplies by 1.08)
 func updateExternalPollution():
