@@ -10,7 +10,11 @@ func _process(delta: float) -> void:
 	if pollution_end_target >= 3:
 		get_tree().change_to_next_scene()
 	
-	
+# This returns a list of each year's data
+var whole_game_data = Global.get_yearly_data()
+
+# This gets the final score
+var final_score = Global.calculate_final_score()
 	
 	# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
