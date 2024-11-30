@@ -16,6 +16,9 @@ var Years = 0.0
 
 signal YearPassed
 
+# Connection to lose screen
+@onready var you_lose = preload("res://scenes/you_lose.tscn")
+
 # Updates the labels each year
 func updateLabels():
 	YearsLabel.text = str("Year: ", int(Global.currentYear))
@@ -120,12 +123,14 @@ func yearPassed():
 		if (Global.Money < 0):
 			# prints Bye Bye, not enough mulah
 			print("Bye Bye, not enough mulah")
-			get_tree().quit()
+			# Change to lose screen
+			get_tree().change_scene_to_packed(you_lose)
 		# If above the threshold, add one to the count, if th count gets above 3, you lose, count resets if you go below
 		elif (Global.Pollution > Global.PollutionThreshold):
 			Global.Years_Over +=1
 			if (Global.Years_Over > 2):
-				get_tree().quit()
+				# Change to lose screen
+				get_tree().change_scene_to_packed(you_lose)
 				
 		else:
 			Global.Years_Over = 0

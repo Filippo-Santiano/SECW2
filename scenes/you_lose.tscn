@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhcdw6a0wgo6w"]
+
+[ext_resource type="Script" path="res://scripts/you_lose.gd" id="1_qhip5"]
+
+[sub_resource type="SystemFont" id="SystemFont_wrdw4"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_qfpjp"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_mej3r"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="YouLose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhip5")
+
+[node name="Welcome" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 123.0
+offset_right = 1918.0
+offset_bottom = 241.0
+theme_override_colors/font_color = Color(0.991164, 0.991164, 0.991164, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_wrdw4")
+theme_override_font_sizes/font_size = 96
+text = "Game Over!!!"
+horizontal_alignment = 1
+
+[node name="Story" type="Label" parent="."]
+offset_top = 420.0
+offset_right = 1919.0
+offset_bottom = 549.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.964742, 0.964742, 0.964742, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_qfpjp")
+theme_override_font_sizes/font_size = 47
+text = "Click the 'Next' button to see your final score and your game statistics"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 619.0
+offset_right = 1116.0
+offset_bottom = 730.0
+theme_override_fonts/font = SubResource("SystemFont_mej3r")
+theme_override_font_sizes/font_size = 60
+text = "Next"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
