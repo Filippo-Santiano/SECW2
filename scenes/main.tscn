@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=17 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -17,6 +17,22 @@ size = Vector2(880, 581)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
 size = Vector2(388, 324)
 
+[sub_resource type="SystemFont" id="SystemFont_qcd84"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_fj3n6"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_vod0x"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_16gb1"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
 [node name="Main" type="Node2D"]
 
 [node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution", "ProgressBars") groups=["YearsTimer"]]
@@ -26,10 +42,10 @@ YearsLabel = NodePath("../UI/YearsLabel")
 PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
-ElectricityLabel = NodePath("../UI/ElectricityLabel")
-HappinessLabel = NodePath("../UI/HappinessLabel")
-YearlyPollution = NodePath("../UI/YearlyPollution")
-ExternalPollution = NodePath("../UI/ExternalPollution")
+ElectricityLabel = NodePath("")
+HappinessLabel = NodePath("")
+YearlyPollution = NodePath("")
+ExternalPollution = NodePath("")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
 yearsPerMinute = 4.0
 
@@ -60,7 +76,7 @@ script = ExtResource("4_ustpy")
 script = ExtResource("5_p11hm")
 TilesNode = NodePath("../Tiles")
 HoverTiles = NodePath("HoverTiles")
-TextLabel = NodePath("../UI/SelectedTileLabel")
+TextLabel = NodePath("")
 
 [node name="HoverTiles" type="TileMapLayer" parent="PlayerController"]
 modulate = Color(1, 1, 1, 0.470588)
@@ -95,68 +111,47 @@ offset_left = 19.0
 offset_top = 73.0
 offset_right = 111.0
 offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.973535, 0.973535, 0.973535, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-
-[node name="YearlyPollution" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_qcd84")
+theme_override_font_sizes/font_size = 35
 
 [node name="PollutionLabel" type="Label" parent="UI"]
 offset_left = 19.0
 offset_top = 118.0
 offset_right = 168.0
 offset_bottom = 161.0
+theme_override_colors/font_color = Color(0.969137, 0.969137, 0.969137, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-
-[node name="ExternalPollution" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_fj3n6")
+theme_override_font_sizes/font_size = 35
 
 [node name="IncomeLabel" type="Label" parent="UI"]
 offset_left = 19.0
 offset_top = 161.0
 offset_right = 181.0
 offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.991164, 0.991164, 0.991164, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_vod0x")
+theme_override_font_sizes/font_size = 35
 
 [node name="MoneyLabel" type="Label" parent="UI"]
 offset_left = 19.0
 offset_top = 207.0
 offset_right = 219.0
 offset_bottom = 268.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-
-[node name="ElectricityLabel" type="Label" parent="UI"]
-offset_left = 19.0
-offset_top = 253.0
-offset_right = 111.0
-offset_bottom = 287.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-
-[node name="HappinessLabel" type="Label" parent="UI"]
-offset_left = 19.0
-offset_top = 299.0
-offset_right = 111.0
-offset_bottom = 333.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-
-[node name="SelectedTileLabel" type="Label" parent="UI"]
-anchors_preset = -1
-anchor_right = 0.249
-anchor_bottom = 0.277
-offset_left = 19.0
-offset_top = 35.0
-offset_right = -358.08
-offset_bottom = -241.16
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Selected Tile:"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_16gb1")
+theme_override_font_sizes/font_size = 35
 
 [node name="ControlsLabel" type="Label" parent="UI"]
 anchors_preset = -1
