@@ -67,7 +67,10 @@ func update_ui():
 	var electricityPercentage = 0
 
 	if Global.ElectricityGenerated != 0:
-		electricityPercentage = round(100 * Global.ElectricityGenerated / Global.ElectricityRequired)
+		if Global.ElectricityRequired != 0:
+			electricityPercentage = round(100 * Global.ElectricityGenerated / Global.ElectricityRequired)
+		else:
+			electricityPercentage = 100
 	
 	# Display text
 	elec_bar_percentage.text = str(electricityPercentage) + '%'

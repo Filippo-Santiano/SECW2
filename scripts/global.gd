@@ -1,10 +1,10 @@
 extends Node
 
-var Money = 15
+var Money = 1000
 var Pollution = 0
 
 # Progress bars needs access to these so I've made them global
-var ElectricityGenerated = 0
+var ElectricityGenerated = 5
 var ElectricityRequired = 0
 
 var Electricity = 0

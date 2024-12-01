@@ -53,7 +53,7 @@ func _ready():
 		"YearlyPollution": {
 			"strong_negative": check.yp_strong_negative,
 			"negative": check.yp_negative,
-			"strong_postive": check.yp_strong_postive,
+			"strong_positive": check.yp_strong_postive,
 			"positive": check.yp_positive,
 		},
 	}

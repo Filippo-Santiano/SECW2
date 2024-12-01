@@ -129,7 +129,7 @@ BuildingMenu = NodePath("../../..")
 [node name="NuclearPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
-text = "Coal Power Plant
+text = "Nuclear Power Plant
 $50"
 icon = ExtResource("10_a80ut")
 script = ExtResource("3_4872b")
