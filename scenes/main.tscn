@@ -35,17 +35,13 @@ subpixel_positioning = 0
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution", "ProgressBars") groups=["YearsTimer"]]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ProgressBars") groups=["YearsTimer"]]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")
 PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
-ElectricityLabel = NodePath("")
-HappinessLabel = NodePath("")
-YearlyPollution = NodePath("")
-ExternalPollution = NodePath("")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
 yearsPerMinute = 4.0
 
@@ -72,11 +68,10 @@ tile_map_data = PackedByteArray("AAD///v/AAAAAAAAAAD///z/FQAAAAAAAAD+//3/AAAAAAA
 tile_set = ExtResource("2_kjq6j")
 script = ExtResource("4_ustpy")
 
-[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("TilesNode", "HoverTiles", "TextLabel")]
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("TilesNode", "HoverTiles")]
 script = ExtResource("5_p11hm")
 TilesNode = NodePath("../Tiles")
 HoverTiles = NodePath("HoverTiles")
-TextLabel = NodePath("")
 
 [node name="HoverTiles" type="TileMapLayer" parent="PlayerController"]
 modulate = Color(1, 1, 1, 0.470588)

@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://b5isq11xxlfjs"]
+[gd_scene load_steps=2 format=3 uid="uid://b5isq11xxlfjs"]
 
-[node name="EndScreen" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_432sb"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_432sb")
+
+[node name="scoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

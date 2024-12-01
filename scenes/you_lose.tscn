@@ -24,6 +24,7 @@ grow_vertical = 2
 script = ExtResource("1_qhip5")
 
 [node name="Welcome" type="Label" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 123.0
 offset_right = 1918.0
@@ -41,6 +42,7 @@ text = "Game Over!!!"
 horizontal_alignment = 1
 
 [node name="Story" type="Label" parent="."]
+layout_mode = 0
 offset_top = 420.0
 offset_right = 1919.0
 offset_bottom = 549.0
