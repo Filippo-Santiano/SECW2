@@ -5,7 +5,7 @@ var money_end_target # to check money is under criteria
 var unhappiness_target # to  check happiness rate is under criteria
 var whole_game_data = Global.get_yearly_data() # This returns a list of each year's data
 var final_score = Global.calculate_final_score() # This gets the final score
-@onready var score_label: Label = $Label
+@onready var score_label: Label = $scoreLabel # 
 var yearly_data
 
 
@@ -23,9 +23,9 @@ var colors = {
 }
 
 func _ready():
-	# to show the final result
-	print(final_score)
-	#score_label.text = str("Final Score: ", int(final_score))
+	# Print the final score
+	score_label.text = str("Your final score is: ", round(final_score))
+
 	yearly_data = [
 		{"Year": 2021, "Money": 100, "Pollution": 500, "Electricity": 500, "Happiness": 500},
 		{"Year": 2022, "Money": 200, "Pollution": 500, "Electricity": 400, "Happiness": 300},

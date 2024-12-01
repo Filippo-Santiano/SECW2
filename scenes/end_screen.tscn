@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5isq11xxlfjs"]
+[gd_scene load_steps=3 format=3 uid="uid://b5isq11xxlfjs"]
 
 [ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_432sb"]
+
+[sub_resource type="SystemFont" id="SystemFont_ashmq"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -9,5 +13,17 @@ script = ExtResource("1_432sb")
 
 [node name="scoreLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1.0
+offset_top = 91.0
+offset_right = 1920.0
+offset_bottom = 343.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 75
+horizontal_alignment = 1
+vertical_alignment = 1
