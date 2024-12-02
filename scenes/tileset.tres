@@ -220,7 +220,9 @@ texture_region_size = Vector2i(132, 101)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7wud"]
 texture = ExtResource("20_jgw4m")
-texture_region_size = Vector2i(128, 64)
+texture_region_size = Vector2i(133, 99)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ec1a"]
 resource_name = "Orange Forest"
@@ -387,7 +389,7 @@ texture_region_size = Vector2i(133, 99)
 texture = ExtResource("36_simdh")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/texture_origin = Vector2i(0, -24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5v2"]
 texture = ExtResource("37_ta1im")
@@ -405,7 +407,7 @@ texture_region_size = Vector2i(133, 99)
 texture = ExtResource("39_q5r0u")
 texture_region_size = Vector2i(133, 83)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/texture_origin = Vector2i(0, -24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_50b8c"]
 texture = ExtResource("40_5bmui")
@@ -460,7 +462,7 @@ texture_region_size = Vector2i(132, 99)
 texture = ExtResource("48_kcdyk")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/texture_origin = Vector2i(0, -24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcjk5"]
 texture = ExtResource("49_tg4im")
