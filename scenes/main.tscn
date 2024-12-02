@@ -90,14 +90,16 @@ script = ExtResource("4_ustpy")
 position = Vector2(3, -11.5)
 shape = SubResource("RectangleShape2D_rnb82")
 
-[node name="ToolTipBox" type="Panel" parent="." node_paths=PackedStringArray("label")]
+[node name="ToolTipBox" type="Panel" parent="." node_paths=PackedStringArray("label", "camera")]
 physics_interpolation_mode = 0
+visible = false
 z_index = 100
 texture_filter = 6
 offset_right = 186.0
 offset_bottom = 106.0
 script = ExtResource("6_gxt0b")
 label = NodePath("ScrollContainer/ToolTipLabel")
+camera = NodePath("../MainCamera")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ToolTipBox"]
 offset_left = 4.0
@@ -114,26 +116,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -22
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 68
-text = "TEST TEST "
 autowrap_mode = 3
-
-[node name="ToolTipCasts" type="Node2D" parent="ToolTipBox"]
-
-[node name="Up" type="RayCast2D" parent="ToolTipBox/ToolTipCasts"]
-position = Vector2(91, 10)
-target_position = Vector2(0, -10)
-
-[node name="Left" type="RayCast2D" parent="ToolTipBox/ToolTipCasts"]
-position = Vector2(10, 52)
-target_position = Vector2(-10, 0)
-
-[node name="Right" type="RayCast2D" parent="ToolTipBox/ToolTipCasts"]
-position = Vector2(176, 52)
-target_position = Vector2(10, 0)
-
-[node name="Down" type="RayCast2D" parent="ToolTipBox/ToolTipCasts"]
-position = Vector2(92, 96)
-target_position = Vector2(0, 10)
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
@@ -150,6 +133,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g14un")
 
 [node name="RealCameraArea" type="Area2D" parent="MainCamera" groups=["RealCameraArea"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/RealCameraArea"]
 shape = SubResource("RectangleShape2D_p4okx")
