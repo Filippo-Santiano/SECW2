@@ -443,7 +443,7 @@ func _input(event):
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
 		else:
-			hide_popup()
+			ToolTipBox.hideToolTip()
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
@@ -472,9 +472,6 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 	ToolTipBox.showToolTip()
 	# Show and center the popup
 	# Shows the popup with tile information
-
-func hide_popup():
-	ToolTipBox.hideToolTip()
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
