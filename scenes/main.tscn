@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=21 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://c56q8m3q4xkh8" path="res://scenes/tool_tip_box.tscn" id="6_opf80"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
+[ext_resource type="PackedScene" uid="uid://c10qu10swsh6g" path="res://menus/pause_menu/extras_menu.tscn" id="10_haqnv"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
+[ext_resource type="PackedScene" uid="uid://opa3n64he6a6" path="res://menus/pause_menu/DataReferences.tscn" id="11_gja8h"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
@@ -47,7 +49,7 @@ PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
-yearsPerMinute = 4.0
+yearsPerMinute = 60.0
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ToolTipBox", "Camera", "PlayerController")]
 script = ExtResource("1_10c5s")
@@ -90,7 +92,7 @@ position = Vector2(3, -11.5)
 shape = SubResource("RectangleShape2D_rnb82")
 
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
-offset_bottom = 115.0
+offset_bottom = 186.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
@@ -181,7 +183,15 @@ offset_right = -3.0
 offset_bottom = -637.0
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
+visible = false
 anchors_preset = -1
+
+[node name="ExtrasMenu" parent="UI/PauseMenu" instance=ExtResource("10_haqnv")]
+visible = false
+
+[node name="DataReferences" parent="UI/PauseMenu/ExtrasMenu" instance=ExtResource("11_gja8h")]
+visible = false
+layout_mode = 1
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
 offset_left = -139.0

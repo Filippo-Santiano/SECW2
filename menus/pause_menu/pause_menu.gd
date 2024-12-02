@@ -28,3 +28,8 @@ func _on_quit_pressed() -> void:
 
 func _process(delta):
 	testEsc()
+
+
+func _on_extras_pressed() -> void:
+	print("Extras button pressed")
+	get_tree().change_scene_to_file("res://menus/pause_menu/extras_menu.tscn")
