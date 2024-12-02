@@ -1,5 +1,7 @@
 extends Node
 
+var mouseBlocker = false #True when the mouse hovers over the build button/menu
+
 var Money = 1000
 var Pollution = 0
 

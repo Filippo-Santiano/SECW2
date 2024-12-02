@@ -8,9 +8,8 @@ func _process(delta: float) -> void:
 @export var PlayerController : Node2D
 @export var MenuContainer : ScrollContainer
 @export var Camera : Camera2D
- 
-# Control node to block interactions with map underneath building menu
-var blocker: Control
+@export var MenuBlocker : CollisionShape2D
+
 
 # Hide the buttons initially
 var is_pressed = false
@@ -23,11 +22,13 @@ func _on_build_button_pressed() -> void:
 		MenuContainer.hide()
 		is_pressed = false
 		Camera.canScroll = true
+		MenuBlocker.disabled = true #Only block mouse inputs beneath the menu button when collapsed
 		swap_build_mode()
 	else:
 		MenuContainer.show()
 		is_pressed = true
-		Camera.canScroll = false
+		Camera.canScroll = false #Prevent the camera from scrolling while in the menu
+		MenuBlocker.disabled = false
 		swap_build_mode()
 
 func swap_build_mode():

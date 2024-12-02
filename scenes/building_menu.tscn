@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mlgjwly0sjst"]
+[gd_scene load_steps=21 format=3 uid="uid://mlgjwly0sjst"]
 
 [ext_resource type="Script" path="res://scripts/building_menu.gd" id="1_jr522"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_tr6n0"]
@@ -17,8 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="14_bagps"]
 [ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="15_6odak"]
 [ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="17_5jgq6"]
+[ext_resource type="Script" path="res://scripts/mouse_blocker.gd" id="18_nebj5"]
 
-[node name="BuildingMenu" type="Control" node_paths=PackedStringArray("MenuContainer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vay08"]
+size = Vector2(1100.5, 161)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2g03"]
+size = Vector2(143.25, 161)
+
+[node name="BuildingMenu" type="Control" node_paths=PackedStringArray("MenuContainer", "MenuBlocker")]
 layout_mode = 3
 anchor_right = 0.219
 anchor_bottom = 0.246
@@ -27,8 +34,25 @@ offset_top = 685.0
 offset_right = 1486.52
 offset_bottom = 805.32
 size_flags_horizontal = 3
+mouse_filter = 2
 script = ExtResource("1_jr522")
 MenuContainer = NodePath("MenuContainer")
+MenuBlocker = NodePath("MouseBlocker/MenuShape")
+
+[node name="MouseBlocker" type="Area2D" parent="."]
+process_priority = -1
+process_physics_priority = -1
+z_index = 6
+position = Vector2(81, 205)
+script = ExtResource("18_nebj5")
+
+[node name="MenuShape" type="CollisionShape2D" parent="MouseBlocker"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vay08")
+
+[node name="ButtonShape" type="CollisionShape2D" parent="MouseBlocker"]
+position = Vector2(479.625, 1)
+shape = SubResource("RectangleShape2D_r2g03")
 
 [node name="BuildButton" type="MenuButton" parent="."]
 z_index = 2
@@ -37,6 +61,7 @@ offset_left = 502.0
 offset_top = 135.0
 offset_right = 638.0
 offset_bottom = 271.0
+mouse_filter = 1
 icon = ExtResource("4_qb2i8")
 icon_alignment = 2
 
@@ -196,6 +221,8 @@ script = ExtResource("3_4872b")
 ID = 39
 BuildingMenu = NodePath("../../..")
 
+[connection signal="mouse_entered" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_exited"]
 [connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OfficeItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]

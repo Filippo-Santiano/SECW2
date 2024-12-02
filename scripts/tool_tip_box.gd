@@ -25,3 +25,15 @@ func set_text(text):
 
 func cameraScale(step):
 	currentStep = step #Camera calls this function to tell the box the current zoom level
+	
+func showToolTip():
+	show()
+	$AnimationPlayer.play("showToolTipBox")
+	#Play the animation that fades the box in
+
+func hideToolTip():
+	$AnimationPlayer.play_backwards("showToolTipBox")
+	#Play the same animation, backwards (fade out)
+	await($AnimationPlayer.animation_finished)
+	#Wait for it to finish, then make sure the box is properly hidden
+	hide()

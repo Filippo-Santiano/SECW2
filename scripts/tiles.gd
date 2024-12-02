@@ -425,7 +425,7 @@ func sellTile(x,y):
 
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not Global.mouseBlocker:
 		var world_pos = get_global_mouse_position()
 		var tile_pos = TilesLayer.local_to_map(world_pos)
 		# Retrieve tile ID and information
@@ -440,12 +440,12 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Customize popup content with tile details
 	ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
 	ToolTipBox.position = get_global_mouse_position()
-	ToolTipBox.show()
+	ToolTipBox.showToolTip()
 	# Show and center the popup
 	# Shows the popup with tile information
 
 func hide_popup():
-	ToolTipBox.hide()
+	ToolTipBox.hideToolTip()
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
