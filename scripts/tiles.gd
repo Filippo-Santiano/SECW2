@@ -7,6 +7,7 @@ class_name Tile
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
 @export var PopupBox : Popup
+@export var ToolTipBox : Panel
 @export var Camera : Camera2D
 @export var PlayerController: Node
 
@@ -431,18 +432,20 @@ func _input(event):
 		var tile_id = get_tile_id(tile_pos)
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
+		else:
+			hide_popup()
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Customize popup content with tile details
-	PopupBox.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
-	var world_pos = TilesLayer.map_to_local(tile_pos)
-	var offset_x = (world_pos.x + 576)*1.5
-	var offset_y = (world_pos.y + 352)*1.48
-	PopupBox.position = Vector2(offset_x,offset_y) - Camera.position
+	ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
+	ToolTipBox.position = get_global_mouse_position()
+	ToolTipBox.show()
 	# Show and center the popup
-	PopupBox.show()
 	# Shows the popup with tile information
+
+func hide_popup():
+	ToolTipBox.hide()
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
