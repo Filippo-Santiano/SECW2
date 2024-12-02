@@ -1,10 +1,12 @@
 extends Node
 
-var Money = 15
+var mouseBlocker = false #True when the mouse hovers over the build button/menu
+
+var Money = 1500
 var Pollution = 0
 
 # Progress bars needs access to these so I've made them global
-var ElectricityGenerated = 0
+var ElectricityGenerated = 4
 var ElectricityRequired = 0
 
 var Electricity = 0
@@ -40,16 +42,17 @@ func update_tile_attributes():
 		# Not currently using years_lapsed, but would be useful information to see within the tile box in-game
 		var years_elapsed = currentYear - tile["placed_time"]
 		for attr in tile["attributes"].keys():
-			var multipler = tile["multipliers"].get(attr, 0)
-			print("£££££££££££££££££££££££££££££££££££££££££££££££")
-			print("Attribute: ", attr)
-			print("Attribute value: ", tile["attributes"][attr])
-			print("Multipliers: ", tile["multipliers"][attr])
-			# This currently multiplies the multiplier with the attribute value assigned within tiles_placed
-			tile["attributes"][attr] *= (1 + tile["multipliers"][attr])
-			# We could calculate current values if we don't want to update the attribute values in tiles
-			# This could be a better method when implementing the repair function
-			# tile["attributes"][attr] *= pow(1 + tile["multipliers"][attr], years_elapsed)
+			if attr != "name":
+				var multipler = tile["multipliers"].get(attr, 0)
+				print("£££££££££££££££££££££££££££££££££££££££££££££££")
+				print("Attribute: ", attr)
+				print("Attribute value: ", tile["attributes"][attr])
+				print("Multipliers: ", tile["multipliers"][attr])
+				# This currently multiplies the multiplier with the attribute value assigned within tiles_placed
+				tile["attributes"][attr] *= (1 + tile["multipliers"][attr])
+				# We could calculate current values if we don't want to update the attribute values in tiles
+				# This could be a better method when implementing the repair function
+				# tile["attributes"][attr] *= pow(1 + tile["multipliers"][attr], years_elapsed)
 
 		print("Updated tile at", pos, ":", tile["attributes"])  # Debug print
 

@@ -6,7 +6,7 @@ class_name Tile
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
-@export var PopupBox : Popup
+@export var ToolTipBox : Panel
 @export var Camera : Camera2D
 @export var PlayerController: Node
 
@@ -53,7 +53,7 @@ var yearly_income: int = 0 # Dynamic income
 var electricity: int = 0 # Non dynamic electricity
 var happiness: int = 50 # comme ci comme ca
 
-# Mapping IDs to default yearly pollution values
+
 const Initial_Yearly_Tile_Pollution = {
 	1: 15,  # Office adds pollution yearly
 	2: -10    # Forest reduces yearly pollution
@@ -70,24 +70,164 @@ const Initial_Electricity = {
 const Initial_Happiness = {
 	1: 5,
 	2: 10 # Tree makes me happy
-}
+	}
+	
+## Mapping IDs to default yearly pollution values
+#const Initial_Yearly_Tile_Pollution = {
+	#1: 100,  # Office adds pollution yearly
+	#2: -100    # Forest reduces yearly pollution
+#}
+#const Initial_Yearly_Income = {
+	#1: 15
+#}
+#
+#const Initial_Electricity = {
+	#1: -10
+#}
+#
+#const Initial_Happiness = {
+	#1: -1,
+	#2: 10, # Tree makes me happy
+	##28: 10,
+	##29: 10,
+	##30: 10,
+	##31: 10,
+	##32: -15,
+	##33: -15,
+	##34: -5,
+	##35: 5,
+	##36: 7,
+	##37: 2,
+	##38: 10,
+	##39: 2 
+#}
 
 # Sets the initial values for each of the different buildings based on ID value
 const Initial_Tile_Attributes = {
-	1: { #Office
+	1: {  # Office
+		"name" : "Office",
 		"yearly_pollution": 50,
-		"income": 20,
-		"electricityRequired": 10,
-		"electricityGenerated": 9,
-		"positiveHappiness": 9,
+		"income": 350,
+		"electricityRequired": 2.5,
+		"electricityGenerated": 0,
+		"positiveHappiness": 8,
+		"negativeHappiness": 8
+	},
+	2: {  # Forest
+		"name" : "Forest",
+		"yearly_pollution": -30,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 18,
+		"negativeHappiness": 0
+	},
+	28: {  # Orange Forest
+		"name" : "Orange Forest",
+		"yearly_pollution": -20,
+		"income": 5,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 14,
+		"negativeHappiness": 0
+	},
+	29: {  # Rubber Forest
+		"name" : "Rubber Forest",
+		"yearly_pollution": -25,
+		"income": 8,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 14,
+		"negativeHappiness": 0
+	},
+	30: {  # Palm Forest
+		"name" : "Palm Forest",
+		"yearly_pollution": -15,
+		"income": 10,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 11,
+		"negativeHappiness": 2
+	},
+	31: {  # Cocoa Forest
+		"name" : "Cocoa Forest",
+		"yearly_pollution": -22,
+		"income": 12,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 14,
+		"negativeHappiness": 0
+	},
+	32: {  # Coal PP
+		"name" : "Coal Power Plant",	
+		"yearly_pollution": 60,
+		"income": 0,
+		"electricityRequired": 5,
+		"electricityGenerated": 10,
+		"positiveHappiness": 0,
+		"negativeHappiness": 20
+	},
+	33: {  # Nuclear PP
+		"name" : "Nuclear Power Plant",
+		"yearly_pollution": 20,
+		"income": 0,
+		"electricityRequired": 5,
+		"electricityGenerated": 15,
+		"positiveHappiness": 0,
 		"negativeHappiness": 10
 	},
-	2: { #Forrest
-		"yearly_pollution": -10,
+	34: {  # Wind Farm
+		"name" : "Wind Farm",
+		"yearly_pollution": 0,
+		"income": 0,
+		"electricityRequired": 1,
+		"electricityGenerated": 7,
+		"positiveHappiness": 10,
+		"negativeHappiness": 2
+	},
+	35: {  # Leisure Centre
+		"name" : "Leisure Centre",
+		"yearly_pollution": 3,
+		"income": 0,
+		"electricityRequired": 8,
+		"electricityGenerated": 0,
+		"positiveHappiness": 20,
+		"negativeHappiness": 5
+	},
+	36: {  # Stadium
+		"name" : "Stadium",
+		"yearly_pollution": 5,
+		"income": 50,
+		"electricityRequired": 22,
+		"electricityGenerated": 0,
+		"positiveHappiness": 15,
+		"negativeHappiness": 5
+	},
+	37: {  # Dairy Farm
+		"name" : "Dairy Farm",
+		"yearly_pollution": 2,
+		"income": 40,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 5,
+		"negativeHappiness": 0
+	},
+	38: {  # Park
+		"name" : "Park",
+		"yearly_pollution": -5,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
 		"positiveHappiness": 10,
+		"negativeHappiness": 0
+	},
+	39: {  # Wheat Farm
+		"name" : "Wheat Farm",
+		"yearly_pollution": 2,
+		"income": 70,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 3,
 		"negativeHappiness": 0
 	}
 }
@@ -103,7 +243,103 @@ const Tile_Multipliers = {
 		"positiveHappiness": 0,
 		"negativeHappiness": 0.05
 		},
-	2: { #Forrest
+	2: { #Forest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	28: { #Orange Forest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	29: { #Rubber Forest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	30: { #Palm Forest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	31: { #Cocoa Forest
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	32: { #Coal PP
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	33: { #Nuclear PP
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	34: { #Wind Farm
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	35: { #Leisure Centre
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	36: { #Stadium
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	37: { #Dairy Farm
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	38: { #Park
+		"yearly_pollution": 0.02,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0.04,
+		"negativeHappiness": 0
+		},
+	39: { #Wheat Farm
 		"yearly_pollution": 0.02,
 		"income": 0,
 		"electricityRequired": 0,
@@ -199,25 +435,46 @@ func sellTile(x,y):
 
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not Global.mouseBlocker:
 		var world_pos = get_global_mouse_position()
 		var tile_pos = TilesLayer.local_to_map(world_pos)
 		# Retrieve tile ID and information
 		var tile_id = get_tile_id(tile_pos)
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
+		else:
+			hide_popup()
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Customize popup content with tile details
-	PopupBox.get_node("Label").text = "Building at: %s \n (ID: %d)" % [tile_pos, tile_id]
-	var world_pos = TilesLayer.map_to_local(tile_pos)
-	var offset_x = (world_pos.x + 576)*1.5
-	var offset_y = (world_pos.y + 352)*1.48
-	PopupBox.position = Vector2(offset_x,offset_y) - Camera.position
+	var tile = Global.tile_data.get(Vector2(tile_pos))
+	if tile:
+		var attributes = tile.get("attributes") #grab attributes from dictionary
+		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
+		
+		var Name = attributes.get("name")
+		var yearlyPollution : int = attributes.get("yearly_pollution")
+		var yearlyIncome : int = attributes.get("income")
+		var electricityRequired : int = attributes.get("electricityRequired")
+		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var netHappiness : int = attributes.get("positiveHappiness") - attributes.get("negativeHappiness")
+		
+		ToolTipBox.set_text(Name,"Name")
+		ToolTipBox.set_text(str("Environment: ",yearlyPollution),"Environment")
+		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
+		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
+		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
+	else:
+		ToolTipBox.set_text("Cannot identify tile","Name")
+	print("")
+	ToolTipBox.position = get_global_mouse_position()
+	ToolTipBox.showToolTip()
 	# Show and center the popup
-	PopupBox.show()
 	# Shows the popup with tile information
+
+func hide_popup():
+	ToolTipBox.hideToolTip()
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:

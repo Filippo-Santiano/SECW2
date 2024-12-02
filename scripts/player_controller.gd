@@ -31,7 +31,7 @@ func _ready() -> void:
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
 func _physics_process(delta: float) -> void:
 	# When build button pressed, begin delay so buildings cannot be immediately placed 
-	if buildMode:
+	if buildMode and not Global.mouseBlocker:
 		time_passed += delta
 		if time_passed >= delay:
 			build_inputs()

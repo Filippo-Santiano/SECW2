@@ -51,7 +51,7 @@ func update_stats_every_year():
 	var tempYearlyPollution = 0
 	var tempIncome = 0
 	var electricityRequired = 0
-	var electricityGenerated = 0
+	var electricityGenerated = 4
 	var tempHappinessPos = 0
 	var tempHappinessNeg = 0
 	
@@ -60,17 +60,19 @@ func update_stats_every_year():
 		var tile = Global.tile_data[pos]
 		tempYearlyPollution += tile["attributes"]["yearly_pollution"]
 		tempIncome += tile["attributes"]["income"]
+		print("Temporary income 1: ", tempIncome)
 		electricityRequired += tile["attributes"]["electricityRequired"]
 		electricityGenerated += tile["attributes"]["electricityGenerated"]
 		tempHappinessPos += tile["attributes"]["positiveHappiness"]
 		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 		
-		# If generated is < required, income is decreased by a factor of generated / required
+	# If generated is < required, income is decreased by a factor of generated / required
 	if (electricityGenerated < electricityRequired):
 		# # Avoids division by 0
 		if electricityRequired != 0:
 			tempIncome *= (electricityGenerated / electricityRequired)
 	
+	print("Temporary income 2: ", tempIncome)	
 	# Updating the global values
 	Global.YearlyPollution = tempYearlyPollution
 	Global.Income = tempIncome
@@ -133,6 +135,7 @@ func yearPassed():
 
 
 func _on_year_passed() -> void:
+	print("Yearly income: ", Global.Income)
 	
 	#print(Global.tile_data)
 	#Global.updateMaximumIncome()

@@ -4,6 +4,8 @@ const MOVE_SPEED = 20
 const ZOOM_STEPS = [1.0,1.5,2.0]
 
 @export var WorldBounds : Area2D
+@export var ToolTipBox : Panel
+
 var currentStep = 1
 var startPos = Vector2()
 var startZoom = Vector2()
@@ -53,8 +55,10 @@ func getInputs():
 	if canScroll:
 		if Input.is_action_just_pressed("scroll up") and currentStep < len(ZOOM_STEPS)-1:
 			currentStep += 1
+			ToolTipBox.cameraScale(currentStep)
 		elif Input.is_action_just_pressed("scroll down") and currentStep > 0:
 			currentStep -= 1
+			ToolTipBox.cameraScale(currentStep)
 		#Scroll wheel scrolls between three zoom steps set at the top of this script
 	
 	return Inputs.normalized()

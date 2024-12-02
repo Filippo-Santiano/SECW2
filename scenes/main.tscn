@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=19 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
+[ext_resource type="PackedScene" uid="uid://c56q8m3q4xkh8" path="res://scenes/tool_tip_box.tscn" id="6_opf80"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
@@ -16,6 +17,9 @@ size = Vector2(880, 581)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
 size = Vector2(388, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4okx"]
+size = Vector2(1280, 720)
 
 [sub_resource type="SystemFont" id="SystemFont_qcd84"]
 font_names = PackedStringArray("Impact")
@@ -35,28 +39,24 @@ subpixel_positioning = 0
 
 [node name="Main" type="Node2D"]
 
-[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ElectricityLabel", "HappinessLabel", "YearlyPollution", "ExternalPollution", "ProgressBars") groups=["YearsTimer"]]
+[node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ProgressBars") groups=["YearsTimer"]]
 autostart = true
 script = ExtResource("1_g2f2i")
 YearsLabel = NodePath("../UI/YearsLabel")
 PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
-ElectricityLabel = NodePath("")
-HappinessLabel = NodePath("")
-YearlyPollution = NodePath("")
-ExternalPollution = NodePath("")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
 yearsPerMinute = 4.0
 
-[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "PopupBox", "Camera", "PlayerController")]
+[node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ToolTipBox", "Camera", "PlayerController")]
 script = ExtResource("1_10c5s")
 TilesLayer = NodePath("Layer1")
 HoverTiles = NodePath("../PlayerController/HoverTiles")
 PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
-PopupBox = NodePath("../UI/Popup")
+ToolTipBox = NodePath("../ToolTipBox")
 Camera = NodePath("../MainCamera")
 PlayerController = NodePath("../PlayerController")
 
@@ -72,11 +72,10 @@ tile_map_data = PackedByteArray("AAD///v/AAAAAAAAAAD///z/FQAAAAAAAAD+//3/AAAAAAA
 tile_set = ExtResource("2_kjq6j")
 script = ExtResource("4_ustpy")
 
-[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("TilesNode", "HoverTiles", "TextLabel")]
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("TilesNode", "HoverTiles")]
 script = ExtResource("5_p11hm")
 TilesNode = NodePath("../Tiles")
 HoverTiles = NodePath("HoverTiles")
-TextLabel = NodePath("")
 
 [node name="HoverTiles" type="TileMapLayer" parent="PlayerController"]
 modulate = Color(1, 1, 1, 0.470588)
@@ -90,18 +89,27 @@ script = ExtResource("4_ustpy")
 position = Vector2(3, -11.5)
 shape = SubResource("RectangleShape2D_rnb82")
 
-[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds")]
+[node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
+offset_bottom = 115.0
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 script = ExtResource("6_0oufy")
 WorldBounds = NodePath("../WorldBounds")
+ToolTipBox = NodePath("../ToolTipBox")
 
 [node name="CameraCollider" type="Area2D" parent="MainCamera"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/CameraCollider"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g14un")
+
+[node name="RealCameraArea" type="Area2D" parent="MainCamera" groups=["RealCameraArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/RealCameraArea"]
+shape = SubResource("RectangleShape2D_p4okx")
 
 [node name="UI" type="CanvasLayer" parent="."]
 auto_translate_mode = 1
@@ -187,18 +195,9 @@ offset_left = 1275.0
 offset_top = 779.0
 offset_right = 1496.52
 offset_bottom = 899.32
+mouse_filter = 1
 PlayerController = NodePath("../../PlayerController")
 Camera = NodePath("../../MainCamera")
-
-[node name="Popup" type="Popup" parent="UI"]
-
-[node name="Label" type="Label" parent="UI/Popup"]
-z_index = 1
-texture_filter = 6
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 0
 
 [connection signal="YearPassed" from="YearsTimer" to="YearsTimer" method="_on_year_passed"]
 [connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]
