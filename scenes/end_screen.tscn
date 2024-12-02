@@ -27,3 +27,37 @@ theme_override_fonts/font = SubResource("SystemFont_ashmq")
 theme_override_font_sizes/font_size = 75
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="yAxisLabel" type="Label" parent="."]
+offset_left = -30.0
+offset_top = 489.0
+offset_right = 337.0
+offset_bottom = 602.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 60
+text = "Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="xAxisLabel" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 893.0
+offset_right = 1918.0
+offset_bottom = 1145.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 60
+text = "Years"
+horizontal_alignment = 1
+vertical_alignment = 1

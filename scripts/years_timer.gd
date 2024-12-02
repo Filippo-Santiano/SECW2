@@ -112,6 +112,10 @@ func yearPassed():
 	if int(Years) > prevYear:
 		emit_signal("YearPassed")
 		print("YEAR PASSED")
+		print("&&&&&&&&&&&&&&&&&&&&")
+		print("Yearly Data: ", Global.yearly_data)
+		print("&&&&&&&&&&&&&&&&&&&&")
+
 		prevYear = Years
 		update_stats_every_year()
 		# Add the yearly stats to list
@@ -134,6 +138,7 @@ func yearPassed():
 				
 		else:
 			Global.Years_Over = 0
+			
 
 
 

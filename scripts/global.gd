@@ -76,7 +76,11 @@ func updateData(x,y):
 	MaximumIncome += attributes.get("income")
 	
 # Array to store yearly data
-var yearly_data = []
+var yearly_data = [] 
+var happiness_data = []
+var electricity_data = []
+var pollution_data = []
+var money_data = []
 
 # Function to append yearly data to array yearly_data
 func collect_yearly_data():
@@ -90,6 +94,12 @@ func collect_yearly_data():
 	}
 	# Append to array
 	yearly_data.append(year_snapshot)
+	
+	# Add values to appropriate list
+	happiness_data.append(year_snapshot["Happiness"])
+	electricity_data.append(year_snapshot["Electricity"])
+	pollution_data.append(year_snapshot["Pollution"])
+	money_data.append(year_snapshot["Money"])
 	
 # Function returns they yearly_data array
 func get_yearly_data():
