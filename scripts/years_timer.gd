@@ -51,7 +51,7 @@ func update_stats_every_year():
 	var tempYearlyPollution = 0
 	var tempIncome = 0
 	var electricityRequired = 0
-	var electricityGenerated = 5
+	var electricityGenerated = 4
 	var tempHappinessPos = 0
 	var tempHappinessNeg = 0
 	

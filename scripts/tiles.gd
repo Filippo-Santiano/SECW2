@@ -6,7 +6,6 @@ class_name Tile
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
-@export var PopupBox : Popup
 @export var ToolTipBox : Panel
 @export var Camera : Camera2D
 @export var PlayerController: Node
@@ -106,6 +105,7 @@ const Initial_Happiness = {
 # Sets the initial values for each of the different buildings based on ID value
 const Initial_Tile_Attributes = {
 	1: {  # Office
+		"name" : "Office",
 		"yearly_pollution": 50,
 		"income": 350,
 		"electricityRequired": 2.5,
@@ -114,6 +114,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 8
 	},
 	2: {  # Forest
+		"name" : "Forest",
 		"yearly_pollution": -30,
 		"income": 0,
 		"electricityRequired": 0,
@@ -122,6 +123,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	28: {  # Orange Forest
+		"name" : "Orange Forest",
 		"yearly_pollution": -20,
 		"income": 5,
 		"electricityRequired": 0,
@@ -130,6 +132,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	29: {  # Rubber Forest
+		"name" : "Rubber Forest",
 		"yearly_pollution": -25,
 		"income": 8,
 		"electricityRequired": 0,
@@ -138,6 +141,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	30: {  # Palm Forest
+		"name" : "Palm Forest",
 		"yearly_pollution": -15,
 		"income": 10,
 		"electricityRequired": 0,
@@ -146,6 +150,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 2
 	},
 	31: {  # Cocoa Forest
+		"name" : "Cocoa Forest",
 		"yearly_pollution": -22,
 		"income": 12,
 		"electricityRequired": 0,
@@ -154,6 +159,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	32: {  # Coal PP
+		"name" : "Coal Power Plant",	
 		"yearly_pollution": 60,
 		"income": 0,
 		"electricityRequired": 5,
@@ -162,6 +168,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 20
 	},
 	33: {  # Nuclear PP
+		"name" : "Nuclear Power Plant",
 		"yearly_pollution": 20,
 		"income": 0,
 		"electricityRequired": 5,
@@ -170,6 +177,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 10
 	},
 	34: {  # Wind Farm
+		"name" : "Wind Farm",
 		"yearly_pollution": 0,
 		"income": 0,
 		"electricityRequired": 1,
@@ -178,6 +186,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 2
 	},
 	35: {  # Leisure Centre
+		"name" : "Leisure Centre",
 		"yearly_pollution": 3,
 		"income": 0,
 		"electricityRequired": 8,
@@ -186,6 +195,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 5
 	},
 	36: {  # Stadium
+		"name" : "Stadium",
 		"yearly_pollution": 5,
 		"income": 50,
 		"electricityRequired": 22,
@@ -194,6 +204,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 5
 	},
 	37: {  # Dairy Farm
+		"name" : "Dairy Farm",
 		"yearly_pollution": 2,
 		"income": 40,
 		"electricityRequired": 0,
@@ -202,6 +213,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	38: {  # Park
+		"name" : "Park",
 		"yearly_pollution": -5,
 		"income": 0,
 		"electricityRequired": 0,
@@ -210,6 +222,7 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	},
 	39: {  # Wheat Farm
+		"name" : "Wheat Farm",
 		"yearly_pollution": 2,
 		"income": 70,
 		"electricityRequired": 0,
@@ -218,9 +231,6 @@ const Initial_Tile_Attributes = {
 		"negativeHappiness": 0
 	}
 }
-
-
-
 
 # Sets the multiplier values for each of the different buildings based on ID value
 # These values get added to 1, so 0.03 is 1.03 times the previous year
@@ -438,7 +448,26 @@ func _input(event):
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Customize popup content with tile details
-	ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
+	var tile = Global.tile_data.get(Vector2(tile_pos))
+	if tile:
+		var attributes = tile.get("attributes") #grab attributes from dictionary
+		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
+		
+		var Name = attributes.get("name")
+		var yearlyPollution : int = attributes.get("yearly_pollution")
+		var yearlyIncome : int = attributes.get("income")
+		var electricityRequired : int = attributes.get("electricityRequired")
+		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var netHappiness : int = attributes.get("positiveHappiness") - attributes.get("negativeHappiness")
+		
+		ToolTipBox.set_text(Name,"Name")
+		ToolTipBox.set_text(str("Environment: ",yearlyPollution),"Environment")
+		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
+		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
+		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
+	else:
+		ToolTipBox.set_text("Cannot identify tile","Name")
+	print("")
 	ToolTipBox.position = get_global_mouse_position()
 	ToolTipBox.showToolTip()
 	# Show and center the popup

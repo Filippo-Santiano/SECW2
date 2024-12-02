@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=19 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -7,50 +7,13 @@
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
-[ext_resource type="Script" path="res://scripts/tool_tip_box.gd" id="6_gxt0b"]
+[ext_resource type="PackedScene" uid="uid://c56q8m3q4xkh8" path="res://scenes/tool_tip_box.tscn" id="6_opf80"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
 size = Vector2(880, 581)
-
-[sub_resource type="Animation" id="Animation_v8p2t"]
-resource_name = "showToolTipBox"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0666667, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ptps6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwuwm"]
-_data = {
-"RESET": SubResource("Animation_ptps6"),
-"showToolTipBox": SubResource("Animation_v8p2t")
-}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
 size = Vector2(388, 324)
@@ -126,40 +89,8 @@ script = ExtResource("4_ustpy")
 position = Vector2(3, -11.5)
 shape = SubResource("RectangleShape2D_rnb82")
 
-[node name="ToolTipBox" type="Panel" parent="." node_paths=PackedStringArray("label", "camera")]
-physics_interpolation_mode = 0
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 100
-texture_filter = 6
-offset_right = 186.0
-offset_bottom = 106.0
-script = ExtResource("6_gxt0b")
-label = NodePath("ScrollContainer/ToolTipLabel")
-camera = NodePath("../MainCamera")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ToolTipBox"]
-libraries = {
-"": SubResource("AnimationLibrary_dwuwm")
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ToolTipBox"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 724.0
-offset_bottom = 412.0
-scale = Vector2(0.25, 0.25)
-horizontal_scroll_mode = 0
-
-[node name="ToolTipLabel" type="Label" parent="ToolTipBox/ScrollContainer"]
-custom_minimum_size = Vector2(712, 390)
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -22
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 68
-autowrap_mode = 3
+[node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
+offset_bottom = 115.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
