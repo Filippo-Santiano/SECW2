@@ -29,6 +29,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="yAxisLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = -30.0
 offset_top = 489.0
 offset_right = 337.0
@@ -46,6 +47,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="xAxisLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 893.0
 offset_right = 1918.0
