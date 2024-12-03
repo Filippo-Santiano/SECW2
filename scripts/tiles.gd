@@ -378,7 +378,8 @@ func setInitialAttributes(tile,x,y):
 	Global.tile_data[Vector2(x,y)] = {
 		"attributes": initial_attributes.duplicate(true),
 		"multipliers": multipliers.duplicate(true),
-		"placed_time": Global.currentYear
+		"placed_time": Global.currentYear,
+		"Asset_ID": tile
 	}
 
 ##############################################
@@ -440,6 +441,7 @@ func _input(event):
 		var tile_pos = TilesLayer.local_to_map(world_pos)
 		# Retrieve tile ID and information
 		var tile_id = get_tile_id(tile_pos)
+		Global.Repair_Tile_Pos = tile_pos
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
 		else:
@@ -465,13 +467,75 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
 		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
 		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
+		get_repair_data()
+		print("____________Trying to get repair data____________",get_repair_data())
+		print("Repairing tile: ")
+		repair_tile()
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
-	print("")
+	#print("")
 	ToolTipBox.position = get_global_mouse_position()
 	ToolTipBox.showToolTip()
 	# Show and center the popup
 	# Shows the popup with tile information
+
+var IniYPol = 0
+var IniInc = 0
+var IniElecReq = 0
+var IniElecGen = 0
+var IniPosHapp = 0
+var IniNegHapp = 0
+
+func get_repair_data():
+	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
+	var Asset_ID = tile.get("Asset_ID")
+	var initial_attributes = Initial_Tile_Attributes.get(Asset_ID,{
+	"yearly_pollution": 0,
+	"income": 0,
+	"electricityRequired": 0,
+	"electricityGenerated": 0,
+	"positiveHappiness": 0,
+	"negativeHappiness": 0
+	})
+	print("Intial Yearly Pollution", initial_attributes.get("yearly_pollution"))
+	
+	var attributes = tile.get("attributes") #grab attributes from dictionary
+	var Name = attributes.get("name")
+	var yearlyPollution : int = attributes.get("yearly_pollution")
+	print("Yearly Pollution now: ", yearlyPollution)
+	var yearlyIncome : int = attributes.get("income")
+	var electricityRequired : int = attributes.get("electricityRequired")
+	var electricityGenerated : int = attributes.get("electricityGenerated")
+	var PosHappiness : int = attributes.get("positiveHappiness")
+	var NegHappiness : int = attributes.get("negativeHappiness")
+	
+	IniYPol = initial_attributes.get("yearly_pollution")
+	IniInc = initial_attributes.get("income")
+	IniElecReq = initial_attributes.get("electricityRequired")
+	IniElecGen = initial_attributes.get("electricityGenerated")
+	IniPosHapp = initial_attributes.get("positiveHappiness")
+	IniNegHapp = initial_attributes.get("negativeHappiness")
+	
+	Global.YPolDiff = IniYPol - yearlyPollution
+	Global.YIncDiff = IniInc - yearlyIncome
+	Global.ElecReqDiff = IniElecReq - electricityRequired
+	Global.ElecGenDiff = IniElecGen - electricityGenerated
+	Global.PosHappDiff = IniPosHapp - PosHappiness
+	Global.NegHappDiff = IniNegHapp - NegHappiness
+ 
+
+func repair_tile():
+	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
+	tile["attributes"]["yearly_pollution"] = IniYPol
+	tile["attributes"]["income"] = IniInc
+	tile["attributes"]["electricityRequired"] = IniElecReq
+	tile["attributes"]["electricityGenerated"] = IniElecGen
+	tile["attributes"]["positiveHappiness"] = IniPosHapp
+	tile["attributes"]["negativeHappiness"] = IniNegHapp
+	
+
+	# Update the values
+	# Refresh all the global variables
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
