@@ -78,7 +78,7 @@ func _draw():
 	var graph_width = 1300
 	var graph_height = 700
 	var start_x = 300
-	var start_y = 1000
+	var start_y =950
 	var step_x = graph_width / max(1, happiness_data.size() - 1) # X-axis spacing between years
 	
 	
@@ -110,12 +110,12 @@ func _draw():
 
 	# Draw the line
 	for j in range(points_happiness.size() - 1):
-		draw_line(points_happiness[j], points_happiness[j + 1], Color(1, 1, 0), 2)
-		draw_line(points_electricity[j], points_electricity[j + 1], Color(1, 0, 0), 2)
-		draw_line(points_pollution[j], points_pollution[j + 1], Color(0, 0, 1), 2)
-		draw_line(points_money[j], points_money[j + 1], Color(0, 1, 0), 2)
+		draw_line(points_happiness[j], points_happiness[j + 1], Color(1, 1, 0), 6) #yellow
+		draw_line(points_electricity[j], points_electricity[j + 1], Color(0, 0, 1), 6) #blue
+		draw_line(points_pollution[j], points_pollution[j + 1], Color(1, 0, 0), 6) # red
+		draw_line(points_money[j], points_money[j + 1], Color(0, 1, 0), 6) #green
 
 	# Draw the X and Y axes
-	draw_line(Vector2(start_x, start_y), Vector2(start_x + graph_width, start_y), Color(1, 1, 1), 2)  # X 
-	draw_line(Vector2(start_x, start_y), Vector2(start_x, start_y - graph_height), Color(1, 1, 1), 2)  # Y 
+	draw_line(Vector2(start_x, start_y), Vector2(start_x + graph_width, start_y), Color(1, 1, 1), 6)  # X 
+	draw_line(Vector2(start_x, start_y), Vector2(start_x, start_y - graph_height), Color(1, 1, 1), 6)  # Y 
 	
