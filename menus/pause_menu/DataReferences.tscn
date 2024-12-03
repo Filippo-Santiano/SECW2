@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://opa3n64he6a6"]
+
+[ext_resource type="Script" path="res://menus/pause_menu/data_references.gd" id="1_g4610"]
+[ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_ihbvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8dqg"]
+shader = ExtResource("2_ihbvq")
+shader_parameter/lod = 0.0
+
+[node name="DataReferences" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g4610")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_w8dqg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_left = 698.0
+offset_top = 272.5
+offset_right = 1222.0
+offset_bottom = 797.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+process_mode = 2
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Data Sources"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ENTER ALL REFERENCES HERE"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
