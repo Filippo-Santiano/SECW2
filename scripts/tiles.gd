@@ -459,7 +459,7 @@ func generate_fun_fact(asset_name):
 	elif asset_name == "Nuclear Power Plane":
 		var random_string = [
 			"Per kWh of energy produced, nuclear power plants emit approximately 30x less carbon than coal.",
-			"n 2023, nuclear generation supplied more than 2600 TWh globally. That's 9% of the world's electricity!", 
+			"In 2023, nuclear generation supplied more than 2600 TWh globally. That's 9% of the world's electricity!", 
 			"The UK generates about 15% of its electricity from about 6.5 GW of nuclear capacity.",
 			"'Sizewell B' is the largest nuclear reactor in the UK and has an operating capacity of 1198 MW!"
 			][randi() % 4]
@@ -503,6 +503,7 @@ func generate_fun_fact(asset_name):
 	elif asset_name == "Stadium":
 		var random_string = [
 			"Wembley stadium has an annual electricity consumption of 22.19 GWh!",
+			"A 55,000 spectator stadium can reach energy uses of 10,000 MWh/year, which equates to 3600 tonnes of CO₂/year",
 			"The Eco Park in Gloucestershire aims to become the world’s first timber stadium, generating 80% of its electricity on-site.", 
 			][randi() % 2]
 		return random_string
