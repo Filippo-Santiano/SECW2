@@ -3,6 +3,8 @@ extends Control
 
 @onready var BackButton: Button = $PanelContainer2/VBoxContainer/BackButton
 @onready var data_references: DataMenu = $DataReferences
+@onready var current_stats: Button = $PanelContainer2/VBoxContainer/CurrentStats
+@onready var current_stats_screen = preload("res://scenes/current_stats.tscn")
 @onready var data_button: Button = $PanelContainer2/VBoxContainer/DataButton
 @onready var panel_container_2: PanelContainer = $PanelContainer2
 
@@ -21,7 +23,7 @@ func _process(delta: float) -> void:
 
 # Function for displaying current stats
 func _on_current_stats_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(current_stats_screen)
 
 
 func on_data_references_pressed() -> void:

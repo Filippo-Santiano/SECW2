@@ -1,70 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5isq11xxlfjs"]
+[gd_scene load_steps=6 format=3 uid="uid://ce485455pcy2k"]
 
-[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_432sb"]
+[ext_resource type="Script" path="res://scenes/current_stats.gd" id="1_bxmeq"]
 
-[sub_resource type="SystemFont" id="SystemFont_ashmq"]
+[sub_resource type="SystemFont" id="SystemFont_h7yfr"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
-[node name="EndScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_432sb")
+[sub_resource type="SystemFont" id="SystemFont_iopns"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
-[node name="scoreLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 6.0
-offset_right = 1925.0
-offset_bottom = 252.0
+[sub_resource type="SystemFont" id="SystemFont_uepmx"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_0p47v"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="CurrentStats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bxmeq")
+
+[node name="pollutionLabel" type="Label" parent="."]
+offset_left = 1616.0
+offset_top = 480.0
+offset_right = 1983.0
+offset_bottom = 593.0
 theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_fonts/font = SubResource("SystemFont_h7yfr")
+theme_override_font_sizes/font_size = 30
+text = "Pollution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scoreLabel" type="Label" parent="."]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1920.0
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_iopns")
 theme_override_font_sizes/font_size = 75
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="yAxisLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = -63.0
-offset_top = 499.0
-offset_right = 304.0
-offset_bottom = 612.0
-theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 7
-theme_override_constants/shadow_offset_y = 7
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
-theme_override_font_sizes/font_size = 60
-text = "Amount"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="xAxisLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = -4.0
-offset_top = 901.0
-offset_right = 1915.0
-offset_bottom = 1153.0
-theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 7
-theme_override_constants/shadow_offset_y = 7
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
-theme_override_font_sizes/font_size = 60
-text = "Years"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="hapinessLabel" type="Label" parent="."]
-layout_mode = 0
 offset_left = 1625.0
 offset_top = 355.0
 offset_right = 1992.0
@@ -75,62 +71,76 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_fonts/font = SubResource("SystemFont_h7yfr")
 theme_override_font_sizes/font_size = 30
 text = "Happiness"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hapinessLabel2" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1625.0
-offset_top = 420.0
-offset_right = 1992.0
-offset_bottom = 533.0
+[node name="electricityLabel" type="Label" parent="."]
+offset_left = 1621.0
+offset_top = 417.0
+offset_right = 1988.0
+offset_bottom = 530.0
 theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_fonts/font = SubResource("SystemFont_h7yfr")
 theme_override_font_sizes/font_size = 30
 text = "Electricity"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hapinessLabel3" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1619.0
-offset_top = 486.0
-offset_right = 1986.0
-offset_bottom = 599.0
+[node name="moneyLabel" type="Label" parent="."]
+offset_left = 1602.0
+offset_top = 546.0
+offset_right = 1969.0
+offset_bottom = 659.0
 theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_fonts/font = SubResource("SystemFont_h7yfr")
 theme_override_font_sizes/font_size = 30
-text = "Pollution"
+text = "Money"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hapinessLabel4" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1605.0
-offset_top = 550.0
-offset_right = 1972.0
-offset_bottom = 663.0
+[node name="yAxisLabel" type="Label" parent="."]
+offset_left = -63.0
+offset_top = 499.0
+offset_right = 304.0
+offset_bottom = 612.0
 theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("SystemFont_ashmq")
-theme_override_font_sizes/font_size = 30
-text = "Money"
+theme_override_fonts/font = SubResource("SystemFont_uepmx")
+theme_override_font_sizes/font_size = 60
+text = "Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="xAxisLabel" type="Label" parent="."]
+offset_left = -4.0
+offset_top = 901.0
+offset_right = 1915.0
+offset_bottom = 1153.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_0p47v")
+theme_override_font_sizes/font_size = 60
+text = "Years"
 horizontal_alignment = 1
 vertical_alignment = 1
