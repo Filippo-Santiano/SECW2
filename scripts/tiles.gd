@@ -505,7 +505,7 @@ func generate_fun_fact(asset_name):
 			"Wembley stadium has an annual electricity consumption of 22.19 GWh!",
 			"A 55,000 spectator stadium can reach energy uses of 10,000 MWh/year, which equates to 3600 tonnes of CO₂/year",
 			"The Eco Park in Gloucestershire aims to become the world’s first timber stadium, generating 80% of its electricity on-site.", 
-			][randi() % 2]
+			][randi() % 3]
 		return random_string
 	
 	elif asset_name == "Park":
