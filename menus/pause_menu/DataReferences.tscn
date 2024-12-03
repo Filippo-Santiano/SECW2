@@ -375,7 +375,7 @@ uri = "https://www.mdpi.com/2673-4672/4/1/7"
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer"]
 process_mode = 2
