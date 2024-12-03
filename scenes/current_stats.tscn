@@ -28,6 +28,7 @@ grow_vertical = 2
 script = ExtResource("1_bxmeq")
 
 [node name="pollutionLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1616.0
 offset_top = 480.0
 offset_right = 1983.0
@@ -45,6 +46,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="scoreLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
 offset_right = 1920.0
@@ -61,6 +63,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="hapinessLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1625.0
 offset_top = 355.0
 offset_right = 1992.0
@@ -78,6 +81,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="electricityLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1621.0
 offset_top = 417.0
 offset_right = 1988.0
@@ -95,6 +99,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="moneyLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1602.0
 offset_top = 546.0
 offset_right = 1969.0
@@ -112,6 +117,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="yAxisLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = -63.0
 offset_top = 499.0
 offset_right = 304.0
@@ -129,6 +135,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="xAxisLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = -4.0
 offset_top = 901.0
 offset_right = 1915.0
@@ -144,3 +151,15 @@ theme_override_font_sizes/font_size = 60
 text = "Years"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="backButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 28.0
+offset_right = 271.0
+offset_bottom = 129.0
+theme_override_fonts/font = SubResource("SystemFont_uepmx")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]

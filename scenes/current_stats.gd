@@ -2,6 +2,11 @@ extends Control
 
 var current_score = Global.calculate_final_score() # This gets the current score
 @onready var score_label: Label = $scoreLabel
+@onready var back_to_extras = preload("res://menus/pause_menu/extras_menu.tscn")
+
+# Takes user back to extras menu
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_packed(back_to_extras)
 
 # Store current data
 var happiness_data = Global.happiness_data
@@ -71,7 +76,7 @@ func _draw():
 		
 		var x = start_x + i * step_x		
 		# Maybe a condition here, if max_happiness - min_happiness == 0, we need the line to be horizontal
-		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness+0.00001)*700		
+		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness+0.00001)*700	# Had to put +0.00001 to avoid division by 0
 		points_happiness.append(Vector2(x, y))	
 					
 		var x_electricity = start_x + i * step_x		
