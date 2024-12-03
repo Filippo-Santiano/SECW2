@@ -62,3 +62,71 @@ theme_override_font_sizes/font_size = 60
 text = "Years"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="hapinessLabel" type="Label" parent="."]
+offset_left = 1625.0
+offset_top = 355.0
+offset_right = 1992.0
+offset_bottom = 468.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 30
+text = "Happiness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hapinessLabel2" type="Label" parent="."]
+offset_left = 1625.0
+offset_top = 420.0
+offset_right = 1992.0
+offset_bottom = 533.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 30
+text = "Electricity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hapinessLabel3" type="Label" parent="."]
+offset_left = 1619.0
+offset_top = 486.0
+offset_right = 1986.0
+offset_bottom = 599.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 30
+text = "Pollution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hapinessLabel4" type="Label" parent="."]
+offset_left = 1605.0
+offset_top = 550.0
+offset_right = 1972.0
+offset_bottom = 663.0
+theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_ashmq")
+theme_override_font_sizes/font_size = 30
+text = "Money"
+horizontal_alignment = 1
+vertical_alignment = 1
