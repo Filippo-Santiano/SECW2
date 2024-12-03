@@ -49,7 +49,7 @@ modulate = Color(1, 1, 1, 0)
 z_index = 100
 texture_filter = 6
 offset_right = 214.0
-offset_bottom = 110.0
+offset_bottom = 227.0
 script = ExtResource("1_t3ylk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -162,3 +162,26 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 52
 text = "Happiness"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 107.0
+offset_right = 214.0
+offset_bottom = 226.0
+
+[node name="FunFactTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 14
+text = "Did You Know?"
+
+[node name="FunFact" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(107, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 10
+text = "Fun facts will appear here! "
+autowrap_mode = 2

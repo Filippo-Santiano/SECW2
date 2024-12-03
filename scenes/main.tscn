@@ -47,7 +47,7 @@ PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
-yearsPerMinute = 4.0
+yearsPerMinute = 60.0
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ToolTipBox", "Camera", "PlayerController")]
 script = ExtResource("1_10c5s")
@@ -90,7 +90,7 @@ position = Vector2(3, -11.5)
 shape = SubResource("RectangleShape2D_rnb82")
 
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
-offset_bottom = 115.0
+offset_bottom = 186.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
@@ -173,15 +173,16 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Use WASD to move camera, R to reset. Scroll to zoom"
 
+[node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
+visible = false
+anchors_preset = -1
+
 [node name="TwitterFeed" parent="UI" instance=ExtResource("6_6tdp6")]
 anchors_preset = -1
 offset_left = 1653.0
 offset_top = 7.0
 offset_right = -3.0
 offset_bottom = -637.0
-
-[node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
-anchors_preset = -1
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
 offset_left = -139.0

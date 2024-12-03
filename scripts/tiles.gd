@@ -445,6 +445,89 @@ func _input(event):
 		else:
 			hide_popup()
 
+# Generates a fun fact depending on the building type
+func generate_fun_fact(asset_name):
+	#Power Plants
+	if asset_name == "Coal Power Plant":
+		var random_string = [
+			"Coal power plants emit on average 100x more carbon than onshore wind farms per kWh.",
+			"In 2023, coal was the greatest contributor to carbon emissions, accounting for 15.7 gigatonnes (Gt) of the 37.7 Gt of CO₂ released by the energy sector.", 
+			"The UK's last coal power plant was shut down at the end of September 2024."
+			][randi() % 3]
+		return random_string
+			
+	elif asset_name == "Nuclear Power Plane":
+		var random_string = [
+			"Per kWh of energy produced, nuclear power plants emit approximately 30x less carbon than coal.",
+			"In 2023, nuclear generation supplied more than 2600 TWh globally. That's 9% of the world's electricity!", 
+			"The UK generates about 15% of its electricity from about 6.5 GW of nuclear capacity.",
+			"'Sizewell B' is the largest nuclear reactor in the UK and has an operating capacity of 1198 MW!"
+			][randi() % 4]
+		return random_string
+		
+	elif asset_name == "Wind Farm":
+		var random_string = [
+			"UK wind energy reduces CO2 emissions by 35.8 million tonnes annually.",
+			"UK wind energy has an installed capacity of 30,000 MW.",
+			"On average, wind farms repay their energy investment in less than a year!",
+			"The London Array Wind Farm has 175 turbines, generating 630 MW of power and reducing CO₂ emissions by 900,000 per tonnes per year."
+			][randi() % 4]
+		return random_string
+			
+	#Forests
+	elif asset_name == "Forest":
+		var random_string = "Placeholder"
+		return random_string
+	elif asset_name == "Orange Forest":
+		var random_string = "Placeholder"
+		return random_string
+	elif asset_name == "Rubber Forest":
+		var random_string = "Placeholder"
+		return random_string
+	elif asset_name == "Palm Forest":
+		var random_string = "Placeholder"
+		return random_string
+	elif asset_name == "Cocoa Forest":
+		var random_string = "Placeholder"
+		return random_string
+	
+	#Agriculture
+	elif asset_name == "Dairy Farm":
+		var random_string = "Placeholder"
+		return random_string
+	elif asset_name == "Wheat Farm":
+		var random_string = "Placeholder"
+		return random_string
+	
+	#Leisure
+	elif asset_name == "Stadium":
+		var random_string = [
+			"Wembley stadium has an annual electricity consumption of 22.19 GWh!",
+			"A 55,000 spectator stadium can reach energy uses of 10,000 MWh/year, which equates to 3600 tonnes of CO₂/year",
+			"The Eco Park in Gloucestershire aims to become the world’s first timber stadium, generating 80% of its electricity on-site.", 
+			][randi() % 3]
+		return random_string
+	
+	elif asset_name == "Park":
+		var random_string = [
+			"Under Italian urban planning law, every city in Italy is required to have at least 9m² of park or public area per person.",
+			"The World Health Organisation recommends that everyone lives within 300 metres of a green space.", 
+			][randi() % 2]
+		return random_string
+		
+	elif asset_name == "Leisure Centre":
+		var random_string = "Placeholder"
+		return random_string
+		
+	#Office
+	elif asset_name == "Office":
+		var random_string = "Placeholder"
+		return random_string
+	
+	else:
+		return null
+	
+
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
 	# Customize popup content with tile details
@@ -465,6 +548,12 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
 		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
 		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
+		
+		# Insert fun fact depending on building type.
+		var funFact = generate_fun_fact(Name)
+		ToolTipBox.set_text(funFact,"FunFact")
+		
+		
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
 	print("")
