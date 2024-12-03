@@ -71,19 +71,19 @@ func _draw():
 		
 		var x = start_x + i * step_x		
 		# Maybe a condition here, if max_happiness - min_happiness == 0, we need the line to be horizontal
-		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700		
+		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness+0.00001)*700		
 		points_happiness.append(Vector2(x, y))	
 					
 		var x_electricity = start_x + i * step_x		
-		var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity)*700		
+		var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity+0.00001)*700		
 		points_electricity.append(Vector2(x_electricity, y_electricity))				
 		
 		var x_pollution = start_x + i * step_x		
-		var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution)*700		
+		var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution+0.00001)*700		
 		points_pollution.append(Vector2(x_pollution, y_pollution))				
 		
 		var x_money = start_x + i * step_x		
-		var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money)*700		
+		var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money+0.00001)*700		
 		points_money.append(Vector2(x_money, y_money))
 		
 	# Draw the line	
