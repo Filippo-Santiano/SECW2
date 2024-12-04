@@ -1,5 +1,8 @@
 extends Node
 
+const AIR_FILTER_REPAIR_COST = 1000
+const AIR_FILTER_REPAIR_MULTIPLIER = 0.7
+
 var mouseBlocker = false #True when the mouse hovers over the build button/menu
 
 var Money = 1500
@@ -126,3 +129,8 @@ func calculate_final_score():
 		total_score += data["Pollution"]*-0.1
 		total_score += data["Money"]*1
 	return total_score
+	
+func repairAirFilter():
+	print(ExternalPollution)
+	ExternalPollution *= AIR_FILTER_REPAIR_MULTIPLIER
+	print(ExternalPollution)

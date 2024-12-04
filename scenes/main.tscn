@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=20 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c56q8m3q4xkh8" path="res://scenes/tool_tip_box.tscn" id="6_opf80"]
 [ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
+[ext_resource type="Script" path="res://scripts/air_filter_button.gd" id="12_5ke8b"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
@@ -173,8 +174,8 @@ anchor_right = 0.249
 anchor_bottom = 0.277
 offset_left = 512.0
 offset_top = 1013.0
-offset_right = 184.92
-offset_bottom = 747.84
+offset_right = 1055.03
+offset_bottom = 1012.38
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Use WASD to move camera, R to reset. Scroll to zoom"
@@ -205,8 +206,64 @@ mouse_filter = 1
 PlayerController = NodePath("../../PlayerController")
 Camera = NodePath("../../MainCamera")
 
+[node name="AirFilterButton" type="Button" parent="UI" node_paths=PackedStringArray("RedCost", "GreenCost")]
+texture_filter = 6
+offset_left = 1628.0
+offset_top = 767.0
+offset_right = 1909.0
+offset_bottom = 892.0
+script = ExtResource("12_5ke8b")
+RedCost = NodePath("RedCost")
+GreenCost = NodePath("GreenCost")
+
+[node name="RepairFilter" type="Label" parent="UI/AirFilterButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 19.0
+offset_right = -29.0
+offset_bottom = -72.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Repair Air Filter"
+horizontal_alignment = 1
+
+[node name="GreenCost" type="Label" parent="UI/AirFilterButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 56.0
+offset_right = -29.0
+offset_bottom = -35.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Cost:"
+horizontal_alignment = 1
+
+[node name="RedCost" type="Label" parent="UI/AirFilterButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 56.0
+offset_right = -29.0
+offset_bottom = -35.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Cost:"
+horizontal_alignment = 1
+
 [connection signal="YearPassed" from="YearsTimer" to="YearsTimer" method="_on_year_passed"]
 [connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]
 [connection signal="timeout" from="YearsTimer" to="UI/YearsLabel" method="_on_years_timer_timeout"]
 [connection signal="timeout" from="YearsTimer" to="UI/IncomeLabel" method="_on_years_timer_timeout"]
 [connection signal="timeout" from="YearsTimer" to="UI/MoneyLabel" method="_on_years_timer_timeout"]
+[connection signal="timeout" from="YearsTimer" to="UI/AirFilterButton" method="_on_years_timer_timeout"]
+[connection signal="pressed" from="UI/AirFilterButton" to="UI/AirFilterButton" method="_on_pressed"]

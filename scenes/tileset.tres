@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=130 format=3 uid="uid://deenobcu650sx"]
+[gd_resource type="TileSet" load_steps=132 format=3 uid="uid://deenobcu650sx"]
 
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="1_bwhhb"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_gyy07"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="31_olyqs"]
 [ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="32_mx627"]
 [ext_resource type="Texture2D" uid="uid://dx8ff6mmutl6w" path="res://assets/landscapeTiles_034.png" id="35_d2m31"]
+[ext_resource type="Texture2D" uid="uid://cflq06l7xgfa3" path="res://assets/Seaweed.png" id="36_3nd3x"]
 [ext_resource type="Texture2D" uid="uid://j34dsxhk16qb" path="res://assets/landscapeTiles_035.png" id="36_simdh"]
 [ext_resource type="Texture2D" uid="uid://dfetkkea2i0pk" path="res://assets/landscapeTiles_037.png" id="37_ta1im"]
 [ext_resource type="Texture2D" uid="uid://gci5uussm0wb" path="res://assets/landscapeTiles_041.png" id="38_f8qcc"]
@@ -566,6 +567,14 @@ texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4q43k"]
+resource_name = "Seaweed"
+texture = ExtResource("36_3nd3x")
+texture_region_size = Vector2i(132, 122)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -4)
+0:0/0/z_index = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ti3uf"]
 texture = ExtResource("12_rw0x5")
 texture_region_size = Vector2i(132, 99)
@@ -641,6 +650,7 @@ sources/36 = SubResource("TileSetAtlasSource_l7tu1")
 sources/37 = SubResource("TileSetAtlasSource_u7aky")
 sources/38 = SubResource("TileSetAtlasSource_upykk")
 sources/39 = SubResource("TileSetAtlasSource_kxvn4")
+sources/65 = SubResource("TileSetAtlasSource_4q43k")
 sources/27 = SubResource("TileSetAtlasSource_x7wud")
 sources/40 = SubResource("TileSetAtlasSource_ghmiu")
 sources/41 = SubResource("TileSetAtlasSource_pbmu1")
