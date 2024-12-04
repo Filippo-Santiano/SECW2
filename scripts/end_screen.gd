@@ -31,7 +31,7 @@ func store_normalised_data() -> void:
 	# Loop through data and append to list (all lists are same length so append norm data in one for loop)
 	for i in range(happiness_data):
 		# Use normalisation formula
-		var norm_happiness = (happiness_data[i] - min_happiness) / (max_happiness - min_happiness)
+		var norm_happiness = (happiness_data[i] - min_happiness) / (max_happiness - min_happiness+0.0001)
 		normalised_happiness.append(norm_happiness)
 		
 		var norm_electricity = (electricity_data[i] - min_electricity) / (max_electricity - min_electricity)
@@ -71,7 +71,7 @@ func _draw():
 	for i in range(happiness_data.size()):
 		
 		var x = start_x + i * step_x
-		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700
+		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness + 0.0001)*700
 		points_happiness.append(Vector2(x, y))
 		
 		var x_electricity = start_x + i * step_x

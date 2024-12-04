@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/current_stats.gd" id="1_bxmeq"]
 
+[sub_resource type="SystemFont" id="SystemFont_uepmx"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
 [sub_resource type="SystemFont" id="SystemFont_h7yfr"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
@@ -10,15 +14,12 @@ subpixel_positioning = 0
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
-[sub_resource type="SystemFont" id="SystemFont_uepmx"]
-font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
-
 [sub_resource type="SystemFont" id="SystemFont_0p47v"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
 [node name="CurrentStats" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +27,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bxmeq")
+
+[node name="backButton" type="Button" parent="."]
+z_index = 8
+layout_mode = 0
+offset_left = 23.0
+offset_top = 28.0
+offset_right = 271.0
+offset_bottom = 129.0
+theme_override_fonts/font = SubResource("SystemFont_uepmx")
+theme_override_font_sizes/font_size = 40
+text = "Back"
 
 [node name="pollutionLabel" type="Label" parent="."]
 layout_mode = 0
@@ -47,9 +59,9 @@ vertical_alignment = 1
 
 [node name="scoreLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 318.0
 offset_top = -1.0
-offset_right = 1920.0
+offset_right = 1621.0
 offset_bottom = 251.0
 theme_override_colors/font_color = Color(0.982343, 0.982342, 0.982342, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -151,15 +163,5 @@ theme_override_font_sizes/font_size = 60
 text = "Years"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="backButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 28.0
-offset_right = 271.0
-offset_bottom = 129.0
-theme_override_fonts/font = SubResource("SystemFont_uepmx")
-theme_override_font_sizes/font_size = 40
-text = "Back"
 
 [connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]

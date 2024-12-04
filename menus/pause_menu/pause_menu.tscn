@@ -195,11 +195,12 @@ libraries = {
 }
 
 [node name="ExtrasMenu" parent="." instance=ExtResource("3_iw23c")]
+process_mode = 0
 visible = false
 layout_mode = 1
 
 [node name="DataReferences" parent="ExtrasMenu" instance=ExtResource("4_6apx3")]
-process_mode = 3
+process_mode = 0
 visible = false
 layout_mode = 1
 
