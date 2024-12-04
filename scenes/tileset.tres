@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=78 format=3 uid="uid://deenobcu650sx"]
+[gd_resource type="TileSet" load_steps=80 format=3 uid="uid://deenobcu650sx"]
 
 [ext_resource type="Texture2D" uid="uid://bu5j28jxa1so6" path="res://assets/landscapeTiles_067.png" id="1_bwhhb"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_gyy07"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://badepd473lhy" path="res://assets/Dairy-Farm-2.png" id="30_5qudd"]
 [ext_resource type="Texture2D" uid="uid://byjfq0iiy1p1b" path="res://assets/Park.png" id="31_olyqs"]
 [ext_resource type="Texture2D" uid="uid://dxwvjnmkqcyq7" path="res://assets/HorticultureFarm.png" id="32_mx627"]
+[ext_resource type="Texture2D" uid="uid://cflq06l7xgfa3" path="res://assets/Seaweed.png" id="36_3nd3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtdat"]
 resource_name = "Grass"
@@ -369,6 +370,14 @@ texture_region_size = Vector2i(132, 99)
 0:0/0/texture_origin = Vector2i(0, -16)
 0:0/0/custom_data_1 = "Road"
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4q43k"]
+resource_name = "Seaweed"
+texture = ExtResource("36_3nd3x")
+texture_region_size = Vector2i(132, 122)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -4)
+0:0/0/z_index = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ti3uf"]
 texture = ExtResource("12_rw0x5")
 texture_region_size = Vector2i(132, 99)
@@ -444,3 +453,4 @@ sources/36 = SubResource("TileSetAtlasSource_l7tu1")
 sources/37 = SubResource("TileSetAtlasSource_u7aky")
 sources/38 = SubResource("TileSetAtlasSource_upykk")
 sources/39 = SubResource("TileSetAtlasSource_kxvn4")
+sources/65 = SubResource("TileSetAtlasSource_4q43k")
