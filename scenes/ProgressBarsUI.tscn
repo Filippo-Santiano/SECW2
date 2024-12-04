@@ -11,6 +11,7 @@
 bg_color = Color(0, 0, 0, 0.47451)
 
 [node name="ProgressBarsUi" type="Control" node_paths=PackedStringArray("environment_bar", "env_bar_percentage", "happiness_bar", "happy_bar_percentage", "economy_bar", "econ_bar_percentage", "electricity_bar", "elec_bar_percentage")]
+show_behind_parent = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

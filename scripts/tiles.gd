@@ -111,7 +111,7 @@ const Initial_Tile_Attributes = {
 		"income": 350,
 		"electricityRequired": 2.5,
 		"electricityGenerated": 0,
-		"positiveHappiness": 8,
+		"positiveHappiness": 0,
 		"negativeHappiness": 8
 	},
 	2: {  # Forest

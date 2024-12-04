@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce485455pcy2k"]
+[gd_scene load_steps=7 format=3 uid="uid://ce485455pcy2k"]
 
 [ext_resource type="Script" path="res://scenes/current_stats.gd" id="1_bxmeq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_v1ttn"]
 
 [sub_resource type="SystemFont" id="SystemFont_uepmx"]
 font_names = PackedStringArray("Impact")
@@ -20,6 +22,7 @@ subpixel_positioning = 0
 
 [node name="CurrentStats" type="Control"]
 process_mode = 3
+z_index = 30
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +31,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bxmeq")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.564706)
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_v1ttn")
+
 [node name="backButton" type="Button" parent="."]
+top_level = true
 z_index = 8
 layout_mode = 0
 offset_left = 23.0
@@ -40,6 +55,7 @@ theme_override_font_sizes/font_size = 40
 text = "Back"
 
 [node name="pollutionLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = 1616.0
 offset_top = 480.0
@@ -58,6 +74,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="scoreLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = 318.0
 offset_top = -1.0
@@ -75,6 +92,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="hapinessLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = 1625.0
 offset_top = 355.0
@@ -93,6 +111,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="electricityLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = 1621.0
 offset_top = 417.0
@@ -111,6 +130,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="moneyLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = 1602.0
 offset_top = 546.0
@@ -129,6 +149,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="yAxisLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = -63.0
 offset_top = 499.0
@@ -147,6 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="xAxisLabel" type="Label" parent="."]
+top_level = true
 layout_mode = 0
 offset_left = -4.0
 offset_top = 901.0

@@ -55,7 +55,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ShowAllButton" type="Button" parent="ScrollContainer/Feed"]
-z_index = 2
+z_as_relative = false
 layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0
