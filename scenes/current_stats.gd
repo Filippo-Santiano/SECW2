@@ -3,10 +3,7 @@ extends Control
 var current_score = Global.calculate_final_score() # This gets the current score
 @onready var score_label: Label = $scoreLabel
 @onready var back_to_extras = preload("res://menus/pause_menu/extras_menu.tscn")
-
-# Takes user back to extras menu
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_packed(back_to_extras)
+@onready var back_button: Button = $backButton
 
 # Store current data
 var happiness_data = Global.happiness_data
@@ -107,3 +104,7 @@ func _draw():
 	draw_line(Vector2(start_x+1360, start_y - graph_height+225), Vector2(start_x+1410, start_y - graph_height+225), Color(0, 0, 1), 6)	
 	draw_line(Vector2(start_x+1360, start_y - graph_height+290), Vector2(start_x+1410, start_y - graph_height+290), Color(1, 0, 0), 6)	
 	draw_line(Vector2(start_x+1360, start_y - graph_height+355), Vector2(start_x+1410, start_y - graph_height+355), Color(0, 1, 0), 6)
+
+# Return to extras when 'Back' button pressed
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_packed(back_to_extras)
