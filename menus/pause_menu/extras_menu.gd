@@ -5,6 +5,7 @@ extends Control
 @onready var back_button: Button = $PanelContainer2/VBoxContainer/BackButton
 @onready var data_button: Button = $PanelContainer2/VBoxContainer/DataButton
 @onready var panel_container_2: PanelContainer = $PanelContainer2
+@onready var current_stats: Button = $PanelContainer2/VBoxContainer/CurrentStats
 
 signal exit_extras_menu
 
