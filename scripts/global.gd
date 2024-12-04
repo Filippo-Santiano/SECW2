@@ -51,10 +51,6 @@ func update_tile_attributes():
 		for attr in tile["attributes"].keys():
 			if attr != "name":
 				var multipler = tile["multipliers"].get(attr, 0)
-				print("£££££££££££££££££££££££££££££££££££££££££££££££")
-				print("Attribute: ", attr)
-				print("Attribute value: ", tile["attributes"][attr])
-				print("Multipliers: ", tile["multipliers"][attr])
 				# This currently multiplies the multiplier with the attribute value assigned within tiles_placed
 				tile["attributes"][attr] *= (1 + tile["multipliers"][attr])
 				# We could calculate current values if we don't want to update the attribute values in tiles
