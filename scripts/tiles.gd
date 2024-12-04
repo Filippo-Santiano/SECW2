@@ -399,8 +399,7 @@ func placeTile(tile,x,y):
 			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
 			var cost = tileToPlace.get_custom_data("Cost")
 			
-			if Global.Money >= cost:
-				Global.Money -= cost
+			if Global.chargeMoney(cost):
 				
 				#Adds the placed tile to the global placed tiles array + sets initial pollution
 				#var fixed_pollution = tileToPlace.get_custom_data("Pollution")
@@ -414,10 +413,6 @@ func placeTile(tile,x,y):
 				tilePlacer.initialise(TilesLayer, Global.currentYear, timeToBuild)
 				add_child(tilePlacer)
 				tilePlacer.place(tile,x,y)
-				
-				
-			else:
-				print("Not enough molah")
 				
 func sellTile(x,y):
 	var currentTileData = TilesLayer.get_cell_tile_data(Vector2i(x,y))
@@ -658,8 +653,7 @@ func _on_tool_tip_box_repair_button_pressed() -> void:
 		ToolTipBox.changeCost(str("Cost: ", RepairCost))
 		button_on_off = 1
 	else:
-		if(Global.Money > RepairCost):
-			Global.Money -= RepairCost
+		if Global.chargeMoney(RepairCost):
 			repair_tile()
 			print("Button Pressed, state: ", button_on_off)
 			ToolTipBox.changeButtonText(false)

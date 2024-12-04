@@ -31,6 +31,8 @@ var Years_Over = 0
 
 var Repair_Tile_Pos: Vector2
 
+var moneyAnimation = preload("res://scenes/not_enough_money.tscn")
+
 
 
 # This calculates the updated external pollution (multiplies by 1.08)
@@ -124,3 +126,14 @@ func repairAirFilter():
 	print(ExternalPollution)
 	ExternalPollution *= AIR_FILTER_REPAIR_MULTIPLIER
 	print(ExternalPollution)
+
+func chargeMoney(amount):
+	if Money < amount:
+		print("Not enough molah")
+		var moneyAnim = moneyAnimation.instantiate()
+		add_child(moneyAnim)
+		return false
+	else:
+		Money -= amount
+		print("Charged player ",amount)
+		return true
