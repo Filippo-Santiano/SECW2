@@ -435,6 +435,7 @@ func sellTile(x,y):
 		else:
 			print("Can't sell this!")
 
+
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not Global.mouseBlocker:
@@ -529,12 +530,7 @@ func generate_fun_fact(asset_name):
 	else:
 		return null
 	
-
-# Shows the popup with tile information
-func show_popup(tile_pos: Vector2i, tile_id: int):
-	Global.Repair_Tile_Pos = tile_pos
-	# Customize popup content with tile details
-	var tile = Global.tile_data.get(Vector2(tile_pos))
+func update_box(tile):
 	if tile:
 		var attributes = tile.get("attributes") #grab attributes from dictionary
 		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
@@ -554,16 +550,32 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
-	
-		
-		
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
 	#print("")
-	ToolTipBox.position = get_global_mouse_position()
 	ToolTipBox.showToolTip()
 	# Show and center the popup
 	# Shows the popup with tile information
+	
+func Reset_Repair_Label(tile):
+	if tile:
+		ToolTipBox.set_repair("","Environment")
+		ToolTipBox.set_repair("","Money")
+		ToolTipBox.set_repair("","Electricity")
+		#ToolTipBox.set_repair("","Electricity")
+		ToolTipBox.set_repair("","Happiness")		
+	else:
+		ToolTipBox.set_text("Cannot identify tile","Name")
+	#print("")
+
+# Shows the popup with tile information
+func show_popup(tile_pos: Vector2i, tile_id: int):
+	Global.Repair_Tile_Pos = tile_pos
+	# Customize popup content with tile details
+	var tile = Global.tile_data.get(Vector2(tile_pos))
+	ToolTipBox.position = get_global_mouse_position()
+	update_box(tile)
+	Reset_Repair_Label(tile)
 
 var IniYPol = 0
 var IniInc = 0
@@ -571,9 +583,15 @@ var IniElecReq = 0
 var IniElecGen = 0
 var IniPosHapp = 0
 var IniNegHapp = 0
+var RepairCost = 0
 
 func get_repair_data():
 	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
+	
+	var tile_data = TilesLayer.get_cell_tile_data(Global.Repair_Tile_Pos)
+	var cost = tile_data.get_custom_data("Cost")
+	RepairCost = cost / 2
+	
 	var Asset_ID = tile.get("Asset_ID")
 	var initial_attributes = Initial_Tile_Attributes.get(Asset_ID,{
 	"yearly_pollution": 0,
@@ -583,7 +601,7 @@ func get_repair_data():
 	"positiveHappiness": 0,
 	"negativeHappiness": 0
 	})
-	
+
 	var attributes = tile.get("attributes") #grab attributes from dictionary
 	var Name = attributes.get("name")
 	var yearlyPollution : int = attributes.get("yearly_pollution")
@@ -600,7 +618,7 @@ func get_repair_data():
 	IniPosHapp = initial_attributes.get("positiveHappiness")
 	IniNegHapp = initial_attributes.get("negativeHappiness")
 	
-	
+	update_box(tile)
 	ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
 	ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
 	ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
@@ -616,7 +634,8 @@ func repair_tile():
 	tile["attributes"]["electricityGenerated"] = IniElecGen
 	tile["attributes"]["positiveHappiness"] = IniPosHapp
 	tile["attributes"]["negativeHappiness"] = IniNegHapp
-	
+	update_box(tile)
+	Reset_Repair_Label(tile)
 
 	# Update the values
 	# Refresh all the global variables
@@ -635,9 +654,20 @@ func _on_tool_tip_box_repair_button_pressed() -> void:
 	if button_on_off == 0:
 		print("Button Pressed, state: ", button_on_off)
 		get_repair_data()
-		#show_popup(tile_pos, tile_id)
+		ToolTipBox.changeButtonText(true)
+		ToolTipBox.changeCost(str("Cost: ", RepairCost))
 		button_on_off = 1
 	else:
-		repair_tile()
-		print("Button Pressed, state: ", button_on_off)
-		button_on_off = 0
+		if(Global.Money > RepairCost):
+			Global.Money -= RepairCost
+			repair_tile()
+			print("Button Pressed, state: ", button_on_off)
+			ToolTipBox.changeButtonText(false)
+			ToolTipBox.changeCost("")
+			button_on_off = 0
+		else:
+			print("Not enough Molah")
+			print("Button Pressed, state: ", button_on_off)
+			ToolTipBox.changeButtonText(false)
+			ToolTipBox.changeCost("")
+			button_on_off = 0

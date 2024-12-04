@@ -1,5 +1,6 @@
 extends Panel
 
+@export var button : Button
 var buttonMode = 0
 var currentStep = 1
 var following = false
@@ -43,7 +44,17 @@ func hideToolTip():
 		#Wait for it to finish, then make sure the box is properly hidden
 		hide()
 
+func changeButtonText(mode):
+	if mode:
+		button.get_node("Repair").text = "Confirm"
+	else:
+		button.get_node("Repair").text = "View Repair"
 
+#func changeButtonText(text):
+	#button.get_node("Repair").text = text
+		
+func changeCost(cost):
+	button.get_node("Cost").text = cost
 
 func _on_button_pressed() -> void:
 	emit_signal("repair_button_pressed")
