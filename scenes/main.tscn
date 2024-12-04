@@ -91,7 +91,8 @@ position = Vector2(-25.5, 253)
 shape = SubResource("RectangleShape2D_rnb82")
 
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
-offset_bottom = 186.0
+offset_right = 220.0
+offset_bottom = 220.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1

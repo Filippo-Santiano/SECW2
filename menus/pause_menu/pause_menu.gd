@@ -1,60 +1,60 @@
 extends Control
 
-#@onready var start_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Start_Button
-#@onready var options_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Options_Button
-#@onready var exit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Exit_Button
-# @onready var start_game = preload("res://scenes/main.tscn")
 @onready var extras_menu: ExtrasMenu = $ExtrasMenu
-@onready var pause_menu: Control = $"."
-@onready var extras: Button = $PanelContainer/VBoxContainer/Extras
 @onready var panel_container: PanelContainer = $PanelContainer
+@onready var resume_button: Button = $PanelContainer/VBoxContainer/Resume
+@onready var extras_button: Button = $PanelContainer/VBoxContainer/Extras
+@onready var quit_button: Button = $PanelContainer/VBoxContainer/Quit
 
+var game_paused = false
 
 func _ready() -> void:
-	handle_connecting_signals()
+	# Connect button signals
+	resume_button.button_down.connect(_on_resume_pressed)
+	extras_button.button_down.connect(_on_extras_pressed)
+	quit_button.button_down.connect(_on_quit_pressed)
 
-# Called when the node enters the scene tree for the first time.
-func resume():
-	get_tree().paused = false
-	visible = false
-	$AnimationPlayer.play_backwards("blur")
+	# Connect child menu signals
+	extras_menu.exit_extras_menu.connect(_on_exit_submenu)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_just_pressed("esc"):
+		if game_paused:
+			resume()  # Unpause the game if it's already paused
+		else:
+			pause()  # Pause the game if it's not paused yet
+
 func pause():
-	extras_menu.visible = false
+	game_paused = true
+	reset_menus()  # Reset all child menus
+	panel_container.visible = true  # Show the main pause menu
 	visible = true
 	get_tree().paused = true
-	$AnimationPlayer.play("blur")
+	$AnimationPlayer.play("blur")  
 
-func testEsc():
-	if Input.is_action_just_pressed("esc") and !get_tree().paused:
-		pause()
-	elif Input.is_action_just_pressed("esc") and get_tree().paused:
-		resume()
+func resume():
+	game_paused = false
+	reset_menus()  # Hide all menus
+	visible = false
+	get_tree().paused = false  # Resume the game
+	$AnimationPlayer.play_backwards("blur")  # Remove blur effect
 
+func reset_menus() -> void:
+	extras_menu.hide_menu()  # Ensure ExtrasMenu is hidden
+	panel_container.visible = true  # Show the main pause menu
 
 func _on_resume_pressed() -> void:
-	resume()
+	resume()  # Resume game when "Resume" is pressed
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://menus/main_menu/main_menu.tscn")
-
-func _process(delta):
-	testEsc()
+	get_tree().change_scene_to_file("res://menus/main_menu/main_menu.tscn")  # Go to the main menu when quitting
 
 func _on_extras_pressed() -> void:
 	panel_container.visible = false
-	print("Extras button pressed")
-	extras_menu.set_process(true)
-	extras_menu.visible = true
-	
+	extras_menu.show_menu()  # Show the Extras menu
 
-func on_exit_extras_menu() -> void:
-	extras_menu.visible = false
-	panel_container.visible = true
-
-func handle_connecting_signals() -> void:
-	extras.button_down.connect(_on_extras_pressed)
-	extras_menu.exit_extras_menu.connect(on_exit_extras_menu)
-	
+func _on_exit_submenu() -> void:
+	# Called when exiting any submenu
+	extras_menu.hide_menu()  # Hide Extras menu
+	panel_container.visible = true  # Show the main pause menu
