@@ -10,6 +10,7 @@ class_name Tile
 @export var Camera : Camera2D
 @export var PlayerController: Node
 
+
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
 
@@ -441,7 +442,6 @@ func _input(event):
 		var tile_pos = TilesLayer.local_to_map(world_pos)
 		# Retrieve tile ID and information
 		var tile_id = get_tile_id(tile_pos)
-		Global.Repair_Tile_Pos = tile_pos
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
 		else:
@@ -532,6 +532,7 @@ func generate_fun_fact(asset_name):
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
+	Global.Repair_Tile_Pos = tile_pos
 	# Customize popup content with tile details
 	var tile = Global.tile_data.get(Vector2(tile_pos))
 	if tile:
@@ -553,11 +554,6 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
-		get_repair_data()
-		print("____________Trying to get repair data____________",get_repair_data())
-		print("Repairing tile: ")
-		repair_tile()
-		
 	
 		
 		
@@ -587,12 +583,10 @@ func get_repair_data():
 	"positiveHappiness": 0,
 	"negativeHappiness": 0
 	})
-	print("Intial Yearly Pollution", initial_attributes.get("yearly_pollution"))
 	
 	var attributes = tile.get("attributes") #grab attributes from dictionary
 	var Name = attributes.get("name")
 	var yearlyPollution : int = attributes.get("yearly_pollution")
-	print("Yearly Pollution now: ", yearlyPollution)
 	var yearlyIncome : int = attributes.get("income")
 	var electricityRequired : int = attributes.get("electricityRequired")
 	var electricityGenerated : int = attributes.get("electricityGenerated")
@@ -606,12 +600,12 @@ func get_repair_data():
 	IniPosHapp = initial_attributes.get("positiveHappiness")
 	IniNegHapp = initial_attributes.get("negativeHappiness")
 	
-	Global.YPolDiff = IniYPol - yearlyPollution
-	Global.YIncDiff = IniInc - yearlyIncome
-	Global.ElecReqDiff = IniElecReq - electricityRequired
-	Global.ElecGenDiff = IniElecGen - electricityGenerated
-	Global.PosHappDiff = IniPosHapp - PosHappiness
-	Global.NegHappDiff = IniNegHapp - NegHappiness
+	
+	ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
+	ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
+	ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
+	#ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"Electricity")
+	ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
  
 
 func repair_tile():
@@ -627,7 +621,23 @@ func repair_tile():
 	# Update the values
 	# Refresh all the global variables
 
+
+
+
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
 	var tile_id = TilesLayer.get_cell_source_id(Vector2i(tile_pos.x, tile_pos.y))
 	return tile_id if tile_id != -1 else -1 # Return the tile ID or -1 if no tile is present 
+
+var button_on_off = 0
+
+func _on_tool_tip_box_repair_button_pressed() -> void:
+	if button_on_off == 0:
+		print("Button Pressed, state: ", button_on_off)
+		get_repair_data()
+		#show_popup(tile_pos, tile_id)
+		button_on_off = 1
+	else:
+		repair_tile()
+		print("Button Pressed, state: ", button_on_off)
+		button_on_off = 0

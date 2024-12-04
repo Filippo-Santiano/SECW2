@@ -6,6 +6,8 @@ var following = false
 var mouseFocus = false
 const STEPS = [1.5,1,0.9]
 
+signal repair_button_pressed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	modulate = Color(0,0,0,0)
@@ -44,13 +46,7 @@ func hideToolTip():
 
 
 func _on_button_pressed() -> void:
-	if buttonMode == 0:
-		print("Repair Button Pressed, mode ",buttonMode)
-		buttonMode = 1
-	elif buttonMode == 1:
-		print("Repair Button Pressed, mode ",buttonMode)
-		buttonMode = 0
-	pass # Replace with function body.
+	emit_signal("repair_button_pressed")
 
 
 func _on_mouse_blocker_mouse_entered() -> void:

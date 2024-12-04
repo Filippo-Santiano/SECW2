@@ -265,4 +265,5 @@ horizontal_alignment = 1
 [connection signal="timeout" from="YearsTimer" to="UI/IncomeLabel" method="_on_years_timer_timeout"]
 [connection signal="timeout" from="YearsTimer" to="UI/MoneyLabel" method="_on_years_timer_timeout"]
 [connection signal="timeout" from="YearsTimer" to="UI/AirFilterButton" method="_on_years_timer_timeout"]
+[connection signal="repair_button_pressed" from="ToolTipBox" to="Tiles" method="_on_tool_tip_box_repair_button_pressed"]
 [connection signal="pressed" from="UI/AirFilterButton" to="UI/AirFilterButton" method="_on_pressed"]
