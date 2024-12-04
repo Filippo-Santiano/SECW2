@@ -10,6 +10,7 @@ class_name Tile
 @export var Camera : Camera2D
 @export var PlayerController: Node
 
+
 const LAYERS = 1
 const TILE_PLACER : PackedScene = preload("res://scenes/tile_placer.tscn")
 
@@ -378,7 +379,8 @@ func setInitialAttributes(tile,x,y):
 	Global.tile_data[Vector2(x,y)] = {
 		"attributes": initial_attributes.duplicate(true),
 		"multipliers": multipliers.duplicate(true),
-		"placed_time": Global.currentYear
+		"placed_time": Global.currentYear,
+		"Asset_ID": tile
 	}
 
 ##############################################
@@ -443,7 +445,7 @@ func _input(event):
 		if tile_id != -1: # Check if a tile exists at the position
 			show_popup(tile_pos, tile_id)
 		else:
-			hide_popup()
+			ToolTipBox.hideToolTip()
 
 # Generates a fun fact depending on the building type
 func generate_fun_fact(asset_name):
@@ -530,6 +532,7 @@ func generate_fun_fact(asset_name):
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
+	Global.Repair_Tile_Pos = tile_pos
 	# Customize popup content with tile details
 	var tile = Global.tile_data.get(Vector2(tile_pos))
 	if tile:
@@ -548,24 +551,93 @@ func show_popup(tile_pos: Vector2i, tile_id: int):
 		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
 		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
 		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
-		
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
+	
 		
 		
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
-	print("")
+	#print("")
 	ToolTipBox.position = get_global_mouse_position()
 	ToolTipBox.showToolTip()
 	# Show and center the popup
 	# Shows the popup with tile information
 
-func hide_popup():
-	ToolTipBox.hideToolTip()
+var IniYPol = 0
+var IniInc = 0
+var IniElecReq = 0
+var IniElecGen = 0
+var IniPosHapp = 0
+var IniNegHapp = 0
+
+func get_repair_data():
+	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
+	var Asset_ID = tile.get("Asset_ID")
+	var initial_attributes = Initial_Tile_Attributes.get(Asset_ID,{
+	"yearly_pollution": 0,
+	"income": 0,
+	"electricityRequired": 0,
+	"electricityGenerated": 0,
+	"positiveHappiness": 0,
+	"negativeHappiness": 0
+	})
+	
+	var attributes = tile.get("attributes") #grab attributes from dictionary
+	var Name = attributes.get("name")
+	var yearlyPollution : int = attributes.get("yearly_pollution")
+	var yearlyIncome : int = attributes.get("income")
+	var electricityRequired : int = attributes.get("electricityRequired")
+	var electricityGenerated : int = attributes.get("electricityGenerated")
+	var PosHappiness : int = attributes.get("positiveHappiness")
+	var NegHappiness : int = attributes.get("negativeHappiness")
+	
+	IniYPol = initial_attributes.get("yearly_pollution")
+	IniInc = initial_attributes.get("income")
+	IniElecReq = initial_attributes.get("electricityRequired")
+	IniElecGen = initial_attributes.get("electricityGenerated")
+	IniPosHapp = initial_attributes.get("positiveHappiness")
+	IniNegHapp = initial_attributes.get("negativeHappiness")
+	
+	
+	ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
+	ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
+	ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
+	#ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"Electricity")
+	ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
+ 
+
+func repair_tile():
+	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
+	tile["attributes"]["yearly_pollution"] = IniYPol
+	tile["attributes"]["income"] = IniInc
+	tile["attributes"]["electricityRequired"] = IniElecReq
+	tile["attributes"]["electricityGenerated"] = IniElecGen
+	tile["attributes"]["positiveHappiness"] = IniPosHapp
+	tile["attributes"]["negativeHappiness"] = IniNegHapp
+	
+
+	# Update the values
+	# Refresh all the global variables
+
+
+
 
 # Custom method to get a tile ID
 func get_tile_id(tile_pos: Vector2i) -> int:
 	var tile_id = TilesLayer.get_cell_source_id(Vector2i(tile_pos.x, tile_pos.y))
 	return tile_id if tile_id != -1 else -1 # Return the tile ID or -1 if no tile is present 
+
+var button_on_off = 0
+
+func _on_tool_tip_box_repair_button_pressed() -> void:
+	if button_on_off == 0:
+		print("Button Pressed, state: ", button_on_off)
+		get_repair_data()
+		#show_popup(tile_pos, tile_id)
+		button_on_off = 1
+	else:
+		repair_tile()
+		print("Button Pressed, state: ", button_on_off)
+		button_on_off = 0

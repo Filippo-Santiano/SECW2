@@ -29,6 +29,10 @@ var IncomeChange = 0
 
 var Years_Over = 0
 
+var Repair_Tile_Pos: Vector2
+
+
+
 # This calculates the updated external pollution (multiplies by 1.08)
 func updateExternalPollution():
 	var totalExternalPollutionMultiplier = 1.08

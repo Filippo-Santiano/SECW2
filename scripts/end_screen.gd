@@ -71,20 +71,36 @@ func _draw():
 	for i in range(happiness_data.size()):
 		
 		var x = start_x + i * step_x
-		var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700
-		points_happiness.append(Vector2(x, y))
+		if max_happiness-min_happiness == 0:
+			var y = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			points_happiness.append(Vector2(x, y))
+		else:
+			var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700
+			points_happiness.append(Vector2(x, y))
 		
 		var x_electricity = start_x + i * step_x
-		var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity)*700
-		points_electricity.append(Vector2(x_electricity, y_electricity))
+		if (max_electricity-min_electricity) == 0:
+			var y_electricity = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			points_electricity.append(Vector2(x_electricity, y_electricity))
+		else:
+			var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity)*700
+			points_electricity.append(Vector2(x_electricity, y_electricity))
 		
 		var x_pollution = start_x + i * step_x
-		var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution)*700
-		points_pollution.append(Vector2(x_pollution, y_pollution))
+		if max_pollution-min_pollution == 0:
+			var y_pollution = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			points_pollution.append(Vector2(x_pollution, y_pollution))
+		else:
+			var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution)*700
+			points_pollution.append(Vector2(x_pollution, y_pollution))
 		
 		var x_money = start_x + i * step_x
-		var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money)*700
-		points_money.append(Vector2(x_money, y_money))
+		if max_money-min_money == 0:
+			var y_money = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			points_money.append(Vector2(x_money, y_money))
+		else:
+			var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money)*700
+			points_money.append(Vector2(x_money, y_money))
 
 	# Draw the line
 	for j in range(points_happiness.size() - 1):

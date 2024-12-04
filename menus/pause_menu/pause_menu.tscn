@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://menus/pause_menu/pause_menu.gd" id="1_q1itc"]
 [ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_6bkc2"]
-[ext_resource type="PackedScene" uid="uid://c10qu10swsh6g" path="res://menus/pause_menu/extras_menu.tscn" id="3_iw23c"]
-[ext_resource type="PackedScene" uid="uid://opa3n64he6a6" path="res://menus/pause_menu/DataReferences.tscn" id="4_6apx3"]
+[ext_resource type="PackedScene" uid="uid://dj73qnlo2iytx" path="res://menus/pause_menu/extras_menu.tscn" id="3_s1wnx"]
+[ext_resource type="PackedScene" uid="uid://dgdofjcj0f2mx" path="res://menus/pause_menu/DataReferences.tscn" id="4_k7a4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7wq"]
 shader = ExtResource("2_6bkc2")
@@ -76,6 +76,7 @@ _data = {
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,8 +119,7 @@ size_flags_vertical = 4
 [node name="PauseMenuLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_mrx3x")
 theme_override_font_sizes/font_size = 64
 text = "Pause Menu"
 horizontal_alignment = 1
@@ -194,15 +194,13 @@ libraries = {
 "": SubResource("AnimationLibrary_qp0so")
 }
 
-[node name="ExtrasMenu" parent="." instance=ExtResource("3_iw23c")]
+[node name="ExtrasMenu" parent="." instance=ExtResource("3_s1wnx")]
 visible = false
 layout_mode = 1
 
-[node name="DataReferences" parent="ExtrasMenu" instance=ExtResource("4_6apx3")]
-process_mode = 3
+[node name="DataReferences" parent="ExtrasMenu" instance=ExtResource("4_k7a4i")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Extras" to="." method="_on_extras_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

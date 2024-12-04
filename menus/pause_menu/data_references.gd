@@ -1,21 +1,22 @@
 class_name DataMenu
-
 extends Control
 
-@onready var BackButton: Button = $PanelContainer/VBoxContainer/BackButton
+@onready var back_button: Button = $PanelContainer/VBoxContainer/BackButton
 
 signal exit_data_references_menu
 
 func _ready() -> void:
-	BackButton.button_down.connect(on_exit_pressed)
+	back_button.button_down.connect(_on_back_pressed)
 	set_process(false)
+	visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func show_menu() -> void:
+	set_process(true)
+	visible = true
 
-
-func on_exit_pressed() -> void:
-	print("Exiting data references menu")
-	exit_data_references_menu.emit()
+func hide_menu() -> void:
 	set_process(false)
+	visible = false
+
+func _on_back_pressed() -> void:
+	emit_signal("exit_data_references_menu")
