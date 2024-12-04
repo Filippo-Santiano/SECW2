@@ -422,12 +422,14 @@ texture = ExtResource("40_5bmui")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -8)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8wccs"]
 texture = ExtResource("41_bge1y")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guhwq"]
 texture = ExtResource("42_yyw8o")
@@ -446,6 +448,7 @@ texture = ExtResource("44_ow1la")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -8)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ovhx0"]
 texture = ExtResource("10_u135k")
@@ -459,42 +462,49 @@ texture = ExtResource("46_8an2b")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07bcl"]
 texture = ExtResource("47_bholo")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -15)
+0:0/0/custom_data_1 = "Ground"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dxd0o"]
 texture = ExtResource("48_kcdyk")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcjk5"]
 texture = ExtResource("49_tg4im")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n8hwk"]
 texture = ExtResource("50_4xskx")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3kwu"]
 texture = ExtResource("51_4551i")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4d7xl"]
 texture = ExtResource("52_csbsq")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_juqjs"]
 texture = ExtResource("53_etpbg")
@@ -507,6 +517,7 @@ texture = ExtResource("54_u3jlo")
 texture_region_size = Vector2i(132, 83)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -24)
+0:0/0/custom_data_1 = "Water"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ctcdv"]
 texture = ExtResource("55_beyar")
@@ -526,24 +537,28 @@ texture = ExtResource("57_woc5r")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Road"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w8j5o"]
 texture = ExtResource("58_r7x7r")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Road"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jeykg"]
 texture = ExtResource("59_n8673")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Road"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8afl"]
 texture = ExtResource("60_1lx27")
 texture_region_size = Vector2i(132, 99)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
+0:0/0/custom_data_1 = "Road"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15ayl"]
 texture = ExtResource("61_qsdjw")
