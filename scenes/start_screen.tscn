@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://catytm7ikbhqs"]
+
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_htwvq"]
+
+[sub_resource type="SystemFont" id="SystemFont_6kctq"]
+resource_local_to_scene = true
+font_names = PackedStringArray("")
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_htwvq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1081.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.991164, 0.991164, 0.991164, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 19
+theme_override_fonts/font = SubResource("SystemFont_6kctq")
+theme_override_font_sizes/font_size = 96
+text = "Welcome!"
+horizontal_alignment = 1
