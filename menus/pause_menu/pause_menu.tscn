@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://be8mxi8kg7i7a"]
+[gd_scene load_steps=10 format=3 uid="uid://be8mxi8kg7i7a"]
 
 [ext_resource type="Script" path="res://menus/pause_menu/pause_menu.gd" id="1_q1itc"]
 [ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_6bkc2"]
+[ext_resource type="PackedScene" uid="uid://dj73qnlo2iytx" path="res://menus/pause_menu/extras_menu.tscn" id="3_s1wnx"]
+[ext_resource type="PackedScene" path="res://menus/pause_menu/DataReferences.tscn" id="4_k7a4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7wq"]
 shader = ExtResource("2_6bkc2")
@@ -145,14 +147,14 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_constants/separation = 38
 
-[node name="User Manual?" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Extras" type="Button" parent="PanelContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("SystemFont_mrx3x")
 theme_override_font_sizes/font_size = 48
-text = "Button 2"
+text = "Extras"
 
 [node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 process_mode = 2
@@ -191,6 +193,14 @@ process_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_qp0so")
 }
+
+[node name="ExtrasMenu" parent="." instance=ExtResource("3_s1wnx")]
+visible = false
+layout_mode = 1
+
+[node name="DataReferences" parent="ExtrasMenu" instance=ExtResource("4_k7a4i")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

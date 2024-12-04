@@ -44,7 +44,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp28b"]
-size = Vector2(379, 235)
+size = Vector2(379, 360)
 
 [node name="ToolTipBox" type="Panel"]
 physics_interpolation_mode = 0
@@ -52,7 +52,7 @@ modulate = Color(1, 1, 1, 0)
 z_index = 100
 texture_filter = 6
 offset_right = 214.0
-offset_bottom = 110.0
+offset_bottom = 275.0
 mouse_filter = 1
 script = ExtResource("1_t3ylk")
 
@@ -215,11 +215,36 @@ theme_override_font_sizes/font_size = 52
 text = "Repair"
 horizontal_alignment = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 120.0
+offset_right = 214.0
+offset_bottom = 295.0
+
+[node name="FunFactTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 14
+text = "Did You Know?"
+
+[node name="FunFact" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(107, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 10
+text = "Fun facts will appear here! "
+autowrap_mode = 2
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_top = 118.0
-offset_right = 375.0
-offset_bottom = 278.0
+offset_left = 135.0
+offset_top = 107.0
+offset_right = 510.0
+offset_bottom = 267.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 64
 text = "Repair"
@@ -227,7 +252,7 @@ text = "Repair"
 [node name="MouseBlocker" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseBlocker"]
-position = Vector2(112.5, 71.5)
+position = Vector2(112.5, 134)
 shape = SubResource("RectangleShape2D_bp28b")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
