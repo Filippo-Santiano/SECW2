@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://be8mxi8kg7i7a"]
+[gd_scene load_steps=11 format=3 uid="uid://be8mxi8kg7i7a"]
 
 [ext_resource type="Script" path="res://menus/pause_menu/pause_menu.gd" id="1_q1itc"]
 [ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_6bkc2"]
 [ext_resource type="PackedScene" uid="uid://dj73qnlo2iytx" path="res://menus/pause_menu/extras_menu.tscn" id="3_s1wnx"]
 [ext_resource type="PackedScene" uid="uid://dgdofjcj0f2mx" path="res://menus/pause_menu/DataReferences.tscn" id="4_k7a4i"]
+[ext_resource type="PackedScene" uid="uid://ce485455pcy2k" path="res://scenes/current_stats.tscn" id="5_i2luh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7wq"]
 shader = ExtResource("2_6bkc2")
@@ -199,6 +200,10 @@ visible = false
 layout_mode = 1
 
 [node name="DataReferences" parent="ExtrasMenu" instance=ExtResource("4_k7a4i")]
+visible = false
+layout_mode = 1
+
+[node name="CurrentStats" parent="ExtrasMenu" instance=ExtResource("5_i2luh")]
 visible = false
 layout_mode = 1
 

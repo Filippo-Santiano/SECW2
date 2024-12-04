@@ -31,7 +31,7 @@ func store_normalised_data() -> void:
 	# Loop through data and append to list (all lists are same length so append norm data in one for loop)
 	for i in range(happiness_data):
 		# Use normalisation formula
-		var norm_happiness = (happiness_data[i] - min_happiness) / (max_happiness - min_happiness)
+		var norm_happiness = (happiness_data[i] - min_happiness) / (max_happiness - min_happiness+0.0001)
 		normalised_happiness.append(norm_happiness)
 		
 		var norm_electricity = (electricity_data[i] - min_electricity) / (max_electricity - min_electricity)
@@ -72,7 +72,7 @@ func _draw():
 		
 		var x = start_x + i * step_x
 		if max_happiness-min_happiness == 0:
-			var y = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			var y = start_y - (happiness_data[i-1]-min_happiness)/(max_happiness-min_happiness)*700
 			points_happiness.append(Vector2(x, y))
 		else:
 			var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700
@@ -80,7 +80,7 @@ func _draw():
 		
 		var x_electricity = start_x + i * step_x
 		if (max_electricity-min_electricity) == 0:
-			var y_electricity = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			var y_electricity = start_y - (electricity_data[i-1]-min_electricity)/(max_electricity-min_electricity)*700
 			points_electricity.append(Vector2(x_electricity, y_electricity))
 		else:
 			var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity)*700
@@ -88,7 +88,7 @@ func _draw():
 		
 		var x_pollution = start_x + i * step_x
 		if max_pollution-min_pollution == 0:
-			var y_pollution = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			var y_pollution = start_y - (pollution_data[i-1]-min_pollution)/(max_pollution-min_pollution)*700
 			points_pollution.append(Vector2(x_pollution, y_pollution))
 		else:
 			var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution)*700
@@ -96,7 +96,7 @@ func _draw():
 		
 		var x_money = start_x + i * step_x
 		if max_money-min_money == 0:
-			var y_money = start_y - graph_height / 2 #Put this to stop division by zero error. 
+			var y_money = start_y - (money_data[i-1]-min_money)/(max_money-min_money)*700
 			points_money.append(Vector2(x_money, y_money))
 		else:
 			var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money)*700
