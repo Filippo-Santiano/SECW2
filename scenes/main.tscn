@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://mud7fkp6q72l"]
+[gd_scene load_steps=21 format=4 uid="uid://mud7fkp6q72l"]
 
 [ext_resource type="Script" path="res://scripts/tiles.gd" id="1_10c5s"]
 [ext_resource type="Script" path="res://scripts/years_timer.gd" id="1_g2f2i"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_l22p6"]
 [ext_resource type="TileSet" uid="uid://deenobcu650sx" path="res://scenes/tileset.tres" id="2_kjq6j"]
 [ext_resource type="Script" path="res://scripts/TilesLayer.gd" id="4_ustpy"]
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_p11hm"]
@@ -39,6 +40,7 @@ font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_l22p6")
 
 [node name="YearsTimer" type="Timer" parent="." node_paths=PackedStringArray("YearsLabel", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ProgressBars") groups=["YearsTimer"]]
 autostart = true

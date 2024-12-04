@@ -1,7 +1,7 @@
 extends Camera2D
 
 const MOVE_SPEED = 20
-const ZOOM_STEPS = [1.0,1.5,2.0]
+const ZOOM_STEPS = [1,1.5,2.0]
 
 @export var WorldBounds : Area2D
 @export var ToolTipBox : Panel

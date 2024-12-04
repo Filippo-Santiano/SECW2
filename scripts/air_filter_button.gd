@@ -26,10 +26,5 @@ func _on_years_timer_timeout() -> void:
 
 
 func _on_pressed() -> void:
-	if Global.Money >= cost:
-		Global.Money -= cost
-		
+	if Global.chargeMoney(cost):
 		Global.repairAirFilter()
-		
-	else:
-		print("Not enough molah")
