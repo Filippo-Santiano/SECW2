@@ -52,69 +52,52 @@ func _ready():
 	# Print the final score
 	score_label.text = str("Your final score is: ", round(final_score))
 	
-	
+		#function to calculate Y values - if the values are equal, it returns the original value to stop zerodivisionerror
+func calculate_y(data_value, min_value, max_value, graph_height, start_y):
+	if max_value == min_value:
+		return start_y  # Default to `start_y` if range is zero
+	return start_y - ((data_value - min_value) / (max_value - min_value)) * graph_height
+
 func _draw():
 	# Set size of chart
 	var graph_width = 1300
 	var graph_height = 700
 	var start_x = 300
-	var start_y =950
-	var step_x = graph_width / max(1, happiness_data.size() - 1) # X-axis spacing between years
-	
+	var start_y = 950
+	var step_x = graph_width / max(1, happiness_data.size() - 1)  
+
 	# Store data points in these lists
 	var points_happiness = []
 	var points_electricity = []
 	var points_pollution = []
 	var points_money = []
-	
-	# Calculate graph points for the length of one of the data arrays (all arrays will be same length
+
+	# Calculate graph points for the length of one of the data arrays all arrays will be same length
 	for i in range(happiness_data.size()):
-		
 		var x = start_x + i * step_x
-		if max_happiness-min_happiness == 0:
-			var y = start_y - (happiness_data[i-1]-min_happiness)/(max_happiness-min_happiness)*700
-			points_happiness.append(Vector2(x, y))
-		else:
-			var y = start_y - (happiness_data[i]-min_happiness)/(max_happiness-min_happiness)*700
-			points_happiness.append(Vector2(x, y))
-		
-		var x_electricity = start_x + i * step_x
-		if (max_electricity-min_electricity) == 0:
-			var y_electricity = start_y - (electricity_data[i-1]-min_electricity)/(max_electricity-min_electricity)*700
-			points_electricity.append(Vector2(x_electricity, y_electricity))
-		else:
-			var y_electricity = start_y - (electricity_data[i]-min_electricity)/(max_electricity-min_electricity)*700
-			points_electricity.append(Vector2(x_electricity, y_electricity))
-		
-		var x_pollution = start_x + i * step_x
-		if max_pollution-min_pollution == 0:
-			var y_pollution = start_y - (pollution_data[i-1]-min_pollution)/(max_pollution-min_pollution)*700
-			points_pollution.append(Vector2(x_pollution, y_pollution))
-		else:
-			var y_pollution = start_y - (pollution_data[i]-min_pollution)/(max_pollution-min_pollution)*700
-			points_pollution.append(Vector2(x_pollution, y_pollution))
-		
-		var x_money = start_x + i * step_x
-		if max_money-min_money == 0:
-			var y_money = start_y - (money_data[i-1]-min_money)/(max_money-min_money)*700
-			points_money.append(Vector2(x_money, y_money))
-		else:
-			var y_money = start_y - (money_data[i]-min_money)/(max_money-min_money)*700
-			points_money.append(Vector2(x_money, y_money))
+
+		# Append calculated points for each dataset
+		points_happiness.append(Vector2(x, calculate_y(happiness_data[i], min_happiness, max_happiness, graph_height, start_y)))
+		points_electricity.append(Vector2(x, calculate_y(electricity_data[i], min_electricity, max_electricity, graph_height, start_y)))
+		points_pollution.append(Vector2(x, calculate_y(pollution_data[i], min_pollution, max_pollution, graph_height, start_y)))
+		points_money.append(Vector2(x, calculate_y(money_data[i], min_money, max_money, graph_height, start_y)))
 
 	# Draw the line
 	for j in range(points_happiness.size() - 1):
-		draw_line(points_happiness[j], points_happiness[j + 1], Color(1, 1, 0), 6) #yellow
-		draw_line(points_electricity[j], points_electricity[j + 1], Color(0, 0, 1), 6) #blue
-		draw_line(points_pollution[j], points_pollution[j + 1], Color(1, 0, 0), 6) # red
-		draw_line(points_money[j], points_money[j + 1], Color(0, 1, 0), 6) #green
+		draw_line(points_happiness[j], points_happiness[j + 1], Color(1, 1, 0), 6)  # Yellow
+		draw_line(points_electricity[j], points_electricity[j + 1], Color(0, 0, 1), 6)  # Blue
+		draw_line(points_pollution[j], points_pollution[j + 1], Color(1, 0, 0), 6)  # Red
+		draw_line(points_money[j], points_money[j + 1], Color(0, 1, 0), 6)  # Green
 
-	# Draw the X and Y axes
-	draw_line(Vector2(start_x, start_y), Vector2(start_x + graph_width, start_y), Color(1, 1, 1), 6)  # X 
-	draw_line(Vector2(start_x, start_y), Vector2(start_x, start_y - graph_height), Color(1, 1, 1), 6)  # Y 
-	
-	# Draw chart legend with corresponding colours
-	draw_line(Vector2(start_x+1360, start_y - graph_height+160), Vector2(start_x+1410, start_y - graph_height+160), Color(1, 1, 0), 6)
-	draw_line(Vector2(start_x+1360, start_y - graph_height+225), Vector2(start_x+1410, start_y - graph_height+225), Color(0, 0, 1), 6)
-	draw_line(Vector2(start_x+1360, start_y - graph_height+290), Vector2(start_x+1410, start_y - graph_height+290), Color(1, 0, 0), 6)
-	draw_line(Vector2(start_x+1360, start_y - graph_height+355), Vector2(start_x+1410, start_y - graph_height+355), Color(0, 1, 0), 6)
+		# Draw the X and Y axes
+		draw_line(Vector2(start_x, start_y), Vector2(start_x + graph_width, start_y), Color(1, 1, 1), 6)  # X-axis
+		draw_line(Vector2(start_x, start_y), Vector2(start_x, start_y - graph_height), Color(1, 1, 1), 6)  # Y-axis
+
+		# Draw chart legend with corresponding colors
+		var legend_x_start = start_x + graph_width + 60
+		var legend_y_start = start_y - graph_height + 160
+		var legend_spacing = 65
+		draw_line(Vector2(legend_x_start, legend_y_start), Vector2(legend_x_start + 50, legend_y_start), Color(1, 1, 0), 6)  # Happiness - Yellow
+		draw_line(Vector2(legend_x_start, legend_y_start + legend_spacing), Vector2(legend_x_start + 50, legend_y_start + legend_spacing), Color(0, 0, 1), 6)  # Electricity - Blue
+		draw_line(Vector2(legend_x_start, legend_y_start + 2 * legend_spacing), Vector2(legend_x_start + 50, legend_y_start + 2 * legend_spacing), Color(1, 0, 0), 6)  # Pollution - Red
+		draw_line(Vector2(legend_x_start, legend_y_start + 3 * legend_spacing), Vector2(legend_x_start + 50, legend_y_start + 3 * legend_spacing), Color(0, 1, 0), 6)  # Money - Green

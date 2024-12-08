@@ -4,7 +4,7 @@ const MOVE_SPEED = 20
 const ZOOM_STEPS = [1,1.5,2.0]
 
 @export var WorldBounds : Area2D
-@export var ToolTipBox : Panel
+@export var ToolTipBox : Control
 
 var currentStep = 1
 var startPos = Vector2()
