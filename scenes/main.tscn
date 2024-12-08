@@ -172,19 +172,20 @@ anchors_preset = -1
 anchor_right = 0.249
 anchor_bottom = 0.277
 offset_left = 512.0
-offset_top = 1013.0
+offset_top = 1047.0
 offset_right = 1055.03
-offset_bottom = 1012.38
+offset_bottom = 1046.38
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Use WASD to move camera, R to reset. Scroll to zoom"
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
-offset_left = -139.0
-offset_top = 722.0
-offset_right = -1695.0
-offset_bottom = -119.0
+offset_left = -142.0
+offset_top = 769.0
+offset_right = -1698.0
+offset_bottom = -72.0
 scale = Vector2(1.5, 1.5)
+mouse_filter = 2
 
 [node name="BuildingMenu" parent="UI" node_paths=PackedStringArray("PlayerController", "Camera") instance=ExtResource("12_t8mhr")]
 offset_left = 1275.0

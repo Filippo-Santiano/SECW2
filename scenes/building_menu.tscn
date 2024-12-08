@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/mouse_blocker.gd" id="18_nebj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vay08"]
-size = Vector2(1100.5, 161)
+size = Vector2(2092, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2g03"]
 size = Vector2(143.25, 161)
@@ -45,12 +45,13 @@ MenuBlocker = NodePath("MouseBlocker/MenuShape")
 [node name="MouseBlocker" type="Area2D" parent="."]
 process_priority = -1
 process_physics_priority = -1
-z_index = 6
+z_index = 10
+z_as_relative = false
 position = Vector2(81, 205)
 script = ExtResource("18_nebj5")
 
 [node name="MenuShape" type="CollisionShape2D" parent="MouseBlocker"]
-position = Vector2(1, 1)
+position = Vector2(-482, 43)
 shape = SubResource("RectangleShape2D_vay08")
 
 [node name="ButtonShape" type="CollisionShape2D" parent="MouseBlocker"]
@@ -78,8 +79,10 @@ layout_direction = 3
 layout_mode = 0
 offset_left = 149.0
 offset_top = 58.0
-offset_right = 1087.0
+offset_right = 1417.0
 offset_bottom = 272.0
+follow_focus = true
+horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer"]
@@ -92,141 +95,351 @@ size_flags_vertical = 10
 layout_mode = 2
 action_mode = 0
 text = "Office
-$50"
+
+"
 icon = ExtResource("2_tr6n0")
 script = ExtResource("3_4872b")
 ID = 1
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/OfficeItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 109.0
+offset_top = 64.0
+offset_right = -14.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="ForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Forest
-$50"
+
+"
 icon = ExtResource("3_juhu7")
 script = ExtResource("3_4872b")
 ID = 2
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="OrangeForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Orange Forest
-$50"
+
+"
 icon = ExtResource("6_7n4l8")
 script = ExtResource("3_4872b")
 ID = 28
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/OrangeForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_top = 64.0
+offset_right = 15.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="RubberForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Rubber Forest
-$50"
+
+"
 icon = ExtResource("7_g6aud")
 script = ExtResource("3_4872b")
 ID = 29
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/RubberForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="PalmForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Palm Forest
-$50"
+
+"
 icon = ExtResource("8_j7o2x")
 script = ExtResource("3_4872b")
 ID = 30
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/PalmForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="CocoaForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Cocoa Forest
-$50"
+
+"
 icon = ExtResource("4_esmi4")
 script = ExtResource("3_4872b")
 ID = 31
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/CocoaForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="CoalPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Coal Power Plant
-$50"
+
+"
 icon = ExtResource("9_u5qwy")
 script = ExtResource("3_4872b")
 ID = 32
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/CoalPPItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="NuclearPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Nuclear Power Plant
-$50"
+
+"
 icon = ExtResource("10_a80ut")
 script = ExtResource("3_4872b")
 ID = 33
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/NuclearPPItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="WindFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Wind Farm
-$50"
+
+"
 icon = ExtResource("11_ht88h")
 script = ExtResource("3_4872b")
 ID = 34
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WindFarmItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="LeisureCentreItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Leisure Centre
-$50"
+
+"
 icon = ExtResource("12_fo528")
 script = ExtResource("3_4872b")
 ID = 35
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/LeisureCentreItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 64.0
+offset_right = -15.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="StadiumItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Stadium
-$50"
+
+"
 icon = ExtResource("13_os74q")
 script = ExtResource("3_4872b")
 ID = 36
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/StadiumItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="DairyFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Dairy Farm
-$50"
+
+"
 icon = ExtResource("14_bagps")
 script = ExtResource("3_4872b")
 ID = 37
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/DairyFarmItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="ParkItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Park
-$50"
+
+"
 icon = ExtResource("15_6odak")
 script = ExtResource("3_4872b")
 ID = 38
 BuildingMenu = NodePath("../../..")
 
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ParkItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="WheatFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
 text = "Wheat Farm
-$50"
+
+"
 icon = ExtResource("17_5jgq6")
 script = ExtResource("3_4872b")
 ID = 39
 BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WheatFarmItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
 
 [connection signal="mouse_entered" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_exited"]
