@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Initial Godot Testing"
+config/name="Sustain-a-city"
 run/main_scene="res://menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]

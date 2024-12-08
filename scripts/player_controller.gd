@@ -42,7 +42,8 @@ func _physics_process(delta: float) -> void:
 		hoverTiles(false) # remove hover tile if build mode is false
 	
 	# The player is always able to sell buildings
-	sell_inputs()
+	if not Global.mouseBlocker:
+		sell_inputs()
 	
 #I like to have a function that contains all of my Input events
 #This gets called every frame in _physics_process()

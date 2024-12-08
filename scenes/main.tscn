@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
-size = Vector2(2975, 1886)
+size = Vector2(3179, 1727)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
 size = Vector2(388, 324)
@@ -90,7 +90,6 @@ script = ExtResource("4_ustpy")
 [node name="WorldBounds" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(-25.5, 253)
 shape = SubResource("RectangleShape2D_rnb82")
 
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
@@ -99,7 +98,6 @@ offset_bottom = 220.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
-visible = false
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 script = ExtResource("6_0oufy")
@@ -174,18 +172,18 @@ anchors_preset = -1
 anchor_right = 0.249
 anchor_bottom = 0.277
 offset_left = 512.0
-offset_top = 1013.0
+offset_top = 1047.0
 offset_right = 1055.03
-offset_bottom = 1012.38
+offset_bottom = 1046.38
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Use WASD to move camera, R to reset. Scroll to zoom"
 
 [node name="ProgressBarsUi" parent="UI" instance=ExtResource("11_4udw2")]
-offset_left = -139.0
-offset_top = 722.0
-offset_right = -1695.0
-offset_bottom = -119.0
+offset_left = -142.0
+offset_top = 769.0
+offset_right = -1698.0
+offset_bottom = -72.0
 scale = Vector2(1.5, 1.5)
 
 [node name="BuildingMenu" parent="UI" node_paths=PackedStringArray("PlayerController", "Camera") instance=ExtResource("12_t8mhr")]
@@ -250,6 +248,37 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Cost:"
 horizontal_alignment = 1
+
+[node name="ExternalPollution" type="Label" parent="UI/AirFilterButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -72.0
+offset_right = 4.0
+offset_bottom = -126.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "External Pollution: "
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="ExternalPollutionValue" type="Label" parent="UI/AirFilterButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -40.0
+offset_right = -3.0
+offset_bottom = -94.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -15
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 2
+autowrap_mode = 1
+text_overrun_behavior = 3
 
 [node name="TwitterFeed" parent="UI" instance=ExtResource("6_6tdp6")]
 anchors_preset = -1

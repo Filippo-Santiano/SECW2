@@ -12,6 +12,8 @@ bg_color = Color(0, 0, 0, 0.47451)
 
 [node name="ProgressBarsUi" type="Control" node_paths=PackedStringArray("environment_bar", "env_bar_percentage", "happiness_bar", "happy_bar_percentage", "economy_bar", "econ_bar_percentage", "electricity_bar", "elec_bar_percentage")]
 show_behind_parent = true
+z_index = -1
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 script = ExtResource("1_sbi27")
 environment_bar = NodePath("VBoxContainer/ColorRect/Environment/EnvBar3")
 env_bar_percentage = NodePath("VBoxContainer/ColorRect/BarPercentage")
@@ -47,10 +50,12 @@ offset_right = 79.0
 offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(15, 30)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.124738, 0.318787, 0.210157, 1)
 
 [node name="Environment" type="HBoxContainer" parent="VBoxContainer/ColorRect"]
@@ -59,6 +64,7 @@ offset_left = 36.5
 offset_top = 1.0
 offset_right = 330.5
 offset_bottom = 28.0
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/ColorRect/Environment"]
@@ -70,6 +76,7 @@ text = "Environment     "
 custom_minimum_size = Vector2(150, 27)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
@@ -93,12 +100,14 @@ offset_left = -3.5
 offset_top = -3.0
 offset_right = 32.5
 offset_bottom = 33.0
+mouse_filter = 2
 icon = ExtResource("2_stesq")
 flat = true
 
 [node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(15, 30)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.956863, 0.494118, 0.6, 1)
 
 [node name="Happiness" type="HBoxContainer" parent="VBoxContainer/ColorRect2"]
@@ -107,6 +116,7 @@ offset_left = 38.5
 offset_top = 1.0
 offset_right = 311.5
 offset_bottom = 28.0
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/ColorRect2/Happiness"]
@@ -117,6 +127,7 @@ text = "Happiness         "
 custom_minimum_size = Vector2(150, 27)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
@@ -144,12 +155,14 @@ offset_left = 15.092
 offset_top = -19.0
 offset_right = 51.092
 offset_bottom = 19.0
+mouse_filter = 2
 icon = ExtResource("3_4ft2f")
 flat = true
 
 [node name="ColorRect3" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(15, 30)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.952941, 0.654902, 0.137255, 1)
 
 [node name="Economy" type="HBoxContainer" parent="VBoxContainer/ColorRect3"]
@@ -163,6 +176,7 @@ offset_right = 152.5
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/ColorRect3/Economy"]
@@ -173,6 +187,7 @@ text = "Economy           "
 custom_minimum_size = Vector2(150, 27)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
@@ -200,12 +215,14 @@ offset_left = 16.092
 offset_top = -18.0
 offset_right = 54.092
 offset_bottom = 18.0
+mouse_filter = 2
 icon = ExtResource("4_wywtu")
 flat = true
 
 [node name="ColorRect4" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(15, 30)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.278431, 0.47451, 0.976471, 1)
 
 [node name="Electricity" type="HBoxContainer" parent="VBoxContainer/ColorRect4"]
@@ -214,6 +231,7 @@ offset_left = 39.5
 offset_top = 1.0
 offset_right = 315.5
 offset_bottom = 29.0
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/ColorRect4/Electricity"]
@@ -224,6 +242,7 @@ text = "Electricity          "
 custom_minimum_size = Vector2(150, 27)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_u5fdf")
 theme_override_styles/fill = ExtResource("2_plqa0")
 step = 0.0
@@ -253,5 +272,6 @@ offset_top = -16.0
 offset_right = 58.092
 offset_bottom = 24.0
 scale = Vector2(0.8, 0.8)
+mouse_filter = 2
 icon = ExtResource("7_7eii8")
 flat = true

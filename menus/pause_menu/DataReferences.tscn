@@ -53,6 +53,13 @@ theme_override_font_sizes/font_size = 64
 text = "Learn More"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.709804)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Note: Real world data has been used as a baseline and then adjusted to suit the gameplay"
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
