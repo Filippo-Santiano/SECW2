@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
-size = Vector2(2975, 1886)
+size = Vector2(3179, 1727)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
 size = Vector2(388, 324)
@@ -90,7 +90,6 @@ script = ExtResource("4_ustpy")
 [node name="WorldBounds" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(-25.5, 253)
 shape = SubResource("RectangleShape2D_rnb82")
 
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
@@ -99,7 +98,6 @@ offset_bottom = 220.0
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
 physics_interpolation_mode = 1
-visible = false
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 script = ExtResource("6_0oufy")
