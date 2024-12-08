@@ -207,7 +207,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Crop Carbon Sequestation:"
+text = "Crop Sequestration:"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -249,6 +249,71 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Urban CO₂ sinks :
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cow Emissions" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Dairy Cow Emissions:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Wheat Sequ_" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Wheat Sequestration:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Pools" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Swimming pools:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Pools2" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Sport Centres:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Forest sink" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Forest Sink:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Office Buildings" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Sustainable Buildings:
 "
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -349,7 +414,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Kongsager et al., 2012"
-uri = "https://journals.sagepub.com/doi/10.1177/0143624412465092"
+uri = "https://link.springer.com/article/10.1007/s11027-012-9417-z"
 
 [node name="LinkButton16" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 50)
@@ -378,6 +443,48 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Mansoure et al., 2024"
 uri = "https://www.mdpi.com/2673-4672/4/1/7"
+
+[node name="LinkButton18" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bačėninaitė et al., 2022"
+uri = "https://pmc.ncbi.nlm.nih.gov/articles/PMC9559257/#B36-animals-12-02687"
+
+[node name="LinkButton19" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Gan et al., 2014"
+uri = "https://www.nature.com/articles/ncomms6012#:~:text=For%20each%20kg%20of%20wheat,actually%20emitted%20during%20its%20production."
+
+[node name="LinkButton20" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Katsaprakakis, 2015"
+uri = "https://www.sciencedirect.com/science/article/pii/S0360544215000298?casa_token=t4zoKBiDuywAAAAA:6Zh_gpI4ibc9urUU5z8mh3GsFE3U7uyGI1rs66LcZJNLyTMdbCqrd-Lr1SPC9yVR7Tn9cqff8A"
+
+[node name="LinkButton21" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Katsaprakakis et al., 2023"
+uri = "https://www.mdpi.com/1996-1073/16/10/4040"
+
+[node name="LinkButton22" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Pan et al., 2024"
+uri = "https://www.nature.com/articles/s41586-024-07602-x"
+
+[node name="LinkButton23" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Akram et al., 2022"
+uri = "https://www.mdpi.com/2071-1050/14/3/1316"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
