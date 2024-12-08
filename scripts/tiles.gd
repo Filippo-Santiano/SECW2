@@ -6,7 +6,7 @@ class_name Tile
 @export var PollutionLabel : Label
 @export var IncomeLabel : Label
 @export var MoneyLabel : Label
-@export var ToolTipBox : Panel
+@export var ToolTipBox : Control
 @export var Camera : Camera2D
 @export var PlayerController: Node
 
@@ -554,13 +554,11 @@ func update_box(tile):
 	
 func Reset_Repair_Label(tile):
 	if tile:
-		ToolTipBox.set_repair("","Environment")
-		ToolTipBox.set_repair("","Money")
-		ToolTipBox.set_repair("","Electricity")
-		#ToolTipBox.set_repair("","Electricity")
-		ToolTipBox.set_repair("","Happiness")		
+		ToolTipBox.reset_repair()
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
+	ToolTipBox.changeCost("")
+	button_on_off = 0
 	#print("")
 
 # Shows the popup with tile information
@@ -582,55 +580,56 @@ var RepairCost = 0
 
 func get_repair_data():
 	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
-	
-	var tile_data = TilesLayer.get_cell_tile_data(Global.Repair_Tile_Pos)
-	var cost = tile_data.get_custom_data("Cost")
-	RepairCost = cost / 2
-	
-	var Asset_ID = tile.get("Asset_ID")
-	var initial_attributes = Initial_Tile_Attributes.get(Asset_ID,{
-	"yearly_pollution": 0,
-	"income": 0,
-	"electricityRequired": 0,
-	"electricityGenerated": 0,
-	"positiveHappiness": 0,
-	"negativeHappiness": 0
-	})
+	if tile:
+		var tile_data = TilesLayer.get_cell_tile_data(Global.Repair_Tile_Pos)
+		var cost = tile_data.get_custom_data("Cost")
+		RepairCost = cost / 2
+		
+		var Asset_ID = tile.get("Asset_ID")
+		var initial_attributes = Initial_Tile_Attributes.get(Asset_ID,{
+		"yearly_pollution": 0,
+		"income": 0,
+		"electricityRequired": 0,
+		"electricityGenerated": 0,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0
+		})
 
-	var attributes = tile.get("attributes") #grab attributes from dictionary
-	var Name = attributes.get("name")
-	var yearlyPollution : int = attributes.get("yearly_pollution")
-	var yearlyIncome : int = attributes.get("income")
-	var electricityRequired : int = attributes.get("electricityRequired")
-	var electricityGenerated : int = attributes.get("electricityGenerated")
-	var PosHappiness : int = attributes.get("positiveHappiness")
-	var NegHappiness : int = attributes.get("negativeHappiness")
-	
-	IniYPol = initial_attributes.get("yearly_pollution")
-	IniInc = initial_attributes.get("income")
-	IniElecReq = initial_attributes.get("electricityRequired")
-	IniElecGen = initial_attributes.get("electricityGenerated")
-	IniPosHapp = initial_attributes.get("positiveHappiness")
-	IniNegHapp = initial_attributes.get("negativeHappiness")
-	
-	update_box(tile)
-	ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
-	ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
-	ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
-	#ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"Electricity")
-	ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
+		var attributes = tile.get("attributes") #grab attributes from dictionary
+		var Name = attributes.get("name")
+		var yearlyPollution : int = attributes.get("yearly_pollution")
+		var yearlyIncome : int = attributes.get("income")
+		var electricityRequired : int = attributes.get("electricityRequired")
+		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var PosHappiness : int = attributes.get("positiveHappiness")
+		var NegHappiness : int = attributes.get("negativeHappiness")
+		
+		IniYPol = initial_attributes.get("yearly_pollution")
+		IniInc = initial_attributes.get("income")
+		IniElecReq = initial_attributes.get("electricityRequired")
+		IniElecGen = initial_attributes.get("electricityGenerated")
+		IniPosHapp = initial_attributes.get("positiveHappiness")
+		IniNegHapp = initial_attributes.get("negativeHappiness")
+		
+		update_box(tile)
+		ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
+		ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
+		ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
+		#ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"Electricity")
+		ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
  
 
 func repair_tile():
 	var tile = Global.tile_data.get(Vector2(Global.Repair_Tile_Pos))
-	tile["attributes"]["yearly_pollution"] = IniYPol
-	tile["attributes"]["income"] = IniInc
-	tile["attributes"]["electricityRequired"] = IniElecReq
-	tile["attributes"]["electricityGenerated"] = IniElecGen
-	tile["attributes"]["positiveHappiness"] = IniPosHapp
-	tile["attributes"]["negativeHappiness"] = IniNegHapp
-	update_box(tile)
-	Reset_Repair_Label(tile)
+	if tile:
+		tile["attributes"]["yearly_pollution"] = IniYPol
+		tile["attributes"]["income"] = IniInc
+		tile["attributes"]["electricityRequired"] = IniElecReq
+		tile["attributes"]["electricityGenerated"] = IniElecGen
+		tile["attributes"]["positiveHappiness"] = IniPosHapp
+		tile["attributes"]["negativeHappiness"] = IniNegHapp
+		update_box(tile)
+		Reset_Repair_Label(tile)
 
 	# Update the values
 	# Refresh all the global variables

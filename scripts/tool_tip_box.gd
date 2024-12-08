@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 @export var button : Button
 var buttonMode = 0
@@ -13,6 +13,7 @@ signal repair_button_pressed
 func _ready() -> void:
 	modulate = Color(0,0,0,0)
 	hide()
+	reset_repair()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,11 +22,19 @@ func _process(delta: float) -> void:
 	scale.y = lerp(scale.x,float(STEPS[currentStep]),0.01)
 	#lerp from the old value to the new one, scaling the box
 
+func reset_repair():
+	changeButtonText(false)
+	set_repair("","Environment")
+	set_repair("","Money")
+	set_repair("","Electricity")
+	set_repair("","Happiness")		
+
 func set_text(text,property):
 	find_child(property).text = str(text) #set the text
 	
 func set_repair(text,property):
 	find_child(property).get_node("RepairLabel").text = str(text)
+	print("set ",find_child(property).get_node("RepairLabel")," to ",text)
 
 func cameraScale(step):
 	currentStep = step #Camera calls this function to tell the box the current zoom level
@@ -46,15 +55,15 @@ func hideToolTip():
 
 func changeButtonText(mode):
 	if mode:
-		button.get_node("Repair").text = "Confirm"
+		button.get_node("VBoxContainer/Repair").text = "Confirm"
 	else:
-		button.get_node("Repair").text = "View Repair"
+		button.get_node("VBoxContainer/Repair").text = "View Repair"
 
 #func changeButtonText(text):
 	#button.get_node("Repair").text = text
 		
 func changeCost(cost):
-	button.get_node("Cost").text = cost
+	button.get_node("VBoxContainer/Cost").text = cost
 
 func _on_button_pressed() -> void:
 	emit_signal("repair_button_pressed")
@@ -62,7 +71,9 @@ func _on_button_pressed() -> void:
 
 func _on_mouse_blocker_mouse_entered() -> void:
 	mouseFocus = true
+	Global.mouseBlocker = true
 
 
 func _on_mouse_blocker_mouse_exited() -> void:
 	mouseFocus = false
+	Global.mouseBlocker = false
