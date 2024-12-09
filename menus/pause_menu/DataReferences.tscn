@@ -313,7 +313,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Sustainable Buildings:
+text = "Office Energy Demands 2:
 "
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -483,8 +483,8 @@ uri = "https://www.nature.com/articles/s41586-024-07602-x"
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Akram et al., 2022"
-uri = "https://www.mdpi.com/2071-1050/14/3/1316"
+text = "Mantesi et al., 2022"
+uri = "https://www.sciencedirect.com/science/article/pii/S2214629621005594#bb0040"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)

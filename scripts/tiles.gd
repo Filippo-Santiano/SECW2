@@ -521,7 +521,7 @@ func generate_fun_fact(asset_name):
 		
 	#Office
 	elif asset_name == "Office":
-		var random_string = "Buildings are responsible for 51% of global electricity consumption each year."
+		var random_string = "In the UK, offices require 27.6GWh per year and are responsible for 68% of total non-domestic electricity use."
 		return random_string
 	
 	else:

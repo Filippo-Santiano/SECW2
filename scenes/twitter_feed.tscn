@@ -68,7 +68,8 @@ text = "Show All"
 
 [node name="FeedItem" parent="." instance=ExtResource("2_r3ngf")]
 visible = false
-layout_mode = 0
+z_index = -2
+layout_mode = 2
 
 [node name="Conditions" type="Node" parent="."]
 script = ExtResource("4_nt8oq")
