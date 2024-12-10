@@ -474,27 +474,29 @@ func generate_fun_fact(asset_name):
 			
 	#Forests
 	elif asset_name == "Forest":
-		var random_string = "Placeholder"
+		var random_string = "The global forest sink is equivalent to half of fossil fuel emissions (7.8 ± 0.4 PgC per year)."
 		return random_string
 	elif asset_name == "Orange Forest":
-		var random_string = "Placeholder"
+		var random_string = "An orange tree plantation can remove approximately 3 tonnes of Carbon per Hectare per year."
 		return random_string
 	elif asset_name == "Rubber Forest":
-		var random_string = "Placeholder"
+		var random_string = "A rubber tree plantation can remove approximately 5 tonnes of Carbon per Hectare per year."
 		return random_string
 	elif asset_name == "Palm Forest":
-		var random_string = "Placeholder"
+		var random_string = "A palm tree plantation can remove approximately 3 tonnes of Carbon per Hectare per year."
 		return random_string
 	elif asset_name == "Cocoa Forest":
-		var random_string = "Placeholder"
+		var random_string = "A cocoa tree plantation can remove approximately 3 tonnes of Carbon per Hectare per year."
 		return random_string
 	
 	#Agriculture
 	elif asset_name == "Dairy Farm":
-		var random_string = "Placeholder"
+		var random_string = ["A fully developed cow can emit up to 500 litres of methane each day!",
+							"Cows are estimated to accounts for 3.7 % of all all greenhouse gas emissions."
+							][randi() % 2]
 		return random_string
 	elif asset_name == "Wheat Farm":
-		var random_string = "Placeholder"
+		var random_string = "For each kg of wheat grain produced, a net 0.03–0.38 kg CO₂ is sequestered into the soil."
 		return random_string
 	
 	#Leisure
@@ -514,12 +516,12 @@ func generate_fun_fact(asset_name):
 		return random_string
 		
 	elif asset_name == "Leisure Centre":
-		var random_string = "Placeholder"
+		var random_string = "Heating a leisure centre swimming pool can use up to 1600 kWh/m². This can be reduced by up to 90% using passive solar systems." 
 		return random_string
 		
 	#Office
 	elif asset_name == "Office":
-		var random_string = "Placeholder"
+		var random_string = "In the UK, offices require 27.6GWh per year and are responsible for 68% of total non-domestic electricity use."
 		return random_string
 	
 	else:
