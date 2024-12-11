@@ -1,0 +1,350 @@
+[gd_scene load_steps=4 format=3 uid="uid://b52yfs8nsvqwo"]
+
+[ext_resource type="Script" path="res://menus/pause_menu/help_menu.gd" id="1_5kweg"]
+[ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_bcmgw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8dqg"]
+shader = ExtResource("2_bcmgw")
+shader_parameter/lod = 0.0
+
+[node name="HelpMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5kweg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_w8dqg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 5.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.00184101
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_left = 485.0
+offset_top = 165.0
+offset_right = 1435.0
+offset_bottom = 910.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Help"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label19" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Background Story"
+horizontal_alignment = 1
+
+[node name="Label20" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "The world has fallen victim to its own neglect - pollution has rendered the air unbreathable. Humanity's last hope is cities enclosed in protective domes equipped with advanced air filters. In one such dome, it's up to you to balance growth, sustainability and the well-being of your citizens. Can you lead the city to thrive against the odds?
+"
+autowrap_mode = 3
+
+[node name="HSeparator10" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label21" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Your Mission"
+horizontal_alignment = 1
+
+[node name="Label22" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "As the city's leader you must:
+
+- Generate income to maintain the vital air filter and keep the city running.
+- Produce electricity to power your buildings and ensure their efficiency.
+- Manage pollution to prevent the air filter from being overwhelmed.
+- Keep citizens happy to increase the pollution threshold of your city.
+
+Each decision you make will affect the city's survival. 
+"
+autowrap_mode = 3
+
+[node name="HSeparator11" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Pollution"
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Pollution levels must stay below the threshold, which is influenced by citizen happiness. Failure to control pollution will lead to disaster."
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Economy"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Build income-generating structures to fund the city’s operations and repair the air filter. Buildings produce more income when fully powered.
+"
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Happiness"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Keep your citizens happy by maintaining green spaces, avoiding excessive pollution, and providing sustainable solutions. Happiness directly impacts the pollution tolerance of the city."
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label7" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Electricity"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Balance power generation and consumption. Buildings need electricity to function, but some power sources create pollution. Be strategic!
+"
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label11" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Goal"
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Survive as long as possible and score big by balancing sustainability and growth. Can you create a thriving sustainable city in a dying world?"
+autowrap_mode = 3
+
+[node name="HSeparator6" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label13" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Game Over Conditions"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label15" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 36
+text = "Pollution Crisis"
+horizontal_alignment = 1
+
+[node name="Label14" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Pollution exceeds the threshold for 3 years."
+autowrap_mode = 3
+
+[node name="HSeparator8" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label17" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 36
+text = "Bankruptcy"
+horizontal_alignment = 1
+
+[node name="Label18" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(850, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "No money to repair the air filter"
+autowrap_mode = 3
+
+[node name="HSeparator9" type="HSeparator" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Back" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Back
+"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

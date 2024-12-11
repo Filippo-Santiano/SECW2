@@ -5,6 +5,8 @@ extends Control
 @onready var resume_button: Button = $PanelContainer/VBoxContainer/Resume
 @onready var extras_button: Button = $PanelContainer/VBoxContainer/Extras
 @onready var quit_button: Button = $PanelContainer/VBoxContainer/Quit
+@onready var help_button : Button = $PanelContainer/VBoxContainer/Help
+@onready var help_menu: HelpMenu = $HelpMenu
 
 var game_paused = false
 
@@ -12,6 +14,7 @@ func _ready() -> void:
 	# Connect button signals
 	resume_button.button_down.connect(_on_resume_pressed)
 	extras_button.button_down.connect(_on_extras_pressed)
+	help_button.button_down.connect(_on_help_pressed)
 	quit_button.button_down.connect(_on_quit_pressed)
 
 	# Connect child menu signals
@@ -41,6 +44,7 @@ func resume():
 
 func reset_menus() -> void:
 	extras_menu.hide_menu()  # Ensure ExtrasMenu is hidden
+	help_menu.hide_menu()
 	panel_container.visible = true  # Show the main pause menu
 
 func _on_resume_pressed() -> void:
@@ -54,7 +58,12 @@ func _on_extras_pressed() -> void:
 	panel_container.visible = false
 	extras_menu.show_menu()  # Show the Extras menu
 
+func _on_help_pressed() -> void:
+	panel_container.visible = false
+	help_menu.show_menu()  # Show the Extras menu
+
 func _on_exit_submenu() -> void:
 	# Called when exiting any submenu
 	extras_menu.hide_menu()  # Hide Extras menu
+	help_menu.hide_menu()  # Hide Extras menu
 	panel_container.visible = true  # Show the main pause menu
