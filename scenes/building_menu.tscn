@@ -91,6 +91,56 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 10
 
+[node name="DairyFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Dairy Farm
+
+"
+icon = ExtResource("14_bagps")
+script = ExtResource("3_4872b")
+ID = 37
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/DairyFarmItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
+[node name="WheatFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Wheat Farm
+
+"
+icon = ExtResource("17_5jgq6")
+script = ExtResource("3_4872b")
+ID = 39
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WheatFarmItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="OfficeItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
@@ -111,6 +161,31 @@ anchor_bottom = 1.0
 offset_left = 109.0
 offset_top = 64.0
 offset_right = -14.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
+[node name="PalmForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Palm Forest
+
+"
+icon = ExtResource("8_j7o2x")
+script = ExtResource("3_4872b")
+ID = 30
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/PalmForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -166,56 +241,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "50"
 
-[node name="RubberForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-action_mode = 0
-text = "Rubber Forest
-
-"
-icon = ExtResource("7_g6aud")
-script = ExtResource("3_4872b")
-ID = 29
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/RubberForestItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 139.0
-offset_top = 64.0
-offset_right = 16.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
-[node name="PalmForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-action_mode = 0
-text = "Palm Forest
-
-"
-icon = ExtResource("8_j7o2x")
-script = ExtResource("3_4872b")
-ID = 30
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/PalmForestItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 64.0
-offset_right = 17.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
 [node name="CocoaForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
@@ -241,6 +266,31 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "50"
 
+[node name="RubberForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Rubber Forest
+
+"
+icon = ExtResource("7_g6aud")
+script = ExtResource("3_4872b")
+ID = 29
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/RubberForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
 [node name="CoalPPItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
@@ -253,6 +303,31 @@ ID = 32
 BuildingMenu = NodePath("../../..")
 
 [node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/CoalPPItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 64.0
+offset_right = 17.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
+[node name="WindFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+action_mode = 0
+text = "Wind Farm
+
+"
+icon = ExtResource("11_ht88h")
+script = ExtResource("3_4872b")
+ID = 34
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WindFarmItem"]
 modulate = Color(1, 1, 1, 0.741176)
 layout_mode = 1
 anchors_preset = 15
@@ -291,18 +366,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "50"
 
-[node name="WindFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+[node name="ParkItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 action_mode = 0
-text = "Wind Farm
+text = "Park
 
 "
-icon = ExtResource("11_ht88h")
+icon = ExtResource("15_6odak")
 script = ExtResource("3_4872b")
-ID = 34
+ID = 38
 BuildingMenu = NodePath("../../..")
 
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WindFarmItem"]
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ParkItem"]
 modulate = Color(1, 1, 1, 0.741176)
 layout_mode = 1
 anchors_preset = 15
@@ -366,95 +441,20 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "50"
 
-[node name="DairyFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-action_mode = 0
-text = "Dairy Farm
-
-"
-icon = ExtResource("14_bagps")
-script = ExtResource("3_4872b")
-ID = 37
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/DairyFarmItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 64.0
-offset_right = 17.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
-[node name="ParkItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-action_mode = 0
-text = "Park
-
-"
-icon = ExtResource("15_6odak")
-script = ExtResource("3_4872b")
-ID = 38
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ParkItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 64.0
-offset_right = 17.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
-[node name="WheatFarmItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-action_mode = 0
-text = "Wheat Farm
-
-"
-icon = ExtResource("17_5jgq6")
-script = ExtResource("3_4872b")
-ID = 39
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/WheatFarmItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 64.0
-offset_right = 17.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
 [connection signal="mouse_entered" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseBlocker" to="MouseBlocker" method="_on_mouse_exited"]
 [connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/DairyFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/WheatFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OfficeItem" to="." method="_on_tree_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/PalmForestItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OrangeForestItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/RubberForestItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/PalmForestItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/CocoaForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/RubberForestItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/CoalPPItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/NuclearPPItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/WindFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/NuclearPPItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/ParkItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/LeisureCentreItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/StadiumItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/DairyFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/ParkItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/WheatFarmItem" to="." method="_on_cocoa_forest_item_pressed"]

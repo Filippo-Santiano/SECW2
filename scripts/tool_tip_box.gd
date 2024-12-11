@@ -39,6 +39,14 @@ func set_repair(text,property):
 func cameraScale(step):
 	currentStep = step #Camera calls this function to tell the box the current zoom level
 	
+func resetAll():
+	set_text("Environment","Environment")
+	set_text("Money","Money")
+	set_text("Electricity","Electricity")
+	set_text("Happiness","Happiness")
+	set_text("Fun Fact","FunFact")
+	pass	
+
 func showToolTip():
 	show()
 	$AnimationPlayer.play("showToolTipBox")
@@ -52,6 +60,7 @@ func hideToolTip():
 		await($AnimationPlayer.animation_finished)
 		#Wait for it to finish, then make sure the box is properly hidden
 		hide()
+		resetAll()
 
 func changeButtonText(mode):
 	if mode:
