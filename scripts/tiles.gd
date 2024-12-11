@@ -405,7 +405,7 @@ func placeTile(tile,x,y):
 				#var fixed_pollution = tileToPlace.get_custom_data("Pollution")
 				#Global.addNewTile(tile, fixed_pollution)
 				
-				setInitialAttributes(tile,x,y)
+				#setInitialAttributes(tile,x,y)
 				
 				#Instantiates a tile placer node that either places a construction tile and waits x years, or, if timeToBuild = 0,
 				#places the tile. This means we can have multiple tiles being constructed at once.
@@ -527,8 +527,9 @@ func generate_fun_fact(asset_name):
 	else:
 		return null
 	
-func update_box(tile):
-	if tile:
+func update_box(tile,type):
+	print(type)
+	if tile and type != "Landscape" and type != "Construction":
 		var attributes = tile.get("attributes") #grab attributes from dictionary
 		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
 		
@@ -547,6 +548,10 @@ func update_box(tile):
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
+	elif type == "Landscape":
+		ToolTipBox.set_text("Landscape Tile","Name")
+	elif type == "Construction":
+		ToolTipBox.set_text("Tile under construction","Name")
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
 	#print("")
@@ -557,19 +562,21 @@ func update_box(tile):
 func Reset_Repair_Label(tile):
 	if tile:
 		ToolTipBox.reset_repair()
-	else:
-		ToolTipBox.set_text("Cannot identify tile","Name")
 	ToolTipBox.changeCost("")
 	button_on_off = 0
 	#print("")
 
 # Shows the popup with tile information
 func show_popup(tile_pos: Vector2i, tile_id: int):
+	ToolTipBox.resetAll()
+	var tile_data = TilesLayer.get_cell_tile_data(tile_pos)
+	var type = tile_data.get_custom_data("Type")
+	print(type)
 	Global.Repair_Tile_Pos = tile_pos
 	# Customize popup content with tile details
 	var tile = Global.tile_data.get(Vector2(tile_pos))
 	ToolTipBox.position = get_global_mouse_position()
-	update_box(tile)
+	update_box(tile,type)
 	Reset_Repair_Label(tile)
 
 var IniYPol = 0
@@ -613,7 +620,7 @@ func get_repair_data():
 		IniPosHapp = initial_attributes.get("positiveHappiness")
 		IniNegHapp = initial_attributes.get("negativeHappiness")
 		
-		update_box(tile)
+		update_box(tile,"")
 		ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
 		ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
 		ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
@@ -630,7 +637,7 @@ func repair_tile():
 		tile["attributes"]["electricityGenerated"] = IniElecGen
 		tile["attributes"]["positiveHappiness"] = IniPosHapp
 		tile["attributes"]["negativeHappiness"] = IniNegHapp
-		update_box(tile)
+		update_box(tile,"")
 		Reset_Repair_Label(tile)
 
 	# Update the values

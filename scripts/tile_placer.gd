@@ -38,8 +38,10 @@ func place(tile,x,y):
 		await(waited) #waits for the signal from the wait function that says we have finished waiting
 		currentLayer.clearTile(x,y) #delete the construction tile and 
 		currentLayer.placeTile(tile,x,y) #place the real one
+		Tiles.setInitialAttributes(tile,x,y)
 	else:
 		currentLayer.placeTile(tile,x,y)
+		Tiles.setInitialAttributes(tile,x,y)
 	
 	
 	Global.updateData(x,y)
