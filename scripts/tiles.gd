@@ -454,7 +454,7 @@ func generate_fun_fact(asset_name):
 			][randi() % 3]
 		return random_string
 			
-	elif asset_name == "Nuclear Power Plane":
+	elif asset_name == "Nuclear Power Plant":
 		var random_string = [
 			"Per kWh of energy produced, nuclear power plants emit approximately 30x less carbon than coal.",
 			"In 2023, nuclear generation supplied more than 2600 TWh globally. That's 9% of the world's electricity!", 
