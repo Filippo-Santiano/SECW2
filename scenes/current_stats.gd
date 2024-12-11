@@ -2,7 +2,7 @@ class_name CurrentStats
 
 extends Control
 
-var current_score = Global.calculate_final_score() # This gets the current score
+@onready var current_score = Global.calculate_final_score() # This gets the current score
 @onready var score_label: Label = $scoreLabel
 @onready var back_to_extras = preload("res://menus/pause_menu/extras_menu.tscn")
 @onready var back_button: Button = $backButton
@@ -148,6 +148,8 @@ func _ready() -> void:
 	visible = false
 
 func show_menu() -> void:
+	current_score = Global.calculate_final_score()
+	score_label.text = str("Your current score is: ", round(current_score))
 	set_process(true)
 	visible = true
 
