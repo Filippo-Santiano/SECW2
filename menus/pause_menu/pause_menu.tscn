@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dj73qnlo2iytx" path="res://menus/pause_menu/extras_menu.tscn" id="3_s1wnx"]
 [ext_resource type="PackedScene" uid="uid://dgdofjcj0f2mx" path="res://menus/pause_menu/DataReferences.tscn" id="4_k7a4i"]
 [ext_resource type="PackedScene" uid="uid://ce485455pcy2k" path="res://scenes/current_stats.tscn" id="5_i2luh"]
-[ext_resource type="PackedScene" uid="uid://b52yfs8nsvqwo" path="res://menus/pause_menu/HelpMenu.tscn" id="6_msbdt"]
+[ext_resource type="PackedScene" uid="uid://clo4qodng0qxy" path="res://menus/pause_menu/HelpMenu.tscn" id="6_msbdt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7wq"]
 shader = ExtResource("2_6bkc2")
@@ -197,6 +197,7 @@ libraries = {
 }
 
 [node name="HelpMenu" parent="." instance=ExtResource("6_msbdt")]
+process_mode = 3
 visible = false
 layout_mode = 1
 
@@ -214,3 +215,4 @@ layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="exit_help_menu" from="HelpMenu" to="." method="_on_help_menu_exit_help_menu"]

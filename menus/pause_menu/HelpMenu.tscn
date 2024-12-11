@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b52yfs8nsvqwo"]
+[gd_scene load_steps=4 format=3 uid="uid://clo4qodng0qxy"]
 
 [ext_resource type="Script" path="res://menus/pause_menu/help_menu.gd" id="1_5kweg"]
 [ext_resource type="Shader" path="res://menus/pause_menu/pause_menu.gdshader" id="2_bcmgw"]
@@ -8,7 +8,6 @@ shader = ExtResource("2_bcmgw")
 shader_parameter/lod = 0.0
 
 [node name="HelpMenu" type="Control"]
-process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

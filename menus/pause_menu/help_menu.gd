@@ -6,7 +6,6 @@ extends Control
 signal exit_help_menu
 
 func _ready() -> void:
-	back_button.button_down.connect(_on_back_help_pressed)
 	set_process(false)
 	visible = false
 
@@ -18,5 +17,5 @@ func hide_menu() -> void:
 	set_process(false)
 	visible = false
 
-func _on_back_help_pressed() -> void:
+func _on_back_pressed() -> void:
 	emit_signal("exit_help_menu")
