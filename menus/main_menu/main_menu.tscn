@@ -51,7 +51,7 @@ theme_override_constants/outline_size = 11
 theme_override_constants/shadow_outline_size = 19
 theme_override_fonts/font = SubResource("SystemFont_238mq")
 theme_override_font_sizes/font_size = 96
-text = "Main Menu"
+text = "Sustain-A-City"
 horizontal_alignment = 1
 vertical_alignment = 1
 
