@@ -397,9 +397,12 @@ func placeTile(tile,x,y):
 			
 			var tileToPlace = TilesLayer.tile_set.get_source(tile).get_tile_data(Vector2i(0,0),0) #Gets the custom data of the current Tile ID.
 			var timeToBuild = tileToPlace.get_custom_data("timeToBuild")					#Atlas coords are just 0,0 because we have one tile per atlas.
+			var initialPollution = tileToPlace.get_custom_data("Pollution")
 			var cost = tileToPlace.get_custom_data("Cost")
 			
 			if Global.chargeMoney(cost):
+				
+				Global.Pollution += initialPollution
 				
 				#Adds the placed tile to the global placed tiles array + sets initial pollution
 				#var fixed_pollution = tileToPlace.get_custom_data("Pollution")
