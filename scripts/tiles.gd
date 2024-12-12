@@ -120,7 +120,7 @@ const Initial_Tile_Attributes = {
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 18,
+		"positiveHappiness": 9,
 		"negativeHappiness": 0
 	},
 	28: {  # Orange Forest
@@ -129,7 +129,7 @@ const Initial_Tile_Attributes = {
 		"income": 5,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 14,
+		"positiveHappiness": 7,
 		"negativeHappiness": 0
 	},
 	29: {  # Rubber Forest
@@ -138,7 +138,7 @@ const Initial_Tile_Attributes = {
 		"income": 8,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 14,
+		"positiveHappiness": 7,
 		"negativeHappiness": 0
 	},
 	30: {  # Palm Forest
@@ -147,8 +147,8 @@ const Initial_Tile_Attributes = {
 		"income": 10,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 11,
-		"negativeHappiness": 2
+		"positiveHappiness": 8,
+		"negativeHappiness": 4
 	},
 	31: {  # Cocoa Forest
 		"name" : "Cocoa Forest",
@@ -156,31 +156,31 @@ const Initial_Tile_Attributes = {
 		"income": 12,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 14,
+		"positiveHappiness": 7,
 		"negativeHappiness": 0
 	},
 	32: {  # Coal PP
 		"name" : "Coal Power Plant",	
 		"yearly_pollution": 60,
-		"income": 0,
+		"income": -50,
 		"electricityRequired": 5,
 		"electricityGenerated": 10,
 		"positiveHappiness": 0,
-		"negativeHappiness": 20
+		"negativeHappiness": 200
 	},
 	33: {  # Nuclear PP
 		"name" : "Nuclear Power Plant",
 		"yearly_pollution": 20,
-		"income": 0,
+		"income": -10,
 		"electricityRequired": 5,
 		"electricityGenerated": 15,
 		"positiveHappiness": 0,
-		"negativeHappiness": 10
+		"negativeHappiness": 100
 	},
 	34: {  # Wind Farm
 		"name" : "Wind Farm",
 		"yearly_pollution": 0,
-		"income": 0,
+		"income": -5,
 		"electricityRequired": 1,
 		"electricityGenerated": 7,
 		"positiveHappiness": 10,
@@ -189,7 +189,7 @@ const Initial_Tile_Attributes = {
 	35: {  # Leisure Centre
 		"name" : "Leisure Centre",
 		"yearly_pollution": 3,
-		"income": 0,
+		"income": 10,
 		"electricityRequired": 8,
 		"electricityGenerated": 0,
 		"positiveHappiness": 20,
@@ -201,14 +201,14 @@ const Initial_Tile_Attributes = {
 		"income": 50,
 		"electricityRequired": 22,
 		"electricityGenerated": 0,
-		"positiveHappiness": 15,
+		"positiveHappiness": 100,
 		"negativeHappiness": 5
 	},
 	37: {  # Dairy Farm
 		"name" : "Dairy Farm",
 		"yearly_pollution": 2,
 		"income": 40,
-		"electricityRequired": 0,
+		"electricityRequired": 0.5,
 		"electricityGenerated": 0,
 		"positiveHappiness": 5,
 		"negativeHappiness": 0
@@ -224,12 +224,12 @@ const Initial_Tile_Attributes = {
 	},
 	39: {  # Wheat Farm
 		"name" : "Wheat Farm",
-		"yearly_pollution": 2,
-		"income": 70,
-		"electricityRequired": 0,
+		"yearly_pollution": 8,
+		"income": 60,
+		"electricityRequired": 1,
 		"electricityGenerated": 0,
-		"positiveHappiness": 3,
-		"negativeHappiness": 0
+		"positiveHappiness": 1,
+		"negativeHappiness": 1
 	}
 }
 
@@ -245,89 +245,89 @@ const Tile_Multipliers = {
 		"negativeHappiness": 0.05
 		},
 	2: { #Forest
-		"yearly_pollution": 0.02,
+		"yearly_pollution": 0.01,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	28: { #Orange Forest
-		"yearly_pollution": 0.02,
+		"yearly_pollution": 0.01,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	29: { #Rubber Forest
-		"yearly_pollution": 0.02,
+		"yearly_pollution": 0.01,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	30: { #Palm Forest
-		"yearly_pollution": 0.02,
+		"yearly_pollution": 0.01,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	31: { #Cocoa Forest
-		"yearly_pollution": 0.02,
+		"yearly_pollution": 0.01,
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	32: { #Coal PP
-		"yearly_pollution": 0.02,
-		"income": 0,
+		"yearly_pollution": 0.06,
+		"income": 0.04,
 		"electricityRequired": 0,
-		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"electricityGenerated": -0.04,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.04
 		},
 	33: { #Nuclear PP
-		"yearly_pollution": 0.02,
-		"income": 0,
+		"yearly_pollution": 0.01,
+		"income": 0.04,
 		"electricityRequired": 0,
-		"electricityGenerated": 0,
+		"electricityGenerated": -0.01,
 		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"negativeHappiness": 0.08
 		},
 	34: { #Wind Farm
 		"yearly_pollution": 0.02,
-		"income": 0,
+		"income": 0.06,
 		"electricityRequired": 0,
-		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"electricityGenerated": -0.02,
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.01
 		},
 	35: { #Leisure Centre
 		"yearly_pollution": 0.02,
-		"income": 0,
-		"electricityRequired": 0,
+		"income": -0.02,
+		"electricityRequired": 0.02,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.01
 		},
 	36: { #Stadium
 		"yearly_pollution": 0.02,
 		"income": 0,
-		"electricityRequired": 0,
+		"electricityRequired": 0.03,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"positiveHappiness": -0.05,
+		"negativeHappiness": 0.01
 		},
 	37: { #Dairy Farm
 		"yearly_pollution": 0.02,
-		"income": 0,
-		"electricityRequired": 0,
+		"income": -0.04,
+		"electricityRequired": 0.04,
 		"electricityGenerated": 0,
 		"positiveHappiness": 0.04,
 		"negativeHappiness": 0
@@ -337,16 +337,16 @@ const Tile_Multipliers = {
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
+		"positiveHappiness": 0.01,
 		"negativeHappiness": 0
 		},
 	39: { #Wheat Farm
-		"yearly_pollution": 0.02,
-		"income": 0,
-		"electricityRequired": 0,
+		"yearly_pollution": 0.04,
+		"income": -0.06,
+		"electricityRequired": 0.04,
 		"electricityGenerated": 0,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0
+		"positiveHappiness": 0,
+		"negativeHappiness": 0.04
 		}
 }
 
@@ -529,7 +529,7 @@ func generate_fun_fact(asset_name):
 	
 func update_box(tile,type):
 	print(type)
-	if tile and type != "Landscape" and type != "Construction":
+	if tile and type != "Landscape" and type != "Construction" and type != "Town Hall":
 		var attributes = tile.get("attributes") #grab attributes from dictionary
 		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
 		
@@ -548,10 +548,12 @@ func update_box(tile,type):
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
-	elif type == "Landscape":
-		ToolTipBox.set_text("Landscape Tile","Name")
-	elif type == "Construction":
-		ToolTipBox.set_text("Tile under construction","Name")
+	elif type == "Landscape" or type == "Construction" or type == "Town Hall":
+		ToolTipBox.set_text(type,"Name")
+		if type == "Town Hall":
+			ToolTipBox.set_text("Generating: 4","Electricity")
+			ToolTipBox.set_text("","FunFact")
+			
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
 	#print("")

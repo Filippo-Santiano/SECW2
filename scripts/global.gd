@@ -1,15 +1,15 @@
 extends Node
 
 const AIR_FILTER_REPAIR_COST = 1000
-const AIR_FILTER_REPAIR_MULTIPLIER = 0.7
+const AIR_FILTER_REPAIR_MULTIPLIER = 0.9
 
 var mouseBlocker = false #True when the mouse hovers over the build button/menu
 
-var Money = 1500
+var Money = 75
 var Pollution = 0
 
 # Progress bars needs access to these so I've made them global
-var ElectricityGenerated = 4
+var ElectricityGenerated = 0
 var ElectricityRequired = 0
 
 var Electricity = 0
@@ -21,7 +21,7 @@ var currentYear : float
 var YearlyPollution: = 0
 var placed_tiles: Array = []
 var Income = 0
-var ExternalPollution = 1
+var ExternalPollution = 50
 # Maximum income shows income if all buildings are repaired
 var MaximumIncome = 0
 var PreviousIncome = 1
@@ -117,9 +117,9 @@ func get_yearly_data():
 func calculate_final_score():
 	var total_score = 0
 	for data in yearly_data:
-		total_score += data["Happiness"]*10
-		total_score += data["Pollution"]*-0.1
-		total_score += data["Money"]*1
+		total_score += data["Happiness"]*1
+		total_score += data["Pollution"]*-0.01
+		total_score += data["Money"]*0.1
 	return total_score
 	
 func repairAirFilter():

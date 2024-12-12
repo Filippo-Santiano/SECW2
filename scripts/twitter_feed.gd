@@ -69,7 +69,8 @@ func _ready():
 				"Environmental concerns rise as pollution nears dangerous levels."
 			],
 			"poll_greater_thresh": [
-				"Pollution is greater than threshold please look out for the city."
+				"Pollution is greater than threshold please look out for the city.",
+				"The city is dying! Please reduce the pollution."
 			]
 		},
 		"Happiness": {
