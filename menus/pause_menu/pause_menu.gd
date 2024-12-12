@@ -68,6 +68,5 @@ func _on_exit_submenu() -> void:
 	help_menu.hide_menu()  # Hide Extras menu
 	panel_container.visible = true  # Show the main pause menu
 
-
 func _on_help_menu_exit_help_menu() -> void:
 	_on_exit_submenu()
