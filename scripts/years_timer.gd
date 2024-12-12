@@ -13,6 +13,7 @@ extends Timer
 
 @export var yearsPerMinute : float = 1.0
 var Years = 0.0
+var baseElec = 4
 
 signal YearPassed
 
@@ -70,10 +71,11 @@ func update_stats_every_year():
 		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 		
 	# If generated is < required, income is decreased by a factor of generated / required
+	electricityGenerated += baseElec 
 	if (electricityGenerated < electricityRequired):
 		# # Avoids division by 0
 		if electricityRequired != 0:
-			tempIncome *= (electricityGenerated / electricityRequired)
+			tempIncome *= (electricityGenerated/ electricityRequired)
 	
 	print("Temporary income 2: ", tempIncome)	
 	# Updating the global values
@@ -114,10 +116,6 @@ func yearPassed():
 	if int(Years) > prevYear:
 		emit_signal("YearPassed")
 		print("YEAR PASSED")
-		print("&&&&&&&&&&&&&&&&&&&&")
-		print("Yearly Data: ", Global.yearly_data)
-		print("&&&&&&&&&&&&&&&&&&&&")
-
 		prevYear = Years
 		update_stats_every_year()
 		# Add the yearly stats to list
@@ -126,7 +124,7 @@ func yearPassed():
 		# Variable to store current score, used for final score
 		var current_score = Global.calculate_final_score()
 		print("Current Score", current_score)
-		if (Global.Money < 0):
+		if (Global.Money == 0 and Global.Income < 25):
 			# prints Bye Bye, not enough mulah
 			print("Bye Bye, not enough mulah")
 			# Change to lose screen

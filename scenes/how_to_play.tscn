@@ -110,7 +110,8 @@ theme_override_fonts/font = SubResource("SystemFont_pt6uk")
 theme_override_font_sizes/font_size = 33
 text = "Balance power generation and consumption. Buildings
 need electricity to function, but some power sources
-create pollution. Be strategic!
+create pollution. Be strategic! Your town hall is currently 
+running its backup generator to get you started.
 "
 
 [node name="Happiness" type="Label" parent="."]
