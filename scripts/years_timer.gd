@@ -13,7 +13,6 @@ extends Timer
 
 @export var yearsPerMinute : float = 1.0
 var Years = 0.0
-var baseElec = 4
 
 signal YearPassed
 
@@ -54,8 +53,8 @@ func update_stats_every_year():
 	# Temporary variables so that the labels don't go to zero at the beginning of each year
 	var tempYearlyPollution = 0
 	var tempIncome = 0
-	var electricityRequired = 0
-	var electricityGenerated = 4
+	var electricityRequired = 4
+	var electricityGenerated = 5
 	var tempHappinessPos = 0
 	var tempHappinessNeg = 0
 	
@@ -71,7 +70,6 @@ func update_stats_every_year():
 		tempHappinessNeg += tile["attributes"]["negativeHappiness"]
 		
 	# If generated is < required, income is decreased by a factor of generated / required
-	electricityGenerated += baseElec 
 	if (electricityGenerated < electricityRequired):
 		# # Avoids division by 0
 		if electricityRequired != 0:

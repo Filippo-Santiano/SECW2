@@ -208,7 +208,7 @@ const Initial_Tile_Attributes = {
 		"name" : "Dairy Farm",
 		"yearly_pollution": 2,
 		"income": 40,
-		"electricityRequired": 0.5,
+		"electricityRequired": 0.2,
 		"electricityGenerated": 0,
 		"positiveHappiness": 5,
 		"negativeHappiness": 0
@@ -226,7 +226,7 @@ const Initial_Tile_Attributes = {
 		"name" : "Wheat Farm",
 		"yearly_pollution": 8,
 		"income": 60,
-		"electricityRequired": 1,
+		"electricityRequired": 0.4,
 		"electricityGenerated": 0,
 		"positiveHappiness": 1,
 		"negativeHappiness": 1
