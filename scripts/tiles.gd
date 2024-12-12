@@ -529,7 +529,7 @@ func generate_fun_fact(asset_name):
 	
 func update_box(tile,type):
 	print(type)
-	if tile and type != "Landscape" and type != "Construction":
+	if tile and type != "Landscape" and type != "Construction" and type != "Town Hall":
 		var attributes = tile.get("attributes") #grab attributes from dictionary
 		#ToolTipBox.set_text(str("Building at: %s \n (ID: %d)" % [tile_pos, tile_id]))
 		
@@ -548,10 +548,12 @@ func update_box(tile,type):
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
 		ToolTipBox.set_text(funFact,"FunFact")
-	elif type == "Landscape":
-		ToolTipBox.set_text("Landscape Tile","Name")
-	elif type == "Construction":
-		ToolTipBox.set_text("Tile under construction","Name")
+	elif type == "Landscape" or type == "Construction" or type == "Town Hall":
+		ToolTipBox.set_text(type,"Name")
+		if type == "Town Hall":
+			ToolTipBox.set_text("Generating: 4","Electricity")
+			ToolTipBox.set_text("","FunFact")
+			
 	else:
 		ToolTipBox.set_text("Cannot identify tile","Name")
 	#print("")

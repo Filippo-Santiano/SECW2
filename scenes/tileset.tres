@@ -207,7 +207,7 @@ texture_region_size = Vector2i(99, 85)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
 0:0/0/z_index = 1
-0:0/0/custom_data_1 = "Building"
+0:0/0/custom_data_1 = "Town Hall"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wcb"]
 resource_name = "landscapeTree"
