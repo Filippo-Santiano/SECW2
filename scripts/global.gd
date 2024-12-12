@@ -33,7 +33,8 @@ var Repair_Tile_Pos: Vector2
 
 var moneyAnimation = preload("res://scenes/not_enough_money.tscn")
 
-
+var mouseBlockRect = Rect2i(Vector2i(-16,846),Vector2i(1949,266))
+var menuOpen = false
 
 # This calculates the updated external pollution (multiplies by 1.08)
 func updateExternalPollution():

@@ -436,15 +436,17 @@ func sellTile(x,y):
 
 ## Handles input for clicking tiles and displaying popup info
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not Global.mouseBlocker:
-		var world_pos = get_global_mouse_position()
-		var tile_pos = TilesLayer.local_to_map(world_pos)
-		# Retrieve tile ID and information
-		var tile_id = get_tile_id(tile_pos)
-		if tile_id != -1: # Check if a tile exists at the position
-			show_popup(tile_pos, tile_id)
-		else:
-			ToolTipBox.hideToolTip()
+	var viewportMousePos = get_viewport().get_mouse_position()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if not Global.menuOpen:
+			var world_pos = get_global_mouse_position()
+			var tile_pos = TilesLayer.local_to_map(world_pos)
+			# Retrieve tile ID and information
+			var tile_id = get_tile_id(tile_pos)
+			if tile_id != -1: # Check if a tile exists at the position
+				show_popup(tile_pos, tile_id)
+			else:
+				ToolTipBox.hideToolTip()
 
 # Generates a fun fact depending on the building type
 func generate_fun_fact(asset_name):
