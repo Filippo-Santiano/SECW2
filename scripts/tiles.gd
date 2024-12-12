@@ -166,7 +166,7 @@ const Initial_Tile_Attributes = {
 		"electricityRequired": 5,
 		"electricityGenerated": 10,
 		"positiveHappiness": 0,
-		"negativeHappiness": 200
+		"negativeHappiness": 100
 	},
 	33: {  # Nuclear PP
 		"name" : "Nuclear Power Plant",
@@ -175,7 +175,7 @@ const Initial_Tile_Attributes = {
 		"electricityRequired": 5,
 		"electricityGenerated": 15,
 		"positiveHappiness": 0,
-		"negativeHappiness": 100
+		"negativeHappiness": 75
 	},
 	34: {  # Wind Farm
 		"name" : "Wind Farm",
@@ -297,8 +297,8 @@ const Tile_Multipliers = {
 		"income": 0.04,
 		"electricityRequired": 0,
 		"electricityGenerated": -0.01,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0.08
+		"positiveHappiness": 0.03,
+		"negativeHappiness": 0.06
 		},
 	34: { #Wind Farm
 		"yearly_pollution": 0.02,

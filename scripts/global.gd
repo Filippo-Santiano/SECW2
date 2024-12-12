@@ -1,7 +1,7 @@
 extends Node
 
-const AIR_FILTER_REPAIR_COST = 1000
-const AIR_FILTER_REPAIR_MULTIPLIER = 0.9
+const AIR_FILTER_REPAIR_COST = 500
+const AIR_FILTER_REPAIR_MULTIPLIER = 0.8
 
 var mouseBlocker = false #True when the mouse hovers over the build button/menu
 
@@ -21,7 +21,7 @@ var currentYear : float
 var YearlyPollution: = 0
 var placed_tiles: Array = []
 var Income = 0
-var ExternalPollution = 50
+var ExternalPollution = 20
 # Maximum income shows income if all buildings are repaired
 var MaximumIncome = 0
 var PreviousIncome = 1
@@ -37,7 +37,7 @@ var moneyAnimation = preload("res://scenes/not_enough_money.tscn")
 
 # This calculates the updated external pollution (multiplies by 1.08)
 func updateExternalPollution():
-	var totalExternalPollutionMultiplier = 1.08
+	var totalExternalPollutionMultiplier = 1.12
 	ExternalPollution *= totalExternalPollutionMultiplier
 
 
