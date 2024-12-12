@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ce485455pcy2k"]
 
-[ext_resource type="Script" path="res://scenes/current_stats.gd" id="1_bxmeq"]
+[ext_resource type="Script" path="res://scripts/current_stats.gd" id="1_bxmeq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v1ttn"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/twitter_feed.gd" id="1_5d1n2"]
 [ext_resource type="StyleBox" uid="uid://dgn1tqhvr3l5m" path="res://scenes/show_all_button.tres" id="2_opq6j"]
 [ext_resource type="PackedScene" uid="uid://bonwfhfnfpi5m" path="res://scenes/feed_item.tscn" id="2_r3ngf"]
-[ext_resource type="Script" path="res://scenes/conditions.gd" id="4_nt8oq"]
+[ext_resource type="Script" path="res://scripts/conditions.gd" id="4_nt8oq"]
 
 [sub_resource type="SystemFont" id="SystemFont_pnx5q"]
 font_names = PackedStringArray("Arial")

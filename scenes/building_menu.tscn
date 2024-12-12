@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/building_menu.gd" id="1_jr522"]
 [ext_resource type="Texture2D" uid="uid://daicy4h1emqca" path="res://assets/buildingTiles_052.png" id="2_tr6n0"]
-[ext_resource type="Script" path="res://scenes/BuildingMenuItem.gd" id="3_4872b"]
+[ext_resource type="Script" path="res://scripts/BuildingMenuItem.gd" id="3_4872b"]
 [ext_resource type="Texture2D" uid="uid://dualfgy52kkyi" path="res://assets/Forest.png" id="3_juhu7"]
 [ext_resource type="Texture2D" uid="uid://rir6tx2g52iy" path="res://assets/Cocoa-Forest.png" id="4_esmi4"]
 [ext_resource type="Texture2D" uid="uid://kv6gbhpt1oj6" path="res://assets/buildingIcon2.png" id="4_qb2i8"]

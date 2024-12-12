@@ -52,7 +52,7 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://menus/main_menu/main_menu.tscn")  # Go to the main menu when quitting
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")  # Go to the main menu when quitting
 
 func _on_extras_pressed() -> void:
 	panel_container.visible = false
