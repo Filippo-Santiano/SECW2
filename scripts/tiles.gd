@@ -554,7 +554,7 @@ func update_box(tile,type):
 	elif type == "Landscape" or type == "Construction" or type == "Town Hall":
 		ToolTipBox.set_text(type,"Name")
 		if type == "Town Hall":
-			ToolTipBox.set_text("Generating: 4","Electricity")
+			ToolTipBox.set_text("Generating: 1","Electricity")
 			ToolTipBox.set_text("","FunFact")
 			
 	else:

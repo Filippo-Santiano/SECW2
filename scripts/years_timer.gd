@@ -53,8 +53,8 @@ func update_stats_every_year():
 	# Temporary variables so that the labels don't go to zero at the beginning of each year
 	var tempYearlyPollution = 0
 	var tempIncome = 0
-	var electricityRequired = 4
-	var electricityGenerated = 5
+	var electricityRequired = 1
+	var electricityGenerated = 2
 	var tempHappinessPos = 0
 	var tempHappinessNeg = 0
 	
