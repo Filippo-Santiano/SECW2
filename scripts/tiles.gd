@@ -166,7 +166,7 @@ const Initial_Tile_Attributes = {
 		"electricityRequired": 5,
 		"electricityGenerated": 10,
 		"positiveHappiness": 0,
-		"negativeHappiness": 200
+		"negativeHappiness": 100
 	},
 	33: {  # Nuclear PP
 		"name" : "Nuclear Power Plant",
@@ -175,7 +175,7 @@ const Initial_Tile_Attributes = {
 		"electricityRequired": 5,
 		"electricityGenerated": 15,
 		"positiveHappiness": 0,
-		"negativeHappiness": 100
+		"negativeHappiness": 75
 	},
 	34: {  # Wind Farm
 		"name" : "Wind Farm",
@@ -208,7 +208,7 @@ const Initial_Tile_Attributes = {
 		"name" : "Dairy Farm",
 		"yearly_pollution": 2,
 		"income": 40,
-		"electricityRequired": 0.5,
+		"electricityRequired": 0.2,
 		"electricityGenerated": 0,
 		"positiveHappiness": 5,
 		"negativeHappiness": 0
@@ -226,7 +226,7 @@ const Initial_Tile_Attributes = {
 		"name" : "Wheat Farm",
 		"yearly_pollution": 8,
 		"income": 60,
-		"electricityRequired": 1,
+		"electricityRequired": 0.4,
 		"electricityGenerated": 0,
 		"positiveHappiness": 1,
 		"negativeHappiness": 1
@@ -297,8 +297,8 @@ const Tile_Multipliers = {
 		"income": 0.04,
 		"electricityRequired": 0,
 		"electricityGenerated": -0.01,
-		"positiveHappiness": 0.04,
-		"negativeHappiness": 0.08
+		"positiveHappiness": 0.03,
+		"negativeHappiness": 0.06
 		},
 	34: { #Wind Farm
 		"yearly_pollution": 0.02,
@@ -554,7 +554,7 @@ func update_box(tile,type):
 	elif type == "Landscape" or type == "Construction" or type == "Town Hall":
 		ToolTipBox.set_text(type,"Name")
 		if type == "Town Hall":
-			ToolTipBox.set_text("Generating: 4","Electricity")
+			ToolTipBox.set_text("Generating: 1","Electricity")
 			ToolTipBox.set_text("","FunFact")
 			
 	else:

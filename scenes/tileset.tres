@@ -166,7 +166,7 @@ texture_region_size = Vector2i(132, 109)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -10)
 0:0/0/z_index = 1
-0:0/0/custom_data_0 = -100
+0:0/0/custom_data_0 = -11
 0:0/0/custom_data_1 = "Tree"
 0:0/0/custom_data_3 = 5.0
 0:0/0/custom_data_4 = 100
@@ -295,7 +295,7 @@ texture_region_size = Vector2i(132, 120)
 0:0/0 = 0
 0:0/0/custom_data_0 = 100
 0:0/0/custom_data_2 = 1.0
-0:0/0/custom_data_4 = 1500
+0:0/0/custom_data_4 = 1000
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3bvhu"]
@@ -321,7 +321,7 @@ texture_region_size = Vector2i(132, 99)
 0:0/0/custom_data_0 = 50
 0:0/0/custom_data_1 = "PowerPlant"
 0:0/0/custom_data_2 = 0.5
-0:0/0/custom_data_4 = 2750
+0:0/0/custom_data_4 = 2500
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlibk"]
@@ -331,10 +331,10 @@ texture_region_size = Vector2i(99, 85)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
 0:0/0/z_index = 1
-0:0/0/custom_data_0 = 50
+0:0/0/custom_data_0 = 25
 0:0/0/custom_data_1 = "Building"
 0:0/0/custom_data_2 = 0.6
-0:0/0/custom_data_4 = 1000
+0:0/0/custom_data_4 = 400
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l7tu1"]

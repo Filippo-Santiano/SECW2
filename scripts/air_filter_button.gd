@@ -3,7 +3,7 @@ extends Button
 @export var RedCost : Label
 @export var GreenCost : Label
 
-var cost : int = 1000
+var cost : int = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
