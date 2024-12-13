@@ -10,11 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Sustain-a-city"
+config/name="Sustain-A-City"
 run/main_scene="res://scenes/menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://assets/Wind-Farm.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
