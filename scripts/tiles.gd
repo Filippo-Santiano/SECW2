@@ -616,8 +616,8 @@ func get_repair_data():
 		var Name = attributes.get("name")
 		var yearlyPollution : int = attributes.get("yearly_pollution")
 		var yearlyIncome : int = attributes.get("income")
-		var electricityRequired : int = attributes.get("electricityRequired")
-		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var electricityRequired : float = attributes.get("electricityRequired")
+		var electricityGenerated : float = attributes.get("electricityGenerated")
 		var PosHappiness : int = attributes.get("positiveHappiness")
 		var NegHappiness : int = attributes.get("negativeHappiness")
 		
@@ -631,8 +631,8 @@ func get_repair_data():
 		update_box(tile,"")
 		ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
 		ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
-		ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"ElectricityUse")
-		ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"ElectricityGen")
+		ToolTipBox.set_repair(str(snapped(IniElecReq - electricityRequired,0.01)),"ElectricityUse")
+		ToolTipBox.set_repair(str(snapped(IniElecGen - electricityGenerated,0.01)),"ElectricityGen")
 		ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
  
 
