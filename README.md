@@ -19,4 +19,3 @@ Quick Start Guide
 7) Over time, some assets may require repairing. Click on any placed asset and, if you have enough money, press the repair button. You will also need to repair your protective dome's air filter, which keeps external pollution out.
 8) As your city grows, keep an eye on your pollution, it cannot exceed 1000 for more than 3 years. If this happens, you will lose the game.
 9) When the game ends, you'll receive a score that reflects the sustainability of your city.
-
