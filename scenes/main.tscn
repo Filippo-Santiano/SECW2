@@ -9,19 +9,10 @@
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="6_0oufy"]
 [ext_resource type="PackedScene" uid="uid://bltldb7w81ec5" path="res://scenes/twitter_feed.tscn" id="6_6tdp6"]
 [ext_resource type="PackedScene" uid="uid://c56q8m3q4xkh8" path="res://scenes/tool_tip_box.tscn" id="6_opf80"]
-[ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://menus/pause_menu/pause_menu.tscn" id="7_0whll"]
+[ext_resource type="PackedScene" uid="uid://be8mxi8kg7i7a" path="res://scenes/menus/pause_menu/pause_menu.tscn" id="7_0whll"]
 [ext_resource type="PackedScene" uid="uid://b4hanurnndll1" path="res://scenes/ProgressBarsUI.tscn" id="11_4udw2"]
 [ext_resource type="Script" path="res://scripts/air_filter_button.gd" id="12_5ke8b"]
 [ext_resource type="PackedScene" uid="uid://mlgjwly0sjst" path="res://scenes/building_menu.tscn" id="12_t8mhr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
-size = Vector2(3108.5, 1787.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
-size = Vector2(388, 324)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4okx"]
-size = Vector2(1280, 720)
 
 [sub_resource type="SystemFont" id="SystemFont_qcd84"]
 font_names = PackedStringArray("Impact")
@@ -38,6 +29,15 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_16gb1"]
 font_names = PackedStringArray("Impact")
 subpixel_positioning = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnb82"]
+size = Vector2(3108.5, 1787.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g14un"]
+size = Vector2(388, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4okx"]
+size = Vector2(1280, 720)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_l22p6")
@@ -87,37 +87,11 @@ y_sort_enabled = true
 tile_set = ExtResource("2_kjq6j")
 script = ExtResource("4_ustpy")
 
-[node name="WorldBounds" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
-shape = SubResource("RectangleShape2D_rnb82")
-
 [node name="ToolTipBox" parent="." instance=ExtResource("6_opf80")]
 offset_right = 217.0
 offset_bottom = 209.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
-physics_interpolation_mode = 1
-zoom = Vector2(1.5, 1.5)
-position_smoothing_enabled = true
-script = ExtResource("6_0oufy")
-WorldBounds = NodePath("../WorldBounds")
-ToolTipBox = NodePath("../ToolTipBox")
-
-[node name="CameraCollider" type="Area2D" parent="MainCamera"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/CameraCollider"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_g14un")
-
-[node name="RealCameraArea" type="Area2D" parent="MainCamera" groups=["RealCameraArea"]]
-position = Vector2(-1, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/RealCameraArea"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_p4okx")
 
 [node name="UI" type="CanvasLayer" parent="."]
 auto_translate_mode = 1
@@ -189,11 +163,11 @@ offset_bottom = -72.0
 scale = Vector2(1.5, 1.5)
 
 [node name="BuildingMenu" parent="UI" node_paths=PackedStringArray("PlayerController", "Camera") instance=ExtResource("12_t8mhr")]
-offset_left = 1275.0
+z_index = -4
+offset_left = 1913.0
 offset_top = 779.0
-offset_right = 1496.52
-offset_bottom = 899.32
-mouse_filter = 1
+offset_right = 1492.52
+offset_bottom = 513.32
 PlayerController = NodePath("../../PlayerController")
 Camera = NodePath("../../MainCamera")
 
@@ -291,6 +265,32 @@ offset_bottom = -637.0
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_0whll")]
 anchors_preset = -1
+
+[node name="WorldBounds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+shape = SubResource("RectangleShape2D_rnb82")
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("WorldBounds", "ToolTipBox")]
+physics_interpolation_mode = 1
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+script = ExtResource("6_0oufy")
+WorldBounds = NodePath("../WorldBounds")
+ToolTipBox = NodePath("../ToolTipBox")
+
+[node name="CameraCollider" type="Area2D" parent="MainCamera"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/CameraCollider"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g14un")
+
+[node name="RealCameraArea" type="Area2D" parent="MainCamera" groups=["RealCameraArea"]]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCamera/RealCameraArea"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_p4okx")
 
 [connection signal="YearPassed" from="YearsTimer" to="YearsTimer" method="_on_year_passed"]
 [connection signal="timeout" from="YearsTimer" to="YearsTimer" method="_on_timeout"]

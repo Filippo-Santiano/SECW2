@@ -10,7 +10,6 @@ extends Node2D
 
 @export var buildMode = false #player can only place and delete tiles when build mode is active (true)
 
-
 var currentTile = 1
 var activeLayer = 1
 
@@ -30,8 +29,9 @@ func _ready() -> void:
 #Called every 'physics' frame which, ideally, runs at x frames per second regardless of the game's actual framerate.
 #Most actual processing should either go on in here, or in _process with manipulation of delta time to maintain consistent speed.
 func _physics_process(delta: float) -> void:
-	# When build button pressed, begin delay so buildings cannot be immediately placed 
-	if buildMode and not Global.mouseBlocker:
+	# When build button pressed, begin delay so buildings cannot be immediately placed
+	var mousePos = get_viewport().get_mouse_position()
+	if buildMode and not Global.mouseBlockRect.has_point(mousePos):
 		time_passed += delta
 		if time_passed >= delay:
 			build_inputs()

@@ -1,0 +1,502 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgdofjcj0f2mx"]
+
+[ext_resource type="Script" path="res://scenes/menus/pause_menu/data_references.gd" id="1_g4610"]
+[ext_resource type="Shader" path="res://scenes/menus/pause_menu/pause_menu.gdshader" id="2_ihbvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8dqg"]
+shader = ExtResource("2_ihbvq")
+shader_parameter/lod = 0.0
+
+[node name="DataReferences" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g4610")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_w8dqg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 5.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.00184101
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_left = 485.0
+offset_top = 165.0
+offset_right = 1435.0
+offset_bottom = 910.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Learn More"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.709804)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Note: Real world data has been used as a baseline and then adjusted to suit the gameplay"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Wind Farms:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "UK Wind Energy:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Wind Farm Life Cycles:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "London Array Wind Farm:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Nuclear Energy:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Other Energy Sources:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Stadium Energy Demands: 
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Benefits of Urban Nature:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label10" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Park Construction:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label11" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Office Costs:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label12" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Office Construction:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label13" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Office Energy Demands:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label14" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Crop Sequestration:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label15" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Forest Costs:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label16" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Farm Statistics:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label7" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "First Timber Stadium: 
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label17" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Urban CO₂ sinks :
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cow Emissions" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Dairy Cow Emissions:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Wheat Sequ_" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Wheat Sequestration:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Pools" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Swimming pools:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Pools2" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Sport Centres:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Forest sink" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Forest Sink:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Office Buildings" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Office Energy Demands 2:
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="LinkButton" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "World Wind Energy Association"
+uri = "https://wwindea.org/country-reports/europe/united-kingdom"
+
+[node name="LinkButton4" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "UK Wind Energy Database"
+uri = "https://www.renewableuk.com/energypulse/ukwed/"
+
+[node name="LinkButton5" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Kaldellis & Apostolou, 2017"
+uri = "https://www.sciencedirect.com/science/article/pii/S0960148117301258"
+
+[node name="LinkButton6" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Olabi et al., 2023"
+uri = "https://www.mdpi.com/2071-1050/15/5/4641"
+
+[node name="LinkButton2" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "World Nuclear Association"
+uri = "https://world-nuclear.org/"
+
+[node name="LinkButton3" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "International Energy Association"
+uri = "https://www.iea.org/"
+
+[node name="LinkButton8" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Manni et al., 2018"
+uri = "https://www.mdpi.com/1996-1073/11/9/2396"
+
+[node name="LinkButton9" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "European Environment Agency"
+uri = "https://www.eea.europa.eu/publications/who-benefits-from-nature-in"
+
+[node name="LinkButton10" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Falls Park on the Reedy"
+uri = "https://www.rudybruneraward.org/wp-content/uploads/2015/01/06-Falls-Park.pdf"
+
+[node name="LinkButton12" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Koetter & Noth, 2022"
+uri = "https://www.econstor.eu/bitstream/10419/266553/1/1824306105.pdf"
+
+[node name="LinkButton13" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Amadi, 2024"
+uri = "https://www.emerald.com/insight/content/doi/10.1108/ijbpa-02-2023-0025/full/html?skipTracking=true"
+
+[node name="LinkButton14" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Menezes et al., 2012"
+uri = "https://journals.sagepub.com/doi/10.1177/0143624412465092"
+
+[node name="LinkButton15" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Kongsager et al., 2012"
+uri = "https://link.springer.com/article/10.1007/s11027-012-9417-z"
+
+[node name="LinkButton16" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Adam Kaliszewski, 2017"
+uri = "https://open.icm.edu.pl/items/0cfa9254-88f2-4479-b075-25fccb1f0720"
+
+[node name="LinkButton17" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Farm Business Survey"
+uri = "https://www.farmbusinesssurvey.co.uk/regional/Reports-on-Farming-in-the-Regions-of-England.asp"
+
+[node name="LinkButton7" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Eco Park"
+uri = "https://www.ecopark.com/"
+
+[node name="LinkButton11" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Mansoure et al., 2024"
+uri = "https://www.mdpi.com/2673-4672/4/1/7"
+
+[node name="LinkButton18" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bačėninaitė et al., 2022"
+uri = "https://pmc.ncbi.nlm.nih.gov/articles/PMC9559257/#B36-animals-12-02687"
+
+[node name="LinkButton19" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Gan et al., 2014"
+uri = "https://www.nature.com/articles/ncomms6012#:~:text=For%20each%20kg%20of%20wheat,actually%20emitted%20during%20its%20production."
+
+[node name="LinkButton20" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Katsaprakakis, 2015"
+uri = "https://www.sciencedirect.com/science/article/pii/S0360544215000298?casa_token=t4zoKBiDuywAAAAA:6Zh_gpI4ibc9urUU5z8mh3GsFE3U7uyGI1rs66LcZJNLyTMdbCqrd-Lr1SPC9yVR7Tn9cqff8A"
+
+[node name="LinkButton21" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Katsaprakakis et al., 2023"
+uri = "https://www.mdpi.com/1996-1073/16/10/4040"
+
+[node name="LinkButton22" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Pan et al., 2024"
+uri = "https://www.nature.com/articles/s41586-024-07602-x"
+
+[node name="LinkButton23" type="LinkButton" parent="PanelContainer/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Mantesi et al., 2022"
+uri = "https://www.sciencedirect.com/science/article/pii/S2214629621005594#bb0040"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Back
+"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

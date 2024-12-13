@@ -8,7 +8,6 @@ func _process(delta: float) -> void:
 @export var PlayerController : Node2D
 @export var MenuContainer : ScrollContainer
 @export var Camera : Camera2D
-@export var MenuBlocker : CollisionShape2D
 
 
 # Hide the buttons initially
@@ -20,15 +19,15 @@ func _ready() -> void:
 func _on_build_button_pressed() -> void:
 	if is_pressed == true:
 		MenuContainer.hide()
+		Global.menuOpen = false
 		is_pressed = false
 		Camera.canScroll = true
-		MenuBlocker.disabled = true #Only block mouse inputs beneath the menu button when collapsed
 		swap_build_mode()
 	else:
 		MenuContainer.show()
+		Global.menuOpen = true
 		is_pressed = true
 		Camera.canScroll = false #Prevent the camera from scrolling while in the menu
-		MenuBlocker.disabled = false
 		swap_build_mode()
 
 func swap_build_mode():
