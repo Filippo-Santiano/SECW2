@@ -5,7 +5,7 @@ const AIR_FILTER_REPAIR_MULTIPLIER = 0.8
 
 var mouseBlocker = false #True when the mouse hovers over the build button/menu
 
-var Money = 75
+var Money = 175
 var Pollution = 0
 
 # Progress bars needs access to these so I've made them global

@@ -162,32 +162,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "50"
 
-[node name="ForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
-layout_mode = 2
-mouse_filter = 1
-action_mode = 0
-text = "Forest
-
-"
-icon = ExtResource("3_juhu7")
-script = ExtResource("3_4872b")
-ID = 2
-BuildingMenu = NodePath("../../..")
-
-[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ForestItem"]
-modulate = Color(1, 1, 1, 0.741176)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 139.0
-offset_top = 64.0
-offset_right = 16.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-
 [node name="OrangeForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
 layout_mode = 2
 mouse_filter = 1
@@ -209,6 +183,32 @@ anchor_bottom = 1.0
 offset_left = 138.0
 offset_top = 64.0
 offset_right = 15.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+
+[node name="ForestItem" type="Button" parent="MenuContainer/HBoxContainer" node_paths=PackedStringArray("BuildingMenu")]
+layout_mode = 2
+mouse_filter = 1
+action_mode = 0
+text = "Forest
+
+"
+icon = ExtResource("3_juhu7")
+script = ExtResource("3_4872b")
+ID = 2
+BuildingMenu = NodePath("../../..")
+
+[node name="Cost" type="Label" parent="MenuContainer/HBoxContainer/ForestItem"]
+modulate = Color(1, 1, 1, 0.741176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 64.0
+offset_right = 16.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -427,8 +427,8 @@ text = "50"
 [connection signal="pressed" from="MenuContainer/HBoxContainer/WheatFarmItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OfficeItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/PalmForestItem" to="." method="_on_cocoa_forest_item_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/OrangeForestItem" to="." method="_on_cocoa_forest_item_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/ForestItem" to="." method="_on_tree_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/CocoaForestItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/RubberForestItem" to="." method="_on_cocoa_forest_item_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/CoalPPItem" to="." method="_on_cocoa_forest_item_pressed"]

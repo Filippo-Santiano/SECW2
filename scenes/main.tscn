@@ -50,7 +50,7 @@ PollutionLabel = NodePath("../UI/PollutionLabel")
 IncomeLabel = NodePath("../UI/IncomeLabel")
 MoneyLabel = NodePath("../UI/MoneyLabel")
 ProgressBars = NodePath("../UI/ProgressBarsUi")
-yearsPerMinute = 4.0
+yearsPerMinute = 3.0
 
 [node name="Tiles" type="Node2D" parent="." node_paths=PackedStringArray("TilesLayer", "HoverTiles", "PollutionLabel", "IncomeLabel", "MoneyLabel", "ToolTipBox", "Camera", "PlayerController")]
 script = ExtResource("1_10c5s")
