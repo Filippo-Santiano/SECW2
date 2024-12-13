@@ -64,8 +64,8 @@ button = NodePath("PanelContainer/HBoxContainer5/VBoxContainer/VBoxContainer/HBo
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 846.0
-offset_bottom = 975.0
+offset_right = 887.0
+offset_bottom = 1043.0
 scale = Vector2(0.275, 0.275)
 mouse_filter = 2
 
@@ -180,16 +180,54 @@ expand_mode = 2
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="Electricity" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer3"]
+[node name="ElectricityUse" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 52
-text = "Electricity"
+text = "Electricity Req"
 
-[node name="RepairLabel" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer3/Electricity"]
+[node name="RepairLabel" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer3/ElectricityUse"]
 layout_mode = 0
-offset_left = 687.0
+offset_left = 574.0
+offset_top = -12.0
+offset_right = 751.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "5"
+horizontal_alignment = 2
+text_overrun_behavior = 3
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer5/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer5"]
+self_modulate = Color(1, 0.227451, 1, 1)
+layout_mode = 2
+texture = ExtResource("4_cncvo")
+expand_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="ElectricityGen" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "Electricity Gen"
+
+[node name="RepairLabel" type="Label" parent="PanelContainer/HBoxContainer5/VBoxContainer/HBoxContainer5/ElectricityGen"]
+layout_mode = 0
+offset_left = 621.0
 offset_right = 751.0
 offset_bottom = 72.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
@@ -198,8 +236,9 @@ theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 52
 text = "5"
 horizontal_alignment = 2
+text_overrun_behavior = 3
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer5/VBoxContainer"]
+[node name="VSeparator5" type="VSeparator" parent="PanelContainer/HBoxContainer5/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 

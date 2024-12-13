@@ -541,14 +541,15 @@ func update_box(tile,type):
 		var Name = attributes.get("name")
 		var yearlyPollution : int = attributes.get("yearly_pollution")
 		var yearlyIncome : int = attributes.get("income")
-		var electricityRequired : int = attributes.get("electricityRequired")
-		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var electricityRequired : float = attributes.get("electricityRequired")
+		var electricityGenerated : float = attributes.get("electricityGenerated")
 		var netHappiness : int = attributes.get("positiveHappiness") - attributes.get("negativeHappiness")
 		
 		ToolTipBox.set_text(Name,"Name")
 		ToolTipBox.set_text(str("Environment: ",yearlyPollution),"Environment")
 		ToolTipBox.set_text(str("Money: ","£",yearlyIncome),"Money")
-		ToolTipBox.set_text(str("Usage: -",electricityRequired," ¦ Generating: ","+",electricityGenerated),"Electricity")
+		ToolTipBox.set_text(str("Usage: -",snapped(electricityRequired,0.01)),"ElectricityUse")
+		ToolTipBox.set_text(str("Generating: ","+",snapped(electricityGenerated,0.01)),"ElectricityGen")
 		ToolTipBox.set_text(str("Happiness: ",netHappiness),"Happiness")
 		# Insert fun fact depending on building type.
 		var funFact = generate_fun_fact(Name)
@@ -556,7 +557,7 @@ func update_box(tile,type):
 	elif type == "Landscape" or type == "Construction" or type == "Town Hall":
 		ToolTipBox.set_text(type,"Name")
 		if type == "Town Hall":
-			ToolTipBox.set_text("Generating: 1","Electricity")
+			ToolTipBox.set_text("Generating: 1","ElectricityUse")
 			ToolTipBox.set_text("","FunFact")
 			
 	else:
@@ -615,8 +616,8 @@ func get_repair_data():
 		var Name = attributes.get("name")
 		var yearlyPollution : int = attributes.get("yearly_pollution")
 		var yearlyIncome : int = attributes.get("income")
-		var electricityRequired : int = attributes.get("electricityRequired")
-		var electricityGenerated : int = attributes.get("electricityGenerated")
+		var electricityRequired : float = attributes.get("electricityRequired")
+		var electricityGenerated : float = attributes.get("electricityGenerated")
 		var PosHappiness : int = attributes.get("positiveHappiness")
 		var NegHappiness : int = attributes.get("negativeHappiness")
 		
@@ -630,8 +631,8 @@ func get_repair_data():
 		update_box(tile,"")
 		ToolTipBox.set_repair(str(IniYPol - yearlyPollution),"Environment")
 		ToolTipBox.set_repair(str(IniInc - yearlyIncome),"Money")
-		ToolTipBox.set_repair(str(IniElecReq - electricityRequired),"Electricity")
-		#ToolTipBox.set_repair(str(IniElecGen - electricityGenerated),"Electricity")
+		ToolTipBox.set_repair(str(snapped(IniElecReq - electricityRequired,0.01)),"ElectricityUse")
+		ToolTipBox.set_repair(str(snapped(IniElecGen - electricityGenerated,0.01)),"ElectricityGen")
 		ToolTipBox.set_repair(str((IniPosHapp - PosHappiness) - (IniNegHapp - NegHappiness)),"Happiness")
  
 

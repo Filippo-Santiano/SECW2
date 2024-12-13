@@ -26,7 +26,8 @@ func reset_repair():
 	changeButtonText(false)
 	set_repair("","Environment")
 	set_repair("","Money")
-	set_repair("","Electricity")
+	set_repair("","ElectricityGen")
+	set_repair("","ElectricityUse")
 	set_repair("","Happiness")		
 
 func set_text(text,property):
@@ -42,7 +43,8 @@ func cameraScale(step):
 func resetAll():
 	set_text("Environment","Environment")
 	set_text("Money","Money")
-	set_text("Electricity","Electricity")
+	set_text("Electricity Use","ElectricityGen")
+	set_text("Electricity Gen","ElectricityUse")
 	set_text("Happiness","Happiness")
 	set_text("Fun Fact","FunFact")
 	pass	
