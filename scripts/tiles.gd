@@ -107,7 +107,7 @@ const Initial_Happiness = {
 const Initial_Tile_Attributes = {
 	1: {  # Office
 		"name" : "Office",
-		"yearly_pollution": 50,
+		"yearly_pollution": 25,
 		"income": 350,
 		"electricityRequired": 2.5,
 		"electricityGenerated": 0,
@@ -120,7 +120,7 @@ const Initial_Tile_Attributes = {
 		"income": 0,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 9,
+		"positiveHappiness": 7,
 		"negativeHappiness": 0
 	},
 	28: {  # Orange Forest
@@ -129,31 +129,31 @@ const Initial_Tile_Attributes = {
 		"income": 5,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 7,
+		"positiveHappiness": 5,
 		"negativeHappiness": 0
 	},
 	29: {  # Rubber Forest
 		"name" : "Rubber Forest",
 		"yearly_pollution": -25,
-		"income": 8,
+		"income": 6,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 7,
+		"positiveHappiness": 5,
 		"negativeHappiness": 0
 	},
 	30: {  # Palm Forest
 		"name" : "Palm Forest",
 		"yearly_pollution": -15,
-		"income": 10,
+		"income": 7,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 8,
-		"negativeHappiness": 4
+		"positiveHappiness": 2,
+		"negativeHappiness": 0
 	},
 	31: {  # Cocoa Forest
 		"name" : "Cocoa Forest",
 		"yearly_pollution": -22,
-		"income": 12,
+		"income": 8,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
 		"positiveHappiness": 7,
@@ -166,16 +166,16 @@ const Initial_Tile_Attributes = {
 		"electricityRequired": 5,
 		"electricityGenerated": 10,
 		"positiveHappiness": 0,
-		"negativeHappiness": 100
+		"negativeHappiness": 75
 	},
 	33: {  # Nuclear PP
 		"name" : "Nuclear Power Plant",
 		"yearly_pollution": 20,
 		"income": -10,
 		"electricityRequired": 5,
-		"electricityGenerated": 15,
+		"electricityGenerated": 25,
 		"positiveHappiness": 0,
-		"negativeHappiness": 75
+		"negativeHappiness": 50
 	},
 	34: {  # Wind Farm
 		"name" : "Wind Farm",
@@ -189,19 +189,19 @@ const Initial_Tile_Attributes = {
 	35: {  # Leisure Centre
 		"name" : "Leisure Centre",
 		"yearly_pollution": 3,
-		"income": 10,
-		"electricityRequired": 8,
+		"income": 30,
+		"electricityRequired": 1,
 		"electricityGenerated": 0,
-		"positiveHappiness": 20,
+		"positiveHappiness": 25,
 		"negativeHappiness": 5
 	},
 	36: {  # Stadium
 		"name" : "Stadium",
-		"yearly_pollution": 5,
-		"income": 50,
-		"electricityRequired": 22,
+		"yearly_pollution": 50,
+		"income": 500,
+		"electricityRequired": 12,
 		"electricityGenerated": 0,
-		"positiveHappiness": 100,
+		"positiveHappiness": 200,
 		"negativeHappiness": 5
 	},
 	37: {  # Dairy Farm
@@ -210,25 +210,25 @@ const Initial_Tile_Attributes = {
 		"income": 40,
 		"electricityRequired": 0.2,
 		"electricityGenerated": 0,
-		"positiveHappiness": 5,
-		"negativeHappiness": 0
+		"positiveHappiness": 0,
+		"negativeHappiness": 2
 	},
 	38: {  # Park
 		"name" : "Park",
 		"yearly_pollution": -5,
-		"income": 0,
+		"income": -2,
 		"electricityRequired": 0,
 		"electricityGenerated": 0,
-		"positiveHappiness": 10,
+		"positiveHappiness": 5,
 		"negativeHappiness": 0
 	},
 	39: {  # Wheat Farm
 		"name" : "Wheat Farm",
 		"yearly_pollution": 8,
 		"income": 60,
-		"electricityRequired": 0.4,
+		"electricityRequired": 0.2,
 		"electricityGenerated": 0,
-		"positiveHappiness": 1,
+		"positiveHappiness": 0,
 		"negativeHappiness": 1
 	}
 }
@@ -318,7 +318,7 @@ const Tile_Multipliers = {
 		},
 	36: { #Stadium
 		"yearly_pollution": 0.02,
-		"income": 0,
+		"income": 0.02,
 		"electricityRequired": 0.03,
 		"electricityGenerated": 0,
 		"positiveHappiness": -0.05,
@@ -342,11 +342,11 @@ const Tile_Multipliers = {
 		},
 	39: { #Wheat Farm
 		"yearly_pollution": 0.04,
-		"income": -0.06,
-		"electricityRequired": 0.04,
+		"income": -0.04,
+		"electricityRequired": 0.03,
 		"electricityGenerated": 0,
 		"positiveHappiness": 0,
-		"negativeHappiness": 0.04
+		"negativeHappiness": 0.03
 		}
 }
 

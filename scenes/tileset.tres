@@ -242,7 +242,7 @@ texture_region_size = Vector2i(132, 108)
 0:0/0/z_index = 1
 0:0/0/custom_data_0 = -11
 0:0/0/custom_data_1 = "Tree"
-0:0/0/custom_data_4 = 100
+0:0/0/custom_data_4 = 90
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkbwc"]
@@ -347,7 +347,7 @@ texture_region_size = Vector2i(132, 108)
 0:0/0/custom_data_0 = 75
 0:0/0/custom_data_1 = "Building"
 0:0/0/custom_data_2 = 1.0
-0:0/0/custom_data_4 = 3600
+0:0/0/custom_data_4 = 2500
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u7aky"]
@@ -369,7 +369,7 @@ texture_region_size = Vector2i(132, 115)
 0:0/0/texture_origin = Vector2i(0, -6)
 0:0/0/z_index = 1
 0:0/0/custom_data_1 = "Park"
-0:0/0/custom_data_4 = 8
+0:0/0/custom_data_4 = 40
 0:0/0/custom_data_5 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxvn4"]

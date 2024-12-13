@@ -55,7 +55,7 @@ func update_stats_every_year():
 	var tempIncome = 0
 	var electricityRequired = 1
 	var electricityGenerated = 2
-	var tempHappinessPos = 0
+	var tempHappinessPos = 30
 	var tempHappinessNeg = 0
 	
 	# Iterate through each tile's attributes and sums them to temp values
